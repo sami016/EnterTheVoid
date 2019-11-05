@@ -1,0 +1,30 @@
+
+
+# Tasks
+
+## Design
+
+## Modelling
+
+## Ship rendering
+ - Cameras []
+ - 
+
+## Fundamentals
+ - Modules and parts []
+
+## Build mode
+ - Build mode basic logic []
+ - Available parts collection []
+ - Part probability generation []
+
+## Pilot mode
+- Flight controls []
+- Abilities and cooldowns []
+
+## Asteroid field phase
+- Collisions []
+
+## Leap race phase
+
+## Combat phase
