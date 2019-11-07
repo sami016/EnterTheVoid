@@ -24,19 +24,27 @@ namespace GreatSpaceRace.Builder
             var keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.A))
             {
-                speed += new Vector3(-1, 0, 0);
+                speed += Vector3.Left;
             }
             if (keyboard.IsKeyDown(Keys.D))
             {
-                speed += new Vector3(1, 0, 0);
+                speed += Vector3.Right;
             }
             if (keyboard.IsKeyDown(Keys.W))
             {
-                speed += new Vector3(0, 1, 0);
+                speed += Vector3.Forward;
             }
             if (keyboard.IsKeyDown(Keys.S))
             {
-                speed += new Vector3(0, -1, 0);
+                speed += Vector3.Backward;
+            }
+            if (keyboard.IsKeyDown(Keys.Q))
+            {
+                speed += Vector3.Up;
+            }
+            if (keyboard.IsKeyDown(Keys.E))
+            {
+                speed += Vector3.Down;
             }
 
             speed = Vector3.Transform(speed, Camera.Position.Rotation);

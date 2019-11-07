@@ -28,3 +28,41 @@
 ## Leap race phase
 
 ## Combat phase
+
+
+#Plan 
+
+Week 1: 
+ - Build mode
+ - Ship components
+
+Week 2:
+ - Flight mode
+ - Basics asteroid phase
+ - Weapons control
+
+Week 3:
+ - Implement weapons.
+ - Advanced In-game mechanics.
+ - Expand with more phases.
+ - Start improving presentation during the race.
+
+ Week 4:
+  - Polish
+  - 
+
+# Game models
+
+Assets in order of my perceived importance:
+ - Tile hexagon [x]
+ - Tile connectors [x]
+ - Floor tile [x]
+ - Low level gun
+ - Low level rocket
+ - Life support module
+ - Crew member (very minimal low poly)
+ - Shield generator
+ - Battery module
+ - Gun projectile
+ - Shield wall
+ - Asteroids
