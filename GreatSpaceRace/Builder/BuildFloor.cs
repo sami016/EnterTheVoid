@@ -11,9 +11,9 @@ namespace GreatSpaceRace.Builder
     {
         public void Initialise()
         {
-            for (var gridX=0; gridX<3; gridX++)
+            for (var gridX=0; gridX<1; gridX++)
             {
-                for (var gridZ=0; gridZ<3; gridZ++)
+                for (var gridZ=0; gridZ<1; gridZ++)
                 {
                     var child = Entity.Create();
                     child.Add(new Transform

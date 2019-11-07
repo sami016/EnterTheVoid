@@ -30,14 +30,14 @@ namespace GreatSpaceRace.Builder
             {
                 speed += Vector3.Right;
             }
-            if (keyboard.IsKeyDown(Keys.W))
-            {
-                speed += Vector3.Forward;
-            }
-            if (keyboard.IsKeyDown(Keys.S))
-            {
-                speed += Vector3.Backward;
-            }
+            //if (keyboard.IsKeyDown(Keys.W))
+            //{
+            //    speed += Vector3.Forward;
+            //}
+            //if (keyboard.IsKeyDown(Keys.S))
+            //{
+            //    speed += Vector3.Backward;
+            //}
             if (keyboard.IsKeyDown(Keys.Q))
             {
                 speed += Vector3.Up;
@@ -48,6 +48,14 @@ namespace GreatSpaceRace.Builder
             }
 
             speed = Vector3.Transform(speed, Camera.Position.Rotation);
+            if (keyboard.IsKeyDown(Keys.W))
+            {
+                speed += Vector3.Forward;
+            }
+            if (keyboard.IsKeyDown(Keys.S))
+            {
+                speed += Vector3.Backward;
+            }
             speed *= MoveSpeed;
 
             Transform.Update(() =>

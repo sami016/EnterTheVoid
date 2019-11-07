@@ -52,7 +52,7 @@ namespace GreatSpaceRace.Builder
             this.Update(() =>
             {
                 //Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(0, (float)(Math.PI * context.DeltaTimeSeconds), 0);
-                Transform.Location += Vector3.Up * context.DeltaTimeSeconds * 0.1f;
+                //Transform.Location += Vector3.Up * context.DeltaTimeSeconds * 0.1f;
             });
         }
     }

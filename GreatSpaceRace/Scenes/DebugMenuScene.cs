@@ -3,6 +3,7 @@ using Forge.Core.Resources;
 using Forge.Core.Scenes;
 using Forge.UI.Glass;
 using GreatSpaceRace.UI.Debug;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,6 +21,7 @@ namespace GreatSpaceRace.Scenes
         [Inject] ResourceManager<Texture2D> Textures { get; set; }
         [Inject] ContentManager Content { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
+        [Inject] GraphicsDeviceManager GraphicsDeviceManager { get; set; }
 
         public override void Initialise()
         {
@@ -37,6 +39,11 @@ namespace GreatSpaceRace.Scenes
             //Textures.Load("Globe", Content.Load<Texture2D>("Icon/Globe"));
 
             _uiDispose += UserInterfaceManager.Create(new DebugScreenTemplate(SceneManager));
+
+            GraphicsDeviceManager.PreferredBackBufferWidth = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Width;
+            GraphicsDeviceManager.PreferredBackBufferHeight = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Height;
+            //GraphicsDeviceManager.IsFullScreen = true;
+            GraphicsDeviceManager.ApplyChanges();
         }
 
         public override void Dispose()

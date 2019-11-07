@@ -12,6 +12,7 @@ namespace GreatSpaceRace
                 .UseEnginePrimitives()
                 .UseGlassUI()
                 .WithInitialScene(() => new DebugMenuScene())
+                .AddSingleton(() => new GlobalControls())
                 .UseBackgroundRefreshColour(Color.Black)
                 .Create();
         

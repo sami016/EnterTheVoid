@@ -26,9 +26,9 @@ namespace GreatSpaceRace.Scenes
             {
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
             });
-            //CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(4)));
-            CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
-            cameraPos.Location = Vector3.Backward;
+            CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
+            //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
+            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 100;
             CameraManager.ActiveCamera.LookAt(Vector3.Zero);
             CameraManager.ActiveCamera.Recalculate();
             camera.Add(new DebugCameraControl());
@@ -36,7 +36,9 @@ namespace GreatSpaceRace.Scenes
             var floor = Create();
             floor.Add(new BuildFloor());
 
-            var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate());
+            var gameMode = AddSingleton(new BuildMode());
+
+            var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode));
             Disposal += () => cleanBuildUI();
         }
     }
