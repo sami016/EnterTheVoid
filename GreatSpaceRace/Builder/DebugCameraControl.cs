@@ -58,9 +58,21 @@ namespace GreatSpaceRace.Builder
             }
             speed *= MoveSpeed;
 
+            var rot = 0f;
+            if (keyboard.IsKeyDown(Keys.O))
+            {
+                rot += 1.0f;
+            }
+            if (keyboard.IsKeyDown(Keys.P))
+            {
+                rot -= 1.0f;
+            }
+
+
             Transform.Update(() =>
             {
                 Transform.Location += speed * context.DeltaTimeSeconds;
+                Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(rot * context.DeltaTimeSeconds, 0, 0);
                 Camera.Recalculate();
             });
         }

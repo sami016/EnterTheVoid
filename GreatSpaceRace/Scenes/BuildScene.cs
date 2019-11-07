@@ -28,7 +28,7 @@ namespace GreatSpaceRace.Scenes
             });
             CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
             //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
-            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 100;
+            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 50;
             CameraManager.ActiveCamera.LookAt(Vector3.Zero);
             CameraManager.ActiveCamera.Recalculate();
             camera.Add(new DebugCameraControl());
