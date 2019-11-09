@@ -28,7 +28,7 @@ namespace GreatSpaceRace.Scenes
             });
             CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
             //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
-            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 50;
+            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 5;
             CameraManager.ActiveCamera.LookAt(Vector3.Zero);
             CameraManager.ActiveCamera.Recalculate();
             camera.Add(new DebugCameraControl());
@@ -37,6 +37,7 @@ namespace GreatSpaceRace.Scenes
             floor.Add(new BuildFloor());
 
             var gameMode = AddSingleton(new BuildMode());
+            AddSingleton(new BuildSelector(CameraManager.ActiveCamera));
 
             var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode));
             Disposal += () => cleanBuildUI();

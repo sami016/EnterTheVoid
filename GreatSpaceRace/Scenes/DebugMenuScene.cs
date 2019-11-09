@@ -22,6 +22,7 @@ namespace GreatSpaceRace.Scenes
         [Inject] ContentManager Content { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
         [Inject] GraphicsDeviceManager GraphicsDeviceManager { get; set; }
+        [Inject] GameWindow GameWindow { get; set; }
 
         public override void Initialise()
         {
@@ -31,8 +32,6 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("StarCluster1", Content.Load<Texture2D>("Textures/StarCluster1"));
             Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Starfield-7"));
             Textures.Load("Center", Content.Load<Texture2D>("Textures/center"));
-
-
 
             //Textures.Load("Rocket", Content.Load<Texture2D>("Icon/Rocket"));
             //Textures.Load("Settings", Content.Load<Texture2D>("Icon/Settings"));
@@ -44,6 +43,8 @@ namespace GreatSpaceRace.Scenes
             GraphicsDeviceManager.PreferredBackBufferHeight = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Height;
             //GraphicsDeviceManager.IsFullScreen = true;
             GraphicsDeviceManager.ApplyChanges();
+
+            GameWindow.Position = new Point(0, 0);
         }
 
         public override void Dispose()

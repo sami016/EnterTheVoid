@@ -67,7 +67,7 @@ namespace GreatSpaceRace.Builder
             {
                 rot -= 1.0f;
             }
-
+            rot *= 0.1f;
 
             Transform.Update(() =>
             {

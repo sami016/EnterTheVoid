@@ -12,14 +12,21 @@ using System.Collections.Generic;
 using System.Text;
 using Forge.Core.Utilities;
 using Microsoft.Xna.Framework.Input;
+using GreatSpaceRace.Ships;
+using Forge.Core.Space.Bodies;
+using Forge.Core.Space.Shapes;
+using GreatSpaceRace.Constants;
+using Forge.Core.Rendering.VertexTypes;
 
 namespace GreatSpaceRace.Builder
 {
-    class Floor : Component, IRenderable, IInit, ITick
+    class BuildNode : Component, IRenderable, IInit, ITick
     {
         private Model _floorModel;
-        private Model _cellModel;
-        private readonly Point _gridPosition;
+        private Model _triModel;
+        public Point GridLocation { get; }
+
+        private static Matrix Offset = Matrix.CreateTranslation(0, -0.12f, 0);
 
         [Inject] ContentManager Content { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
@@ -27,30 +34,29 @@ namespace GreatSpaceRace.Builder
 
         public uint RenderOrder { get; } = 0;
 
-        public Floor(Point gridPosition)
+        public BuildNode(Point gridPosition)
         {
-            _gridPosition = gridPosition;
+            GridLocation = gridPosition;
         }
 
         public void Initialise()
         {
+            _triModel = Content.Load<Model>("Models/tri");
             _floorModel = Content.Load<Model>("Models/floor");
             _floorModel.EnableDefaultLighting();
-            _cellModel = Content.Load<Model>("Models/cell");
-            _cellModel.EnableDefaultLighting(); 
+            _floorModel.SetDiffuseColour(Color.DarkSlateBlue);
+            Entity.Add(new StaticBody(MeshShape.FromModel(_floorModel), (byte)HitLayers.BuildTile, Offset));
+            //Entity.Add(new StaticBody(MeshShape.FromModel(_triModel), (byte)HitLayers.BuildTile));
+
+            Entity.Add(new ShipSectionRenderable(GridLocation));
         }
 
         public void Render(RenderContext context)
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
-            //var camera = new
-            //{
-            //    View = Matrix.CreateLookAt(Vector3.Backward, Vector3.Zero, Vector3.Up),
-            //    Projection = CameraManager.ActiveCamera.Projection
-            //};
-            _cellModel.Draw(Transform.WorldTransform, camera.View, camera.Projection);
-            _floorModel.Draw(Matrix.CreateTranslation(Transform.Location - Vector3.Up * 0.1f), camera.View, camera.Projection);
+            _floorModel.Draw(Offset * Transform.WorldTransform, camera.View, camera.Projection);
+            //_triModel.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
         public void Tick(TickContext context)

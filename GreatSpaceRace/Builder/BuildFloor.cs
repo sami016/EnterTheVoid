@@ -1,5 +1,6 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Interfaces;
+using GreatSpaceRace.Constants;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,9 +13,9 @@ namespace GreatSpaceRace.Builder
     {
         public void Initialise()
         {
-            for (var gridX=0; gridX<5; gridX++)
+            for (var gridX=0; gridX<3; gridX++)
             {
-                for (var gridZ=0; gridZ<5; gridZ++)
+                for (var gridZ=0; gridZ<3; gridZ++)
                 {
                     var gridPosition = new Point(gridX, gridZ);
                     var child = Entity.Create();
@@ -23,7 +24,7 @@ namespace GreatSpaceRace.Builder
                         Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
                         Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
                     });
-                    child.Add(new Floor(gridPosition));
+                    child.Add(new BuildNode(gridPosition));
                 }
             }
         }

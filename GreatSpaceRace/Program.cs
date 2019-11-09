@@ -10,6 +10,7 @@ namespace GreatSpaceRace
     {
         static ForgeGame Game => new ForgeGameBuilder()
                 .UseEnginePrimitives()
+                .UseCollisionPrimitives()
                 .UseGlassUI()
                 .WithInitialScene(() => new DebugMenuScene())
                 .AddSingleton(() => new GlobalControls())
