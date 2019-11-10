@@ -1,4 +1,6 @@
 ﻿using Forge.Core;
+using Forge.Core.Debugging;
+using Forge.Core.Utilities;
 using Forge.UI.Glass;
 using GreatSpaceRace.Scenes;
 using Microsoft.Xna.Framework;
@@ -14,6 +16,9 @@ namespace GreatSpaceRace
                 .UseGlassUI()
                 .WithInitialScene(() => new DebugMenuScene())
                 .AddSingleton(() => new GlobalControls())
+                .AddSingleton(() => new KeyControls())
+                .AddSingleton(() => new MouseControls())
+                //.AddSingleton(() => new FpsDebugger())
                 .UseBackgroundRefreshColour(Color.Black)
                 .Create();
         

@@ -4,6 +4,7 @@ using Forge.Core.Interfaces;
 using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Utilities;
+using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,23 +14,17 @@ using System.Text;
 
 namespace GreatSpaceRace.Ships
 {
-    public class ShipSectionRenderable : Component, IRenderable, IInit, ITick
+    /// <summary>
+    /// Not a renderable, but a render utility for drawing parts of ships.
+    /// </summary>
+    public class ShipSectionRenderer : Component, IInit, ITick
     {
         private Model _cellModel;
         private Model _connectorLargeModel;
         private Model _connectorSmallModel;
-        private readonly Point _gridPosition;
 
         [Inject] ContentManager Content { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
-        [Inject] Transform Transform { get; set; }
-
-        public uint RenderOrder { get; } = 0;
-
-        public ShipSectionRenderable(Point gridPosition)
-        {
-            _gridPosition = gridPosition;
-        }
 
         public void Initialise()
         {
@@ -41,16 +36,33 @@ namespace GreatSpaceRace.Ships
             _connectorSmallModel.EnableDefaultLighting();
         }
 
-        public void Render(RenderContext context)
+        public void Render(RenderContext context, Transform transform, Section section)
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            var camera = CameraManager.ActiveCamera;
-            _cellModel.Draw(Transform.WorldTransform, camera.View, camera.Projection);
+            var view = context.View;
+            var projection = context.Projection;
+            if (view == null)
+            {
+                view = CameraManager.ActiveCamera.View;
+            }
+            if (projection == null)
+            {
+                projection = CameraManager.ActiveCamera.Projection;
+            }
+            _cellModel.Draw(transform.WorldTransform, view.Value, projection.Value);
             for (var i = 0; i < 6; i++)
             {
+                var direction = (Direction)((i+(int)section.Rotation) % 6);
                 var rot = Matrix.CreateRotationY((float)(i * Math.PI * 2 / 6));
-                _connectorLargeModel.Draw(rot * Transform.WorldTransform, camera.View, camera.Projection);
-                _connectorSmallModel.Draw(rot * Transform.WorldTransform, camera.View, camera.Projection);
+
+                if (section.ConnectionLayout.LargeConnectors.Contains(direction))
+                {
+                    _connectorLargeModel.Draw(rot * transform.WorldTransform, view.Value, projection.Value);
+                }
+                if (section.ConnectionLayout.SmallConectors.Contains(direction))
+                { 
+                    _connectorSmallModel.Draw(rot * transform.WorldTransform, view.Value, projection.Value);
+                }
             }
         }
 

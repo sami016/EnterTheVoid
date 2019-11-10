@@ -20,23 +20,27 @@ using Forge.Core.Rendering.VertexTypes;
 
 namespace GreatSpaceRace.Builder
 {
-    class BuildNode : Component, IRenderable, IInit, ITick
+    public class BuildNode : Component, IRenderable, IInit, ITick
     {
         private Model _floorModel;
         private Model _triModel;
         public Point GridLocation { get; }
 
+        private readonly ShipTopology _shipTopology;
         private static Matrix Offset = Matrix.CreateTranslation(0, -0.12f, 0);
+        private ShipSectionRenderer _shipRenderer;
 
         [Inject] ContentManager Content { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] Transform Transform { get; set; }
 
         public uint RenderOrder { get; } = 0;
+        public bool AutoRender { get; } = true;
 
-        public BuildNode(Point gridPosition)
+        public BuildNode(Point gridPosition, ShipTopology shipTopology)
         {
             GridLocation = gridPosition;
+            _shipTopology = shipTopology;
         }
 
         public void Initialise()
@@ -48,15 +52,22 @@ namespace GreatSpaceRace.Builder
             Entity.Add(new StaticBody(MeshShape.FromModel(_floorModel), (byte)HitLayers.BuildTile, Offset));
             //Entity.Add(new StaticBody(MeshShape.FromModel(_triModel), (byte)HitLayers.BuildTile));
 
-            Entity.Add(new ShipSectionRenderable(GridLocation));
+            _shipRenderer = Entity.Add(new ShipSectionRenderer());
         }
 
         public void Render(RenderContext context)
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
+            if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
+            {
+                _shipRenderer.Render(context, Transform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                _floorModel.SetDiffuseColour(Color.Gray);
+            } else
+            {
+                _floorModel.SetDiffuseColour(Color.DarkSlateBlue);
+            }
             _floorModel.Draw(Offset * Transform.WorldTransform, camera.View, camera.Projection);
-            //_triModel.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
         public void Tick(TickContext context)

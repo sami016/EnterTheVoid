@@ -7,7 +7,10 @@ namespace GreatSpaceRace.Ships.Modules
     /// <summary>
     /// Represents a type of ship module.
     /// </summary>
-    public class Module
+    public abstract class Module
     {
+        public abstract string FullName { get; }
+        public abstract string ShortName { get; }
+        public abstract string DescriptionShort { get; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Forge.Core;
+using Forge.Core.Components;
 using Forge.Core.Scenes;
 using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Interaction;
@@ -6,6 +7,7 @@ using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
 using GreatSpaceRace.Builder;
 using GreatSpaceRace.Scenes;
+using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -18,10 +20,14 @@ namespace GreatSpaceRace.UI.Builder
     class BuildScreenTemplate : Template
     {
         private readonly BuildMode _gamemode;
+        private readonly ProductionLine _productionLine;
+        private readonly BuildPlacer _buildPlacer;
 
-        public BuildScreenTemplate(BuildMode gamemode)
+        public BuildScreenTemplate(BuildMode gamemode, ProductionLine productionLine, BuildPlacer buildPlacer)
         {
             _gamemode = gamemode;
+            _productionLine = productionLine;
+            _buildPlacer = buildPlacer;
         }
 
         public override void Tick(TickContext context)
@@ -65,7 +71,7 @@ namespace GreatSpaceRace.UI.Builder
                     }
                 },
                 // Bottom
-                EvaluateBottom()
+                EvaluateProductionLine()
             )
             {
                 //Background = new ImageBackgroundStyling
@@ -74,25 +80,62 @@ namespace GreatSpaceRace.UI.Builder
                 //}
             };
 
-        private IElement EvaluateBottom()
+        private IElement EvaluateProductionLineItem(Section section)
+        {
+            return new Pane(
+                    new Text(section.Module.ShortName)
+                    {
+                        Position = new Rectangle(10, 10, 0, 0)
+                    }
+                    //new ModelView
+                    //{
+                    //    Renderable = new ShipSectionRenderable(new Point(0, 0))
+                    //    {
+                    //        Transform = new Transform()
+                    //    },
+                    //    Position = new Rectangle(0, 0, 240, 140)
+                    //}
+                )
+            {
+                Background = new ColourBackgroundStyling
+                {
+                    Colour = Color.DarkSlateBlue
+                },
+                Init = el => el.Events.Subscribe<ClickUIEvent>(ev =>
+                {
+                    _buildPlacer.StartPlacing(section);
+                })
+            };
+        }
+
+        private IElement EvaluateProductionLine()
         {
             IList<IElement> sections = new List<IElement>();
-            for (var i = 0; i < 10; i++)
+            var i = 0;
+            foreach (var section in _productionLine.Line)
             {
-                sections.Add(new Pane()
-                {
-                    Background = new ColourBackgroundStyling
-                    {
-                        Colour = Color.White
-                    },
-                    Position = new Rectangle(i * 100 + 5, 5, 90, 90)
-                });
+                var targetYPos = i * 150 + 5;
+                //var smoothYPos = 0;
+                //var fraction = _productionLine.SectionFractionalProgress;
+                //if (i == _productionLine.Line.Count() - 1)
+                //{
+                //    smoothYPos = (int)(fraction * targetYPos + (1 - fraction) * 1800f);
+                //} else
+                //{
+                //    Console.WriteLine(fraction);
+                //    var targetYPosPrevious = (i+1) * 150 + 5;
+                //    smoothYPos = (int)(fraction * targetYPos + (1 - fraction) * targetYPosPrevious);
+                //}
+                var sectionView = EvaluateProductionLineItem(section);
+                sectionView.Position = new Rectangle(5, targetYPos, 240, 140);
+                sections.Add(sectionView);
+                i++;
             }
             return new Pane(
                 sections.ToArray()
             )
             {
-                Position = new Rectangle(400, 950, 1000, 100),
+                Position = new Rectangle(1650, 0, 250, 1200),
                 Background = new ColourBackgroundStyling
                 {
                     Colour = Color.SlateGray

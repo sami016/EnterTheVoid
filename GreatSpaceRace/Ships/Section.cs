@@ -1,5 +1,6 @@
 ﻿using GreatSpaceRace.Ships.Connections;
 using GreatSpaceRace.Ships.Modules;
+using GreatSpaceRace.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,19 @@ namespace GreatSpaceRace.Ships
     /// </summary>
     public class Section
     {
+        public Direction Rotation { get; private set; } = Direction.East;
         public Module Module { get; }
         public ConnectionLayout ConnectionLayout { get; }
+
+        public Section(Module module, ConnectionLayout connectionLayout)
+        {
+            Module = module;
+            ConnectionLayout = connectionLayout;
+        }
+
+        public void Rotate(int amount)
+        {
+            Rotation = (Direction)((((int)Rotation) + amount) % 6);
+        }
     }
 }
