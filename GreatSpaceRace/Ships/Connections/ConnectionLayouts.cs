@@ -12,9 +12,29 @@ namespace GreatSpaceRace.Ships.Connections
             new List<int>() { Direction.East }
         );
 
+        public static ConnectionLayout OnlyWest = new ConnectionLayout(
+            new List<int>() { Direction.West },
+            new List<int>() { Direction.West }
+        );
+
+        public static ConnectionLayout OnlySouthEast = new ConnectionLayout(
+            new List<int>() { Direction.SouthEast },
+            new List<int>() { Direction.SouthEast }
+        );
+
         public static ConnectionLayout OnlySouthWest = new ConnectionLayout(
             new List<int>() { Direction.SouthWest },
             new List<int>() { Direction.SouthWest }
+        );
+
+        public static ConnectionLayout OnlyNorthEast = new ConnectionLayout(
+            new List<int>() { Direction.NorthEast },
+            new List<int>() { Direction.NorthEast }
+        );
+
+        public static ConnectionLayout OnlyNorthWest = new ConnectionLayout(
+            new List<int>() { Direction.NorthWest },
+            new List<int>() { Direction.NorthWest }
         );
 
         public static ConnectionLayout FullyConnected = new ConnectionLayout(
@@ -42,6 +62,21 @@ namespace GreatSpaceRace.Ships.Connections
             new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest }
         );
 
+        public static ConnectionLayout HalfConnected = new ConnectionLayout(
+            new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest },
+            new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest }
+        );
+
+        public static ConnectionLayout HalfConnectedAlternatingA = new ConnectionLayout(
+            new List<int>() { Direction.West, Direction.SouthEast, Direction.NorthEast },
+            new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest }
+        );
+
+        public static ConnectionLayout HalfConnectedAlternatingB = new ConnectionLayout(
+            new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest },
+            new List<int>() { Direction.West, Direction.SouthEast, Direction.NorthEast }
+        );
+
         public static ConnectionLayout PassThroughLarge = new ConnectionLayout(
             new List<int>() { Direction.East, Direction.West },
             new List<int>() { }
@@ -65,6 +100,36 @@ namespace GreatSpaceRace.Ships.Connections
         public static ConnectionLayout PassThroughB = new ConnectionLayout(
             new List<int>() { Direction.East },
             new List<int>() { Direction.East, Direction.West }
+        );
+
+        public static ConnectionLayout PassThroughC1 = new ConnectionLayout(
+            new List<int>() { Direction.SouthWest, Direction.NorthEast },
+            new List<int>() { Direction.SouthWest, Direction.NorthEast }
+        );
+
+        public static ConnectionLayout PassThroughC2 = new ConnectionLayout(
+            new List<int>() { Direction.SouthWest, Direction.NorthEast },
+            new List<int>() { }
+        );
+
+        public static ConnectionLayout PassThroughC3 = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.SouthWest, Direction.NorthEast }
+        );
+
+        public static ConnectionLayout PassThroughD1 = new ConnectionLayout(
+            new List<int>() { Direction.SouthEast, Direction.NorthWest},
+            new List<int>() { Direction.SouthEast, Direction.NorthWest }
+        );
+
+        public static ConnectionLayout PassThroughD2 = new ConnectionLayout(
+            new List<int>() { Direction.SouthEast, Direction.NorthWest },
+            new List<int>() { }
+        );
+
+        public static ConnectionLayout PassThroughD3 = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.SouthEast, Direction.NorthWest }
         );
 
         public static ConnectionLayout SingleLarge = new ConnectionLayout(
