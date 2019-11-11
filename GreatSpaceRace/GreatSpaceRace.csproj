@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="D:\Development\Source\DotNet\Forge\Libraries\Forge.Core\Forge.Core.csproj" />
-    <ProjectReference Include="D:\Development\Source\DotNet\Forge\Libraries\Forge.UI.Glass\Forge.UI.Glass.csproj" />
+    <ProjectReference Include="..\Forge\Libraries\Forge.Core\Forge.Core.csproj" />
+    <ProjectReference Include="..\Forge\Libraries\Forge.UI.Glass\Forge.UI.Glass.csproj" />
   </ItemGroup>
 </Project>
