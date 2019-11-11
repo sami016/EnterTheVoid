@@ -34,6 +34,9 @@ namespace GreatSpaceRace.Ships.Generation
 
         public static ModuleDistribution Distribution { get; } = new ModuleDistribution()
             .Add(1f, typeof(LifeSupportModule), _standardConnectionLayoutDistribution)
-            .Add(1f, typeof(BlasterModule), _standardConnectionLayoutDistribution);
+            .Add(1f, typeof(BlasterModule), _standardConnectionLayoutDistribution)
+            .Add(1f, typeof(FuelModule), _standardConnectionLayoutDistribution)
+            .Add(1f, typeof(RocketModule), _standardConnectionLayoutDistribution)
+            .Add(1f, typeof(EmptyModule), _standardConnectionLayoutDistribution);
     }
 }

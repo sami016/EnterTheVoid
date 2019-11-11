@@ -1,5 +1,6 @@
 ﻿using Forge.Core;
 using Forge.Core.Debugging;
+using Forge.Core.Sound;
 using Forge.Core.Utilities;
 using Forge.UI.Glass;
 using GreatSpaceRace.Scenes;
@@ -18,6 +19,7 @@ namespace GreatSpaceRace
                 .AddSingleton(() => new GlobalControls())
                 .AddSingleton(() => new KeyControls())
                 .AddSingleton(() => new MouseControls())
+                .AddSingleton(() => new MusicManager())
                 //.AddSingleton(() => new FpsDebugger())
                 .UseBackgroundRefreshColour(Color.Black)
                 .Create();

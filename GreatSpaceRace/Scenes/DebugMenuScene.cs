@@ -1,11 +1,14 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Resources;
 using Forge.Core.Scenes;
+using Forge.Core.Sound;
 using Forge.UI.Glass;
 using GreatSpaceRace.UI.Debug;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,10 +22,13 @@ namespace GreatSpaceRace.Scenes
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] ResourceManager<SpriteFont> Fonts { get; set; }
         [Inject] ResourceManager<Texture2D> Textures { get; set; }
+        [Inject] ResourceManager<Song> Songs { get; set; }
+        [Inject] ResourceManager<SoundEffect> SoundEffects { get; set; }
         [Inject] ContentManager Content { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
         [Inject] GraphicsDeviceManager GraphicsDeviceManager { get; set; }
         [Inject] GameWindow GameWindow { get; set; }
+        [Inject] MusicManager MusicManager { get; set; }
 
         public override void Initialise()
         {
@@ -33,6 +39,11 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Starfield-7"));
             Textures.Load("Center", Content.Load<Texture2D>("Textures/center"));
 
+            Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
+            Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));
+
+            SoundEffects.Load("Hammer", Content.Load<SoundEffect>("Sounds/hammer"));
+            SoundEffects.Load("Click", Content.Load<SoundEffect>("Sounds/click"));
             //Textures.Load("Rocket", Content.Load<Texture2D>("Icon/Rocket"));
             //Textures.Load("Settings", Content.Load<Texture2D>("Icon/Settings"));
             //Textures.Load("Globe", Content.Load<Texture2D>("Icon/Globe"));
@@ -43,6 +54,8 @@ namespace GreatSpaceRace.Scenes
             GraphicsDeviceManager.PreferredBackBufferHeight = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Height;
             //GraphicsDeviceManager.IsFullScreen = true;
             GraphicsDeviceManager.ApplyChanges();
+
+            MusicManager.Start("Menu");
 
             GameWindow.Position = new Point(0, 0);
         }

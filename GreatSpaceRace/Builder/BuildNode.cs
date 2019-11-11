@@ -46,7 +46,7 @@ namespace GreatSpaceRace.Builder
         public void Initialise()
         {
             _triModel = Content.Load<Model>("Models/tri");
-            _floorModel = Content.Load<Model>("Models/floor");
+            _floorModel = Content.Load<Model>("Models/floor2");
             _floorModel.EnableDefaultLighting();
             _floorModel.SetDiffuseColour(Color.DarkSlateBlue);
             Entity.Add(new StaticBody(MeshShape.FromModel(_floorModel), (byte)HitLayers.BuildTile, Offset));
@@ -62,10 +62,10 @@ namespace GreatSpaceRace.Builder
             if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
             {
                 _shipRenderer.Render(context, Transform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
-                _floorModel.SetDiffuseColour(Color.Gray);
+               //_floorModel.SetDiffuseColour(Color.Gray);
             } else
             {
-                _floorModel.SetDiffuseColour(Color.DarkSlateBlue);
+                //_floorModel.SetDiffuseColour(Color.DarkSlateBlue);
             }
             _floorModel.Draw(Offset * Transform.WorldTransform, camera.View, camera.Projection);
         }

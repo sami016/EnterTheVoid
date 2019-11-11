@@ -4,12 +4,14 @@ using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
+using Forge.Core.Resources;
 using Forge.Core.Space;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Constants;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -26,6 +28,7 @@ namespace GreatSpaceRace.Builder
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
         [Inject] KeyControls KeyControls { get; set; }
         [Inject] MouseControls MouseControls { get; set; }
+        [Inject] ResourceManager<SoundEffect> SoundEffects { get; set; }
 
         Camera Camera { get; }
         Transform CameraTransform { get; }
@@ -101,7 +104,11 @@ namespace GreatSpaceRace.Builder
                 {
                     PlacingSection.Rotate(1);
                 }
-                if (buildNode != null && MouseControls.LeftClicked)
+                if (MouseControls.RightClicked)
+                {
+                    CancelPlacing();
+                }
+                else if (buildNode != null && MouseControls.LeftClicked)
                 {
                     var gridLocation = buildNode.GridLocation;
                     if (_shipTopology.Sections[gridLocation.X, gridLocation.Y] == null
@@ -112,7 +119,12 @@ namespace GreatSpaceRace.Builder
                             _shipTopology.Sections[gridLocation.X, gridLocation.Y] = PlacingSection;
                             _productionLine.Remove(PlacingSection);
                             PlacingSection = null;
+                            SoundEffects.Get("Hammer")?.Play();
                         });
+                    }else
+                    {
+
+                        SoundEffects.Get("Click")?.Play();
                     }
                 }
             }

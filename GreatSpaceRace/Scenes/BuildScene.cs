@@ -1,6 +1,7 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
+using Forge.Core.Sound;
 using Forge.UI.Glass;
 using GreatSpaceRace.Builder;
 using GreatSpaceRace.Ships;
@@ -24,6 +25,7 @@ namespace GreatSpaceRace.Scenes
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
+        [Inject] MusicManager MusicManager { get; set; }
 
         public override void Initialise()
         {
@@ -54,6 +56,8 @@ namespace GreatSpaceRace.Scenes
 
             var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode, productionLine, placer));
             Disposal += () => cleanBuildUI();
+
+            MusicManager.Start("Building");
         }
     }
 }
