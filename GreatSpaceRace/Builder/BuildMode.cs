@@ -60,7 +60,7 @@ namespace GreatSpaceRace.Builder
                     if (_countOut.Completed)
                     {
                         //todo
-                        SceneManager.SetScene(new BuildScene());
+                        //SceneManager.SetScene(new BuildScene());
                     }
                     return;
             }

@@ -24,7 +24,10 @@ namespace GreatSpaceRace.Builder
 
         public void Initialise()
         {
-
+            for (var i=0; i<7; i++)
+            {
+                Generate();
+            }
         }
 
         public void Tick(TickContext context)

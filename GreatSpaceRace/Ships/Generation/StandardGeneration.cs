@@ -10,6 +10,7 @@ namespace GreatSpaceRace.Ships.Generation
     {
         private static ConnectionLayoutDistribution _standardConnectionLayoutDistribution = new ConnectionLayoutDistribution
         {
+            ( 10f, ConnectionLayouts.OnlyEast ),
             ( 1f, ConnectionLayouts.AccuteVA ),
             ( 1f, ConnectionLayouts.AccuteVB ),
             ( 1f, ConnectionLayouts.AccuteVSmallA ),
@@ -28,7 +29,7 @@ namespace GreatSpaceRace.Ships.Generation
             ( 1f, ConnectionLayouts.WideVA ),
             ( 1f, ConnectionLayouts.WideVB ),
             ( 1f, ConnectionLayouts.WideVSmallA ),
-            ( 1f, ConnectionLayouts.WideVSmallB ),
+            ( 1f, ConnectionLayouts.WideVSmallB )
         };
 
         public static ModuleDistribution Distribution { get; } = new ModuleDistribution()

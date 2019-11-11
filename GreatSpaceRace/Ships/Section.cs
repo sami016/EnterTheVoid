@@ -12,7 +12,7 @@ namespace GreatSpaceRace.Ships
     /// </summary>
     public class Section
     {
-        public Direction Rotation { get; private set; } = Direction.East;
+        public int Rotation { get; private set; } = Direction.East;
         public Module Module { get; }
         public ConnectionLayout ConnectionLayout { get; }
 
@@ -24,7 +24,7 @@ namespace GreatSpaceRace.Ships
 
         public void Rotate(int amount)
         {
-            Rotation = (Direction)((((int)Rotation) + amount) % 6);
+            Rotation = ((Rotation) + amount) % 6;
         }
     }
 }

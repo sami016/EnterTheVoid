@@ -91,7 +91,7 @@ namespace GreatSpaceRace.Builder
             var buildNode = res.entity?.Get<BuildNode>();
             if (buildNode != null)
             {
-                Console.WriteLine($"{buildNode.GridLocation}");
+                //Console.WriteLine($"{buildNode.GridLocation}");
             }
             this.Update(() => HoverNode = buildNode);
 
@@ -104,7 +104,8 @@ namespace GreatSpaceRace.Builder
                 if (buildNode != null && MouseControls.LeftClicked)
                 {
                     var gridLocation = buildNode.GridLocation;
-                    if (_shipTopology.Sections[gridLocation.X, gridLocation.Y] == null)
+                    if (_shipTopology.Sections[gridLocation.X, gridLocation.Y] == null
+                        && _shipTopology.LegalSectionCheck(PlacingSection, gridLocation))
                     {
                         this.Update(() =>
                         {

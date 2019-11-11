@@ -4,13 +4,13 @@ using System.Text;
 
 namespace GreatSpaceRace.Utility
 {
-    public enum Direction
+    public static class Direction
     {
-        East = 0,
-        SouthEast = 1,
-        SouthWest = 2,
-        West = 3,
-        NorthWest = 4,
-        NorthEast = 5
+        public const int East = 0;
+        public const int SouthEast = 1;
+        public const int SouthWest = 2;
+        public const int West = 3;
+        public const int NorthWest = 4;
+        public const int NorthEast = 5;
     }
 }
