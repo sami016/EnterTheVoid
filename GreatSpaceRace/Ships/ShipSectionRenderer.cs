@@ -33,7 +33,7 @@ namespace GreatSpaceRace.Ships
 
         private static float turretOffsetRotation = (float)(Math.PI / 6);
 
-        private static float rocketOffsetRotation = (float)(Math.PI + Math.PI / 6);
+        private static float rocketOffsetRotation = (float)(Math.PI / 6);
 
         [Inject] ContentManager Content { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
@@ -68,7 +68,7 @@ namespace GreatSpaceRace.Ships
             _d = FontManager.Get("Default");
         }
 
-        public void Render(RenderContext context, Transform transform, Section section)
+        public void Render(RenderContext context, Matrix worldTransform, Section section)
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var view = context.View;
@@ -81,7 +81,7 @@ namespace GreatSpaceRace.Ships
             {
                 projection = CameraManager.ActiveCamera.Projection;
             }
-            _cellModel.Draw(transform.WorldTransform, view.Value, projection.Value);
+            _cellModel.Draw(worldTransform, view.Value, projection.Value);
 
             for (var i = 0; i < 6; i++)
             {
@@ -89,11 +89,11 @@ namespace GreatSpaceRace.Ships
                 var rot = Matrix.CreateRotationY((float)(-rotatedDirection * Math.PI * 2 / 6));
                 if (section.ConnectionLayout.LargeConnectors.Contains(i))
                 {
-                    _connectorLargeModel.Draw(rot * transform.WorldTransform, view.Value, projection.Value);
+                    _connectorLargeModel.Draw(rot * worldTransform, view.Value, projection.Value);
                 }
                 if (section.ConnectionLayout.SmallConectors.Contains(i))
                 { 
-                    _connectorSmallModel.Draw(rot * transform.WorldTransform, view.Value, projection.Value);
+                    _connectorSmallModel.Draw(rot * worldTransform, view.Value, projection.Value);
                 }
             }
 
@@ -101,22 +101,22 @@ namespace GreatSpaceRace.Ships
             if (section.Module is BlasterModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - turretOffsetRotation);
-                _turret1Model.Draw(moduleRot * transform.WorldTransform, view.Value, projection.Value);
+                _turret1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is LifeSupportModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
-                _biosphereModel.Draw(moduleRot * transform.WorldTransform, view.Value, projection.Value);
+                _biosphereModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is FuelModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
-                _tankModel.Draw(moduleRot * transform.WorldTransform, view.Value, projection.Value);
+                _tankModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is RocketModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketOffsetRotation);
-                _rocket1Model.Draw(moduleRot * transform.WorldTransform, view.Value, projection.Value);
+                _rocket1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
 
             // debug string

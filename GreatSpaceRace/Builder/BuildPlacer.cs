@@ -140,7 +140,7 @@ namespace GreatSpaceRace.Builder
                     new Transform
                     {
                         Location = HexagonHelpers.GetGridWorldPosition(HoverNode.GridLocation)
-                    },
+                    }.WorldTransform,
                     PlacingSection
                 );
             }

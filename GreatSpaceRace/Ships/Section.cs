@@ -16,10 +16,11 @@ namespace GreatSpaceRace.Ships
         public Module Module { get; }
         public ConnectionLayout ConnectionLayout { get; }
 
-        public Section(Module module, ConnectionLayout connectionLayout)
+        public Section(Module module, ConnectionLayout connectionLayout, int rotation = 0)
         {
             Module = module;
             ConnectionLayout = connectionLayout;
+            Rotation = rotation;
         }
 
         public void Rotate(int amount)

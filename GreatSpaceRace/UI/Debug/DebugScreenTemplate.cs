@@ -4,6 +4,9 @@ using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
 using GreatSpaceRace.Scenes;
+using GreatSpaceRace.Ships;
+using GreatSpaceRace.Ships.Connections;
+using GreatSpaceRace.Ships.Modules;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -54,6 +57,25 @@ namespace GreatSpaceRace.UI.Debug
         public void ClickFlight(ClickUIEvent ev)
         {
             System.Diagnostics.Debug.WriteLine("Flight clicked");
+
+            var topology = new ShipTopology(6, 5);
+            topology.Sections[2, 2] = new Section(
+                new LifeSupportModule(),
+                ConnectionLayouts.FullyConnected
+            );
+            topology.Sections[2, 1] = new Section(
+                new BlasterModule(),
+                ConnectionLayouts.FullyConnected,
+                4
+            );
+            topology.Sections[2, 3] = new Section(
+                new RocketModule(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
+
+
+            _sceneManager.SetScene(new FlightScene(topology));
         }
     }
 }

@@ -7,16 +7,17 @@
 ## Modelling
 
 ## Ship rendering
- - Cameras []
+ - Cameras [x]
  - 
 
 ## Fundamentals
  - Modules and parts []
 
 ## Build mode
- - Build mode basic logic []
- - Available parts collection []
- - Part probability generation []
+ - Build mode basic logic [x]
+ - Available parts collection [x]
+ - Part probability generation [x]
+ - Available parts rendering []
 
 ## Pilot mode
 - Flight controls []
@@ -33,13 +34,13 @@
 #Plan 
 
 Week 1: 
- - Build mode
- - Ship components
+ - Build mode [x]
+ - Ship components [x]
 
 Week 2:
- - Flight mode
- - Basics asteroid phase
- - Weapons control
+ - Flight mode []
+ - Basics asteroid phase []
+ - Weapons control []
 
 Week 3:
  - Implement weapons.

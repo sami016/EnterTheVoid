@@ -61,7 +61,7 @@ namespace GreatSpaceRace.Builder
             var camera = CameraManager.ActiveCamera;
             if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
             {
-                _shipRenderer.Render(context, Transform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                _shipRenderer.Render(context, Transform.WorldTransform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
                //_floorModel.SetDiffuseColour(Color.Gray);
             } else
             {
