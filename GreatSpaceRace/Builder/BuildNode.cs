@@ -34,7 +34,7 @@ namespace GreatSpaceRace.Builder
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] Transform Transform { get; set; }
 
-        public uint RenderOrder { get; } = 0;
+        public uint RenderOrder { get; } = 100;
         public bool AutoRender { get; } = true;
 
         public BuildNode(Point gridPosition, ShipTopology shipTopology)

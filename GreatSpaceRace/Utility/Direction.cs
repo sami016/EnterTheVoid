@@ -13,4 +13,14 @@ namespace GreatSpaceRace.Utility
         public const int NorthWest = 4;
         public const int NorthEast = 5;
     }
+
+    public static class OffDirection
+    {
+        public const int SouthEast = 0;
+        public const int South = 1;
+        public const int SouthWest = 2;
+        public const int NorthWest = 3;
+        public const int North = 4;
+        public const int NorthEast = 5;
+    }
 }

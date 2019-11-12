@@ -15,12 +15,15 @@ namespace GreatSpaceRace.Flight
     public class FlightCameraControl : Component, ITick
     {
         private readonly Entity _shipEntity;
+        private readonly Transform _shipTransform;
+
         [Inject] Transform Transform { get; set; }
         [Inject] Camera Camera { get; set; }
 
         public FlightCameraControl(Entity shipEntity)
         {
             _shipEntity = shipEntity;
+            _shipTransform = _shipEntity.Get<Transform>();
         }
 
         public void Tick(TickContext context)
@@ -39,8 +42,8 @@ namespace GreatSpaceRace.Flight
 
             this.Update(() =>
             {
-                Transform.Location = averageLocation + 10 * Vector3.Up + 2 * Vector3.Backward;
-                Camera.LookAt(averageLocation);
+                Transform.Location = _shipTransform.Location + averageLocation + 10 * Vector3.Up + 2 * Vector3.Backward;
+                Camera.LookAt(_shipTransform.Location + averageLocation);
                 Camera.Recalculate();
                 Camera.RecalculateParameters();
             });

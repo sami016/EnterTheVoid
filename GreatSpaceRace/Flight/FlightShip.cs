@@ -1,4 +1,6 @@
-﻿using Forge.Core.Components;
+﻿using Forge.Core;
+using Forge.Core.Components;
+using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Utility;
@@ -9,9 +11,11 @@ using System.Text;
 
 namespace GreatSpaceRace.Flight
 {
-    public class FlightShip : Component, IInit
+    public class FlightShip : Component, IInit, ITick
     {
         private readonly ShipTopology _topology;
+        public Vector3 Velocity { get; set; } = Vector3.Zero;
+        [Inject] Transform Transform { get; set; }
 
         public FlightShip(ShipTopology topology)
         {
@@ -34,6 +38,14 @@ namespace GreatSpaceRace.Flight
                     child.Add(new FlightNode(gridPosition, _topology));
                 }
             }
+        }
+
+        public void Tick(TickContext context)
+        {
+            Transform.Update(() =>
+            {
+                Transform.Location += Velocity * context.DeltaTimeSeconds;
+            });
         }
     }
 }

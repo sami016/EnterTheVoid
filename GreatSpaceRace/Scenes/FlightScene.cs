@@ -24,6 +24,8 @@ namespace GreatSpaceRace.Scenes
 
         public override void Initialise()
         {
+            AddSingleton(new BackgroundScoll());
+
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
             {
@@ -35,7 +37,7 @@ namespace GreatSpaceRace.Scenes
             var shipEnt = Create();
             shipEnt.Add(new Transform());
             shipEnt.Add(new FlightShip(_shipTopology));
-
+            shipEnt.Add(new RocketControls(_shipTopology));
             camera.Add(new FlightCameraControl(shipEnt));
         }
     }

@@ -19,7 +19,7 @@ namespace GreatSpaceRace.Flight
 
         public Point GridLocation { get; }
 
-        public uint RenderOrder { get; } = 0;
+        public uint RenderOrder { get; } = 100;
 
         public bool AutoRender { get; } = true;
 

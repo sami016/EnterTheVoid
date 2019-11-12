@@ -36,7 +36,7 @@ namespace GreatSpaceRace.Builder
         private readonly ShipTopology _shipTopology;
         private readonly ProductionLine _productionLine;
 
-        public uint RenderOrder { get; set; } = 0;
+        public uint RenderOrder { get; set; } = 100;
 
         public bool AutoRender { get; set; } = true;
 
