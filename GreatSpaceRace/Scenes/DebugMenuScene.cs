@@ -34,6 +34,7 @@ namespace GreatSpaceRace.Scenes
         {
 
             Fonts.Load("Default", Content.Load<SpriteFont>("Font/Default"));
+            Fonts.Load("Title", Content.Load<SpriteFont>("Font/Title"));
 
             Textures.Load("StarCluster1", Content.Load<Texture2D>("Textures/StarCluster1"));
             Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Starfield-7"));

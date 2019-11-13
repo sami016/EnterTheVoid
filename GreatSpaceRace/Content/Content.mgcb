@@ -20,6 +20,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Font/Default.spritefont
 
+#begin Font/Title.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Title.spritefont
+
 #begin Models/buildgrid.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -26,7 +26,11 @@ namespace GreatSpaceRace.UI.Debug
 
         public override IElement Evaluate() =>
             new Pane(
-                //new Text("The Great Space Race"),
+                new Text("The Great Space Race")
+                {
+                    Position = new Rectangle(25, 25, 0, 0),
+                    Font = "Title"
+                },
                 new MenuButton("Build Mode")
                 {
                     Position = new Rectangle(100, 100, 250, 150),
