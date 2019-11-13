@@ -73,6 +73,21 @@ namespace GreatSpaceRace.UI.Debug
                 ConnectionLayouts.FullyConnected,
                 1
             );
+            topology.Sections[3, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
+            topology.Sections[4, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
+            topology.Sections[5, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
 
 
             _sceneManager.SetScene(new FlightScene(topology));

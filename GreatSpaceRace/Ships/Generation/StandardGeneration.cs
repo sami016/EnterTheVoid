@@ -105,6 +105,7 @@ namespace GreatSpaceRace.Ships.Generation
             .Add(1f, typeof(BlasterModule), _gunConnectionLayoutDistribution)
             .Add(1f, typeof(FuelModule), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(RocketModule), _rocketConnectionLayoutDistribution)
+            .Add(0.5f, typeof(RotaryEngine), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(EmptyModule), _highConnectivityConnectionLayoutDistribution);
     }
 }

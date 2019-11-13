@@ -16,6 +16,7 @@ namespace GreatSpaceRace.Flight
     {
         private readonly Entity _shipEntity;
         private readonly Transform _shipTransform;
+        private bool _first = true;
 
         [Inject] Transform Transform { get; set; }
         [Inject] Camera Camera { get; set; }
@@ -40,10 +41,18 @@ namespace GreatSpaceRace.Flight
             }
             var averageLocation = total / cellLocations.Length;
 
+            var forwardOffset = Vector3.Forward * 3;
+
+            _shipEntity.Update(() =>
+            {
+                _shipEntity.Get<Transform>()
+                    .RotationCenter = averageLocation;
+            });
             this.Update(() =>
             {
-                Transform.Location = _shipTransform.Location + averageLocation + 10 * Vector3.Up + 2 * Vector3.Backward;
-                Camera.LookAt(_shipTransform.Location + averageLocation);
+                Transform.RotationCenter = averageLocation;
+                Transform.Location = _shipTransform.Location + averageLocation + 20 * Vector3.Up + 2 * Vector3.Backward + forwardOffset;
+                Camera.LookAt(_shipTransform.Location + averageLocation + forwardOffset);
                 Camera.Recalculate();
                 Camera.RecalculateParameters();
             });

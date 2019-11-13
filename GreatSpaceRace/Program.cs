@@ -22,7 +22,7 @@ namespace GreatSpaceRace
                 .AddSingleton(() => new MusicManager())
                 //.AddSingleton(() => new FpsDebugger())
                 .UseBackgroundRefreshColour(Color.Black)
-                .Create();
+                .Create(1);
         
         [STAThread]
         static void Main(string[] args)

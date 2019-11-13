@@ -42,7 +42,7 @@ namespace GreatSpaceRace.Flight
             var parentTransform = Entity.Parent.Get<Transform>().WorldTransform;
             if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
             {
-                _shipRenderer.Render(context, parentTransform * Transform.WorldTransform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                _shipRenderer.Render(context, Transform.WorldTransform * parentTransform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
             }
         }
     }

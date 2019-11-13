@@ -18,6 +18,7 @@ namespace GreatSpaceRace.Builder
         [Inject] Transform Transform { get; set; }
         [Inject] Camera Camera { get; set; }
 
+
         public void Tick(TickContext context)
         {
             var speed = new Vector3(0, 0, 0);
