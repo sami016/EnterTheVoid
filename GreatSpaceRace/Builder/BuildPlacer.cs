@@ -12,6 +12,7 @@ using GreatSpaceRace.Ships;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -132,17 +133,18 @@ namespace GreatSpaceRace.Builder
 
         public void Render(RenderContext context)
         {
-            if (PlacingSection != null
-                && HoverNode != null)
+            if (PlacingSection != null)
             {
-                _shipRenderer.Render(
-                    context,
-                    new Transform
-                    {
-                        Location = HexagonHelpers.GetGridWorldPosition(HoverNode.GridLocation)
-                    }.WorldTransform,
-                    PlacingSection
-                );
+                if (HoverNode != null) {
+                    _shipRenderer.Render(
+                        context,
+                        new Transform
+                        {
+                            Location = HexagonHelpers.GetGridWorldPosition(HoverNode.GridLocation)
+                        }.WorldTransform,
+                        PlacingSection
+                    );
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Forge.Core.Engine;
 
 namespace GreatSpaceRace.UI.Builder
 {
@@ -103,7 +104,7 @@ namespace GreatSpaceRace.UI.Builder
                 },
                 Init = el => el.Events.Subscribe<ClickUIEvent>(ev =>
                 {
-                    _buildPlacer.StartPlacing(section);
+                    _buildPlacer.Update(() => _buildPlacer.StartPlacing(section));
                 })
             };
         }

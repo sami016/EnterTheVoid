@@ -36,7 +36,8 @@ namespace GreatSpaceRace.Scenes
             {
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
             });
-            CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
+            //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
+            CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(20)));
             CameraManager.ActiveCamera.Recalculate();
 
             var shipEnt = Create();

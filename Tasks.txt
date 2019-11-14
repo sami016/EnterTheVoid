@@ -11,7 +11,7 @@
  - 
 
 ## Fundamentals
- - Modules and parts []
+ - Modules and parts [x]
 
 ## Build mode
  - Build mode basic logic [x]
@@ -20,13 +20,18 @@
  - Available parts rendering []
 
 ## Pilot mode
-- Flight controls []
+- Flight controls [/]
 - Abilities and cooldowns []
+- Ship health []
+- []
 
 ## Asteroid field phase
 - Collisions []
 
 ## Leap race phase
+ - Rocket boost []
+ - Repairs []
+ - 
 
 ## Combat phase
 
@@ -36,11 +41,17 @@
 Week 1: 
  - Build mode [x]
  - Ship components [x]
+ - Basic menu [x]
+ - Basic rendering, cameras [x]
+ - Placement constraints [x]
 
 Week 2:
- - Flight mode []
+ - Custom font [x]
+ - Flight mode basics [x]
  - Basics asteroid phase []
+ - Collisions []
  - Weapons control []
+ - Projectiles []
 
 Week 3:
  - Implement weapons.
@@ -50,7 +61,7 @@ Week 3:
 
  Week 4:
   - Polish
-  - 
+  - Improve shaders [x]
 
 # Game models
 

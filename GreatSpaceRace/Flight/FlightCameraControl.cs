@@ -16,7 +16,6 @@ namespace GreatSpaceRace.Flight
     {
         private readonly Entity _shipEntity;
         private readonly Transform _shipTransform;
-        private bool _first = true;
 
         [Inject] Transform Transform { get; set; }
         [Inject] Camera Camera { get; set; }
@@ -41,7 +40,7 @@ namespace GreatSpaceRace.Flight
             }
             var averageLocation = total / cellLocations.Length;
 
-            var forwardOffset = Vector3.Forward * 3;
+            var forwardOffset = Vector3.Forward * 1;
 
             _shipEntity.Update(() =>
             {

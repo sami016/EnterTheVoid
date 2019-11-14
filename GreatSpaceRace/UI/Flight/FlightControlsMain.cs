@@ -14,6 +14,11 @@ namespace GreatSpaceRace.UI.Flight
         public override IElement Evaluate()
         {
             return new Pane(
+                new Text("Thrust")
+                {
+                    Position = new Rectangle(20, -10, 0, 0),
+                    Font = "Title"
+                },
                 new ButtonTemplate("W", Keys.W)
                 {
                     Position = new Rectangle(50, 55, 40, 40)
