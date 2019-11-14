@@ -5,6 +5,7 @@ using Forge.UI.Glass;
 using GreatSpaceRace.Builder;
 using GreatSpaceRace.Flight;
 using GreatSpaceRace.Phases;
+using GreatSpaceRace.Phases.Asteroids;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.UI.Flight;
 using Microsoft.Xna.Framework;
@@ -38,7 +39,7 @@ namespace GreatSpaceRace.Scenes
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
             });
             //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
-            CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(20)));
+            CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(40)));
             CameraManager.ActiveCamera.Recalculate();
 
             var shipEnt = Create();
@@ -50,10 +51,14 @@ namespace GreatSpaceRace.Scenes
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
+                    Create().Add(new OpenPhase()),
                     Create().Add(new AsteroidPhase())
                 }
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
+
+            var radarEnt = Create();
+            radarEnt.Add(new RadarRenderer());
 
             var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice));
             Disposal += () => cleanBuildUI();

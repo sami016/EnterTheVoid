@@ -36,6 +36,19 @@
 ## Combat phase
 
 
+### Phase ideas:
+ - Asteroid phase
+ - Rocket barrage
+ - Alien attack
+ - Squid attack (Unknown lifeform)
+ - 1v1 Combat
+ - Pirate attack
+ - Unknown entity attack
+ - Booster stage (Attachable booster rockets - fast)
+ - Satellite phase (Find satellites and dock slowly)
+ - Solar storm
+ - Debris field
+
 #Plan 
 
 Week 1: 
@@ -48,6 +61,7 @@ Week 1:
 Week 2:
  - Custom font [x]
  - Flight mode basics [x]
+ - Phase management [x]
  - Basics asteroid phase []
  - Collisions []
  - Weapons control []

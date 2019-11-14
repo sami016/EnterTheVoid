@@ -24,11 +24,23 @@ namespace GreatSpaceRace.Phases
             if (PhaseManager.State == PhaseManagerState.Starting
                 && PhaseManager.PhaseStartFraction > 0.1)
             {
+                var phaseString = $"{PhaseManager.PhaseIndex+1}  /  {PhaseManager.NumberOfPhases}";
                 var titleFont = Sprites.Get("Title");
                 var defaultFont = Sprites.Get("Default");
+                
+                var phaseStringWidth = defaultFont.MeasureString(phaseString).X;
                 var titleWidth = titleFont.MeasureString(PhaseManager.CurrentPhase.Title).X;
                 var descriptionWidth = defaultFont.MeasureString(PhaseManager.CurrentPhase.Description).X;
                 context.SpriteBatch.Begin();
+                context.SpriteBatch.DrawString(
+                    Sprites.Get("Default"),
+                    phaseString,
+                    new Vector2(
+                        (int)(GraphicsDevice.Viewport.Width / 2 - phaseStringWidth / 2),
+                        (int)(GraphicsDevice.Viewport.Height * 3 / 10 - 30)
+                    ),
+                    Color.White
+                );
                 context.SpriteBatch.DrawString(
                     Sprites.Get("Title"),
                     PhaseManager.CurrentPhase.Title,

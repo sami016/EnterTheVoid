@@ -31,19 +31,22 @@ namespace GreatSpaceRace.Phases
 
         public float PhaseStartFraction => _startTimer.CompletedFraction;
         public float PhaseFraction => _phaseTimer.CompletedFraction;
+        public int PhaseIndex { get; set; }
+        public int NumberOfPhases => _phases.Count();
 
         public PhaseManager(IEnumerable<Phase> phases)
         {
             _phases = phases;
-            StartPhase(_phases.First());
+            StartPhase(0);
         }
 
-        private void StartPhase(Phase phase)
+        private void StartPhase(int phaseIndex)
         {
+            PhaseIndex = phaseIndex;
             State = PhaseManagerState.Starting;
-            CurrentPhase = phase;
+            CurrentPhase = _phases.ElementAt(phaseIndex);
             _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
-            _phaseTimer = new CompletionTimer(phase.Duration);
+            _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
         }
 
         public void Tick(TickContext context)
@@ -53,6 +56,7 @@ namespace GreatSpaceRace.Phases
                 _startTimer.Tick(context.DeltaTime);
                 if (_startTimer.Completed)
                 {
+                    CurrentPhase.Start();
                     State = PhaseManagerState.Running;
                 }
             }

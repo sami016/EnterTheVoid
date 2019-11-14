@@ -12,6 +12,8 @@ namespace GreatSpaceRace.Phases
         public string Description { get; set; } = "";
         public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(40);
 
+        public abstract void Start();
+        public abstract void Stop();
         public virtual void Tick(TickContext context)
         {
         }
