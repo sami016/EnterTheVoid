@@ -4,6 +4,8 @@ using Forge.Core.Interfaces;
 using Forge.Core.Scenes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Scenes;
+using GreatSpaceRace.Ships;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +24,8 @@ namespace GreatSpaceRace.Builder
         public bool Building => State == BuildModeState.Building;
         public float BuildSecondsRemaining => (float)_countDown.RemainingTime.TotalSeconds;
 
+        private readonly ShipTopology _topology;
+
         public BuildModeState State { get; private set; }
         private CompletionTimer _countIn;
         private CompletionTimer _countDown;
@@ -29,8 +33,9 @@ namespace GreatSpaceRace.Builder
 
         [Inject] SceneManager SceneManager { get; set; }
 
-        public BuildMode()
+        public BuildMode(ShipTopology topology)
         {
+            _topology = topology;
             State = BuildModeState.CountIn;
             _countIn = new CompletionTimer(TimeSpan.FromSeconds(10));
             _countDown = new CompletionTimer(TimeSpan.FromSeconds(90));
@@ -39,6 +44,10 @@ namespace GreatSpaceRace.Builder
 
         public void Tick(TickContext context)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.P))
+            {
+                State = BuildModeState.Finished;
+            }
             switch (State)
             {
                 case BuildModeState.CountIn:
@@ -59,8 +68,7 @@ namespace GreatSpaceRace.Builder
                     _countOut.Tick(context.DeltaTime);
                     if (_countOut.Completed)
                     {
-                        //todo
-                        //SceneManager.SetScene(new BuildScene());
+                        SceneManager.SetScene(new FlightScene(_topology));
                     }
                     return;
             }

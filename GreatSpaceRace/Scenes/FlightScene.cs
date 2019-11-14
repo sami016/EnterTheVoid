@@ -4,6 +4,7 @@ using Forge.Core.Scenes;
 using Forge.UI.Glass;
 using GreatSpaceRace.Builder;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Phases;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.UI.Flight;
 using Microsoft.Xna.Framework;
@@ -45,6 +46,14 @@ namespace GreatSpaceRace.Scenes
             shipEnt.Add(new FlightShip(_shipTopology));
             shipEnt.Add(new RocketControls(_shipTopology));
             camera.Add(new FlightCameraControl(shipEnt));
+
+            var phaseEnt = Create();
+            phaseEnt.Add(new PhaseManager(
+                new Phase[] {
+                    Create().Add(new AsteroidPhase())
+                }
+            ));
+            phaseEnt.Add(new PhaseTitleDisplay());
 
             var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice));
             Disposal += () => cleanBuildUI();

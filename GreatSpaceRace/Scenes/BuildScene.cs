@@ -51,7 +51,7 @@ namespace GreatSpaceRace.Scenes
             floor.Add(new BuildFloor(_shipTopology));
 
             var productionLine = AddSingleton(new ProductionLine());
-            var gameMode = AddSingleton(new BuildMode());
+            var gameMode = AddSingleton(new BuildMode(_shipTopology));
 
             var placerEnt = Create();
             var placer = placerEnt.Add(new BuildPlacer(CameraManager.ActiveCamera, _shipTopology, productionLine));
