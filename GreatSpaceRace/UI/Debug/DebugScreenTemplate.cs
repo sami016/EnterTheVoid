@@ -7,6 +7,7 @@ using GreatSpaceRace.Scenes;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Ships.Connections;
 using GreatSpaceRace.Ships.Modules;
+using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,18 @@ namespace GreatSpaceRace.UI.Debug
             System.Diagnostics.Debug.WriteLine("Flight clicked");
 
             var topology = new ShipTopology(6, 5);
+
+            //for (var i=0; i < 6; i++)
+            //{
+            //    for (var j=0; j<5; j++)
+            //    {
+            //        topology.Sections[i, j] = new Section(
+            //            new RocketModule(),
+            //            ConnectionLayouts.FullyConnected,
+            //            1
+            //        );
+            //    }
+            //}
             topology.Sections[2, 2] = new Section(
                 new LifeSupportModule(),
                 ConnectionLayouts.FullyConnected
@@ -77,11 +90,21 @@ namespace GreatSpaceRace.UI.Debug
                 ConnectionLayouts.FullyConnected,
                 1
             );
-            //topology.Sections[3, 2] = new Section(
-            //    new RotaryEngine(),
-            //    ConnectionLayouts.FullyConnected,
-            //    1
-            //);
+            topology.Sections[1, 3] = new Section(
+                new RocketModule(),
+                ConnectionLayouts.FullyConnected,
+                2
+            );
+            topology.Sections[3, 3] = new Section(
+                new RocketModule(),
+                ConnectionLayouts.FullyConnected,
+                OffDirection.SouthEast
+            );
+            topology.Sections[3, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
             //topology.Sections[4, 2] = new Section(
             //    new RotaryEngine(),
             //    ConnectionLayouts.FullyConnected,

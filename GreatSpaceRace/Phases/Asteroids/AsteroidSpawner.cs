@@ -34,11 +34,11 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         private void CheckSpawn(TickContext context)
         {
-            if (_entities.Count() <= 60)
+            if (_entities.Count() <= 20)
             {
                 if (_lastZ > _flightShipTransform.Location.Z)
                 {
-                    _lastZ -= 5;
+                    _lastZ -= 3;
                 }
                 for (var i = 0; i<10; i++)
                 {

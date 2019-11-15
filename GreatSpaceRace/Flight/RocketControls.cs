@@ -21,7 +21,12 @@ namespace GreatSpaceRace.Flight
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
         private float _rotation = 0;
+
+        private const float passiveAccel = 0.15f;
+        private const float rocketAccel = 0.5f;
         private const float rotationLimit = (float)Math.PI / 6;
+        private static float Sin60 = (float)Math.Sin(Math.PI / 3);
+        private static float Sin30 = (float)Math.Sin(Math.PI / 6);
 
         public RocketControls(ShipTopology topology)
         {
@@ -59,28 +64,28 @@ namespace GreatSpaceRace.Flight
                 }
             }
 
-            var velocity = FlightShip.Velocity;
             var rotation = _rotation;
 
+            var acceleration = Vector3.Zero;
             if (keys.IsKeyDown(Keys.W))
             {
-                velocity += Vector3.Forward * context.DeltaTimeSeconds * (0.2f + 0.1f * _accelerationCapabilities[(int)OffDirection.South]);
+                acceleration += Vector3.Forward * (passiveAccel + rocketAccel * _accelerationCapabilities[(int)OffDirection.South]);
             }
             if (keys.IsKeyDown(Keys.A))
             {
-                velocity += Vector3.Left * context.DeltaTimeSeconds * (0.2f + 0.1f * _accelerationCapabilities[(int)OffDirection.South]);
+                acceleration += Vector3.Left * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthWest] + _accelerationCapabilities[(int)OffDirection.NorthWest]) * Sin60);
+                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthWest] * Sin30;
+                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthWest] * Sin30;
             }
             if (keys.IsKeyDown(Keys.D))
             {
-                velocity += Vector3.Right * context.DeltaTimeSeconds * (0.2f + 0.1f * _accelerationCapabilities[(int)OffDirection.South]);
+                acceleration += Vector3.Right * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthEast] + _accelerationCapabilities[(int)OffDirection.NorthEast]) * Sin60);
+                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthEast] * Sin30;
+                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthEast] * Sin30;
             }
             if (keys.IsKeyDown(Keys.S))
             {
-                velocity += Vector3.Backward * context.DeltaTimeSeconds * (0.05f + 0.1f * _accelerationCapabilities[(int)OffDirection.South]);
-            }
-            if (velocity.Z < -1)
-            {
-                velocity = new Vector3(FlightShip.Velocity.X, FlightShip.Velocity.Y, FlightShip.Velocity.Z * 0.98f);
+                acceleration += Vector3.Backward * (passiveAccel + rocketAccel * _accelerationCapabilities[(int)OffDirection.South]);
             }
 
             var rotationCoefficient = Math.Max(1 + rotationCapabilities - sectionCount * 0.05f, 0.5f);
@@ -111,12 +116,19 @@ namespace GreatSpaceRace.Flight
                 rotation = -rotationLimit;
             }
 
+            var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
+
+            var velocity = FlightShip.Velocity + context.DeltaTimeSeconds * Vector3.Transform(acceleration, rotationQuaternion);
+            if (velocity.Z > 1)
+            {
+                velocity = new Vector3(FlightShip.Velocity.X, FlightShip.Velocity.Y, FlightShip.Velocity.Z * 0.98f);
+            }
 
             FlightShip.Update(() =>
             {
                 _rotation = rotation;
                 FlightShip.Velocity = velocity;
-                Transform.Rotation = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
+                Transform.Rotation = rotationQuaternion;
             });
         }
     }
