@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Forge\Libraries\Forge.Core\Forge.Core.csproj" />
     <ProjectReference Include="..\Forge\Libraries\Forge.UI.Glass\Forge.UI.Glass.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Phases\Debris\" />
+  </ItemGroup>
 </Project>

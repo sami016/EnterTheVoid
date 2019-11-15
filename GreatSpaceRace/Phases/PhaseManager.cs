@@ -46,6 +46,9 @@ namespace GreatSpaceRace.Phases
             State = PhaseManagerState.Starting;
             CurrentPhase = _phases.ElementAt(phaseIndex);
             _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
+#if DEBUG
+            _startTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
+#endif
             _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
         }
 

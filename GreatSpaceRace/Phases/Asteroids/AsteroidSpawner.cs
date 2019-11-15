@@ -2,6 +2,8 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
+using Forge.Core.Utilities;
+using GreatSpaceRace.Flight;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,25 +16,57 @@ namespace GreatSpaceRace.Phases.Asteroids
     {
         private static readonly Random Random = new Random();
         private IList<Entity> _entities = new List<Entity>();
+        private float _lastZ = -5f;
+
+        [Inject] FlightShip FlightShip { get; set; }
+        private Transform _flightShipTransform;
 
         public void Initialise()
         {
+            _flightShipTransform = FlightShip.Entity.Get<Transform>();
         }
 
         public void Tick(TickContext context)
         {
-            if (_entities.Count() > 20)
-            {
-                return;
-            }
-            var ent = Entity.Create();
-            ent.Add(new Transform()
-            {
-                Location = new Vector3((float)Random.NextDouble(), 0f, (float)Random.NextDouble()) * 20
-            });
-            ent.Add(new Asteroid());
+            CheckSpawn(context);
+            CheckClear(context);
+        }
 
-            _entities.Add(ent);
+        private void CheckSpawn(TickContext context)
+        {
+            if (_entities.Count() <= 60)
+            {
+                if (_lastZ > _flightShipTransform.Location.Z)
+                {
+                    _lastZ -= 5;
+                }
+                for (var i = 0; i<10; i++)
+                {
+                    var ent = Entity.Create();
+                    ent.Add(new Transform()
+                    {
+                        Location = _flightShipTransform.Location + Vector3.Forward * 30 + new Vector3((float)(Random.NextDouble() - 0.5f) * 50, 0f, (float)Random.NextDouble() * 20)
+                    });
+                    ent.Add(new Asteroid()
+                    {
+                        Velocity = new Vector3((float)Random.NextDouble() - 0.5f, 0f, (float)(0.8f + Random.NextDouble())) * 0.3f
+                    });
+                    _entities.Add(ent);
+                }
+            }
+        }
+
+        private void CheckClear(TickContext context)
+        {
+            foreach (var asteroidEntity in _entities.ToArray())
+            {
+                var transform = asteroidEntity.Get<Transform>();
+                if (transform.Location.Z > _flightShipTransform.Location.Z + 25)
+                {
+                    asteroidEntity.Delete();
+                    _entities.Remove(asteroidEntity);
+                }
+            }
         }
     }
 }

@@ -62,20 +62,22 @@ Week 2:
  - Custom font [x]
  - Flight mode basics [x]
  - Phase management [x]
- - Basics asteroid phase []
+ - Basics asteroid phase [/]
  - Collisions []
  - Weapons control []
  - Projectiles []
 
 Week 3:
+ - Health and damage.
  - Implement weapons.
  - Advanced In-game mechanics.
  - Expand with more phases.
  - Start improving presentation during the race.
 
  Week 4:
+  - Particle effects
   - Polish
-  - Improve shaders [x]
+  - Improve shaders []
 
 # Game models
 

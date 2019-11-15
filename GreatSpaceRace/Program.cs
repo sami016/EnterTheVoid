@@ -20,7 +20,7 @@ namespace GreatSpaceRace
                 .AddSingleton(() => new KeyControls())
                 .AddSingleton(() => new MouseControls())
                 .AddSingleton(() => new MusicManager())
-                //.AddSingleton(() => new FpsDebugger())
+                .AddSingleton(() => new FpsDebugger())
                 .UseBackgroundRefreshColour(Color.Black)
                 .Create(1);
         
