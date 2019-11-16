@@ -62,8 +62,8 @@ Week 2:
  - Custom font [x]
  - Flight mode basics [x]
  - Phase management [x]
- - Basics asteroid phase [/]
- - Collisions []
+ - Basics asteroid phase [x]
+ - Collisions [x]
  - Weapons control []
  - Projectiles []
 

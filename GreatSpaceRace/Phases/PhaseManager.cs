@@ -1,5 +1,6 @@
 ﻿using Forge.Core;
 using Forge.Core.Components;
+using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
 using System;
@@ -19,7 +20,7 @@ namespace GreatSpaceRace.Phases
     /// <summary>
     /// This is the manager that runs the current phase set.
     /// </summary>
-    public class PhaseManager : Component, ITick
+    public class PhaseManager : Component, IInit, ITick
     {
         private readonly IEnumerable<Phase> _phases;
 
@@ -28,32 +29,45 @@ namespace GreatSpaceRace.Phases
 
         private CompletionTimer _startTimer;
         private CompletionTimer _phaseTimer;
+        private CompletionTimer _endedTimer;
 
         public float PhaseStartFraction => _startTimer.CompletedFraction;
         public float PhaseFraction => _phaseTimer.CompletedFraction;
-        public int PhaseIndex { get; set; }
+        public int PhaseIndex { get; set; } = -1;
         public int NumberOfPhases => _phases.Count();
 
         public PhaseManager(IEnumerable<Phase> phases)
         {
             _phases = phases;
+        }
+
+        public void Initialise()
+        {
             StartPhase(0);
         }
 
         private void StartPhase(int phaseIndex)
         {
-            PhaseIndex = phaseIndex;
-            State = PhaseManagerState.Starting;
-            CurrentPhase = _phases.ElementAt(phaseIndex);
-            _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
+            this.Update(() =>
+            {
+                PhaseIndex = phaseIndex;
+                State = PhaseManagerState.Starting;
+                CurrentPhase = _phases.ElementAt(phaseIndex);
+                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
 #if DEBUG
-            _startTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
+                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
 #endif
-            _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
+                _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
+                _endedTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
+            });
         }
 
         public void Tick(TickContext context)
         {
+            if (PhaseIndex == -1)
+            {
+                return;
+            }
             if (State == PhaseManagerState.Starting)
             {
                 _startTimer.Tick(context.DeltaTime);
@@ -69,8 +83,18 @@ namespace GreatSpaceRace.Phases
                 _phaseTimer.Tick(context.DeltaTime);
                 if (_phaseTimer.Completed)
                 {
+                    CurrentPhase.Stop();
                     State = PhaseManagerState.Ended;
                     //TODO: advanced.
+                }
+            }
+            else if (State == PhaseManagerState.Ended)
+            {
+                _endedTimer.Tick(context.DeltaTime);
+                if (_phaseTimer.Completed)
+                {
+                    CurrentPhase.Dispose();
+                    StartPhase(PhaseIndex+1);
                 }
             }
         }

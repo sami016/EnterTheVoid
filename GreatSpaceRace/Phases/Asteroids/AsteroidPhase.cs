@@ -22,6 +22,11 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         public override void Stop()
         {
+            _asteroidSpawner.Stop();
+        }
+
+        public override void Dispose()
+        {
             _asteroidSpawner.Entity.Delete();
         }
     }

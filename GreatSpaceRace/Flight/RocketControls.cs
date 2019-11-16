@@ -23,6 +23,7 @@ namespace GreatSpaceRace.Flight
         private float _rotation = 0;
 
         private const float passiveAccel = 0.15f;
+        private const float passiveAccelBackwards = 0.35f;
         private const float rocketAccel = 0.5f;
         private const float rotationLimit = (float)Math.PI / 6;
         private static float Sin60 = (float)Math.Sin(Math.PI / 3);
