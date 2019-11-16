@@ -99,5 +99,10 @@ namespace GreatSpaceRace.Ships
             var connected = matchBig || matchSmall;
             return (connected || noConnections, connected);
         }
+
+        public void Remove(Point gridLocation)
+        {
+            Sections[gridLocation.X, gridLocation.Y] = null;
+        }
     }
 }

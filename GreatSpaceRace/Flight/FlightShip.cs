@@ -37,7 +37,7 @@ namespace GreatSpaceRace.Flight
                             Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
                             Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
                         });
-                        child.Add(new FlightNode(gridPosition, _topology));
+                        child.Add(new FlightNode(this, gridPosition, _topology));
                     }
                 }
             });
@@ -49,6 +49,29 @@ namespace GreatSpaceRace.Flight
             {
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
                 Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
+            });
+        }
+
+        /// <summary>
+        /// Damages a section of ship.
+        /// </summary>
+        /// <param name="section">section</param>
+        /// <param name="amount">amount</param>
+        public void Damage(Point gridLocation, int amount)
+        {
+            this.Update(() =>
+            {
+                var section = _topology.SectionAt(gridLocation);
+                if (section == null)
+                {
+                    return;
+                }
+
+                section.Damage(amount);
+                if (section.Health == 0)
+                {
+                    _topology.Remove(gridLocation);
+                }
             });
         }
     }

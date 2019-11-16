@@ -68,8 +68,9 @@ namespace GreatSpaceRace.Phases.Asteroids
             FlightSpaces.ObstacleSpace.Remove(Entity);
         }
 
-        public void OnHit(FlightNode node, Vector3 nodeLocation, Section section)
+        public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
+            ship.Damage(gridLocation, 10);
             Entity.Delete();
         }
     }

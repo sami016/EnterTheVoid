@@ -8,6 +8,6 @@ namespace GreatSpaceRace.Flight
 {
     public interface IShipCollider
     {
-        void OnHit(FlightNode node, Vector3 nodeLocation, Section section);
+        void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section);
     }
 }

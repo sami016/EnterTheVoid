@@ -22,6 +22,7 @@ namespace GreatSpaceRace.Flight
 
         private readonly ShipTopology _shipTopology;
         private ShipSectionRenderer _shipRenderer;
+        private readonly FlightShip _ship;
 
         public Point GridLocation { get; }
 
@@ -34,8 +35,9 @@ namespace GreatSpaceRace.Flight
         [Inject] StaticBody Body { get; set; }
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
-        public FlightNode(Point gridPosition, ShipTopology shipTopology)
+        public FlightNode(FlightShip ship, Point gridPosition, ShipTopology shipTopology)
         {
+            _ship = ship;
             GridLocation = gridPosition;
             _shipTopology = shipTopology;
         }
@@ -43,7 +45,6 @@ namespace GreatSpaceRace.Flight
         public void Initialise()
         {
             _shipRenderer = Entity.Add(new ShipSectionRenderer());
-            Entity.Add(new StaticBody(new SphereShape(1f)));
         }
 
         public void Tick(TickContext context)
@@ -68,7 +69,7 @@ namespace GreatSpaceRace.Flight
                 {
                     if (entity.Has<IShipCollider>())
                     {
-                        entity.Get<IShipCollider>().OnHit(this, location, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                        entity.Get<IShipCollider>().OnHit(this, _ship, GridLocation, location, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
                     }
                 }
             }

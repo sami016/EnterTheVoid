@@ -12,5 +12,7 @@ namespace GreatSpaceRace.Ships.Modules
         public abstract string FullName { get; }
         public abstract string ShortName { get; }
         public abstract string DescriptionShort { get; }
+
+        public virtual int MaxHealth { get; set; } = 100;
     }
 }
