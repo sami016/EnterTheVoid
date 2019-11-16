@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forge.Core.Space;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

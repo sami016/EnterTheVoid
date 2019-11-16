@@ -42,6 +42,8 @@ namespace GreatSpaceRace.Scenes
             CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(40)));
             CameraManager.ActiveCamera.Recalculate();
 
+            AddSingleton(new FlightSpaces());
+
             var shipEnt = Create();
             shipEnt.Add(new Transform());
             shipEnt.Add(new FlightShip(_shipTopology));

@@ -43,6 +43,12 @@ namespace GreatSpaceRace.UI.Debug
                     Position = new Rectangle(200, 300, 250, 150),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickFlight)
+                },
+                new MenuButton("Hit Test")
+                {
+                    Position = new Rectangle(100, 500, 250, 150),
+                    Init = el => el.Events
+                        .Subscribe<ClickUIEvent>(ClickHitTest)
                 }
             )
             {
@@ -52,17 +58,19 @@ namespace GreatSpaceRace.UI.Debug
                 }
             };
 
+        private void ClickHitTest(ClickUIEvent ev)
+        {
+            _sceneManager.SetScene(new HitTestScene());
+        }
+
         public void ClickBuild(ClickUIEvent ev)
         {
-            System.Diagnostics.Debug.WriteLine("Build clicked");
             
             _sceneManager.SetScene(new BuildScene());
         }
 
         public void ClickFlight(ClickUIEvent ev)
         {
-            System.Diagnostics.Debug.WriteLine("Flight clicked");
-
             var topology = new ShipTopology(6, 5);
 
             //for (var i=0; i < 6; i++)
@@ -105,16 +113,16 @@ namespace GreatSpaceRace.UI.Debug
                 ConnectionLayouts.FullyConnected,
                 1
             );
-            //topology.Sections[4, 2] = new Section(
-            //    new RotaryEngine(),
-            //    ConnectionLayouts.FullyConnected,
-            //    1
-            //);
-            //topology.Sections[5, 2] = new Section(
-            //    new RotaryEngine(),
-            //    ConnectionLayouts.FullyConnected,
-            //    1
-            //);
+            topology.Sections[4, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
+            topology.Sections[5, 2] = new Section(
+                new RotaryEngine(),
+                ConnectionLayouts.FullyConnected,
+                1
+            );
 
 
             _sceneManager.SetScene(new FlightScene(topology));

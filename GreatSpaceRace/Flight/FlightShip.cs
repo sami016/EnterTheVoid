@@ -24,20 +24,23 @@ namespace GreatSpaceRace.Flight
 
         public void Initialise()
         {
-            for (var gridX = 0; gridX < _topology.GridWidth; gridX++)
+            this.Update(() =>
             {
-                for (var gridZ = 0; gridZ < _topology.GridHeight; gridZ++)
+                for (var gridX = 0; gridX < _topology.GridWidth; gridX++)
                 {
-                    var gridPosition = new Point(gridX, gridZ);
-                    var child = Entity.Create();
-                    child.Add(new Transform
+                    for (var gridZ = 0; gridZ < _topology.GridHeight; gridZ++)
                     {
-                        Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
-                        Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
-                    });
-                    child.Add(new FlightNode(gridPosition, _topology));
+                        var gridPosition = new Point(gridX, gridZ);
+                        var child = Entity.Create();
+                        child.Add(new Transform
+                        {
+                            Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
+                            Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
+                        });
+                        child.Add(new FlightNode(gridPosition, _topology));
+                    }
                 }
-            }
+            });
         }
 
         public void Tick(TickContext context)
@@ -45,6 +48,7 @@ namespace GreatSpaceRace.Flight
             Transform.Update(() =>
             {
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
+                Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
             });
         }
     }

@@ -74,7 +74,7 @@ namespace GreatSpaceRace.Builder
             {
                 Transform.Location += speed * context.DeltaTimeSeconds;
                 Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(rot * context.DeltaTimeSeconds, 0, 0);
-                Camera.Recalculate();
+                Camera?.Recalculate();
             });
         }
     }
