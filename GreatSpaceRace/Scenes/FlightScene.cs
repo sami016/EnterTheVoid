@@ -6,6 +6,7 @@ using GreatSpaceRace.Builder;
 using GreatSpaceRace.Flight;
 using GreatSpaceRace.Phases;
 using GreatSpaceRace.Phases.Asteroids;
+using GreatSpaceRace.Phases.Open;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.UI.Flight;
 using Microsoft.Xna.Framework;
@@ -46,7 +47,7 @@ namespace GreatSpaceRace.Scenes
 
             var shipEnt = Create();
             shipEnt.Add(new Transform());
-            shipEnt.Add(new FlightShip(_shipTopology));
+            var flightShip = shipEnt.Add(new FlightShip(_shipTopology));
             shipEnt.Add(new RocketControls(_shipTopology));
             camera.Add(new FlightCameraControl(shipEnt));
 
@@ -59,10 +60,10 @@ namespace GreatSpaceRace.Scenes
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
 
-            var radarEnt = Create();
-            radarEnt.Add(new RadarRenderer());
+            //var radarEnt = Create();
+            //radarEnt.Add(new RadarRenderer());
 
-            var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice));
+            var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice, flightShip));
             Disposal += () => cleanBuildUI();
         }
     }

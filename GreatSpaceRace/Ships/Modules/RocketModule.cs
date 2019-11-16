@@ -11,5 +11,7 @@ namespace GreatSpaceRace.Ships.Modules
         public override string ShortName { get; } = "Ion Rocket";
 
         public override string DescriptionShort { get; } = "A lightweight rocket module.";
+
+        public bool On { get; set; } = false;
     }
 }

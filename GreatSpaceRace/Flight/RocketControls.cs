@@ -46,6 +46,8 @@ namespace GreatSpaceRace.Flight
             _accelerationCapabilities[4] = 0;
             _accelerationCapabilities[5] = 0;
 
+            var rocketModuleSections = new List<Section>();
+
             // Accumulate acceleration capability.
             var rotationCapabilities = 0;
             var sectionCount = 0;
@@ -54,9 +56,11 @@ namespace GreatSpaceRace.Flight
                 if (section != null)
                 {
                     sectionCount++;
-                    if (section.Module is RocketModule)
+                    if (section.Module is RocketModule rocketModule)
                     {
                         _accelerationCapabilities[section.Rotation]++;
+                        rocketModule.On = false;
+                        rocketModuleSections.Add(section);
                     }
                     if (section.Module is RotaryEngine)
                     {
@@ -71,22 +75,60 @@ namespace GreatSpaceRace.Flight
             if (keys.IsKeyDown(Keys.W))
             {
                 acceleration += Vector3.Forward * (passiveAccel + rocketAccel * _accelerationCapabilities[(int)OffDirection.South]);
+
+                // Activate rockets for effects.
+                foreach (var section in rocketModuleSections)
+                {
+                    if (section.Rotation == (int)OffDirection.South)
+                    {
+                        (section.Module as RocketModule).On = true;
+                    }
+                }
             }
             if (keys.IsKeyDown(Keys.A))
             {
-                acceleration += Vector3.Left * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthWest] + _accelerationCapabilities[(int)OffDirection.NorthWest]) * Sin60);
-                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthWest] * Sin30;
-                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthWest] * Sin30;
+                acceleration += Vector3.Left * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthEast] + _accelerationCapabilities[(int)OffDirection.NorthEast]) * Sin60);
+                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthEast] * Sin30;
+                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthEast] * Sin30;
+
+                // Activate rockets for effects.
+                foreach (var section in rocketModuleSections)
+                {
+                    if (section.Rotation == (int)OffDirection.SouthEast
+                        || section.Rotation == (int)OffDirection.NorthEast)
+                    {
+                        (section.Module as RocketModule).On = true;
+                    }
+                }
             }
             if (keys.IsKeyDown(Keys.D))
             {
-                acceleration += Vector3.Right * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthEast] + _accelerationCapabilities[(int)OffDirection.NorthEast]) * Sin60);
-                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthEast] * Sin30;
-                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthEast] * Sin30;
+                acceleration += Vector3.Right * (passiveAccel + rocketAccel * (_accelerationCapabilities[(int)OffDirection.SouthWest] + _accelerationCapabilities[(int)OffDirection.NorthWest]) * Sin60);
+                acceleration += Vector3.Forward * rocketAccel * _accelerationCapabilities[(int)OffDirection.SouthWest] * Sin30;
+                acceleration += Vector3.Backward * rocketAccel * _accelerationCapabilities[(int)OffDirection.NorthWest] * Sin30;
+
+                // Activate rockets for effects.
+                foreach (var section in rocketModuleSections)
+                {
+                    if (section.Rotation == (int)OffDirection.SouthWest
+                        || section.Rotation == (int)OffDirection.NorthWest)
+                    {
+                        (section.Module as RocketModule).On = true;
+                    }
+                }
             }
             if (keys.IsKeyDown(Keys.S))
             {
                 acceleration += Vector3.Backward * (passiveAccel + rocketAccel * _accelerationCapabilities[(int)OffDirection.South]);
+
+                // Activate rockets for effects.
+                foreach (var section in rocketModuleSections)
+                {
+                    if (section.Rotation == (int)OffDirection.North)
+                    {
+                        (section.Module as RocketModule).On = true;
+                    }
+                }
             }
 
             var rotationCoefficient = Math.Max(1 + rotationCapabilities - sectionCount * 0.05f, 0.5f);

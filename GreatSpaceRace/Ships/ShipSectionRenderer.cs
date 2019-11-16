@@ -22,6 +22,7 @@ namespace GreatSpaceRace.Ships
     /// </summary>
     public class ShipSectionRenderer : Component, IInit, ITick
     {
+        private static Random Random = new Random();
         private Model _cellModel;
         private Model _connectorLargeModel;
         private Model _connectorSmallModel;
@@ -29,6 +30,7 @@ namespace GreatSpaceRace.Ships
         private Model _biosphereModel;
         private Model _tankModel;
         private Model _rocket1Model;
+        private Model _trailModel;
         private SpriteFont _d;
 
         private static float turretOffsetRotation = (float)(Math.PI / 6);
@@ -64,6 +66,10 @@ namespace GreatSpaceRace.Ships
             _rocket1Model = Content.Load<Model>("Models/rocket1");
             _rocket1Model.EnableDefaultLighting();
             _rocket1Model.SetDiffuseColour(Color.LightSteelBlue);
+
+            _trailModel = Content.Load<Model>("Models/trail");
+            _trailModel.EnableDefaultLighting();
+            _trailModel.SetDiffuseColour(Color.Yellow);
 
             _d = FontManager.Get("Default");
         }
@@ -113,10 +119,16 @@ namespace GreatSpaceRace.Ships
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _tankModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
-            if (section.Module is RocketModule)
+            if (section.Module is RocketModule rocketModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketOffsetRotation);
                 _rocket1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+
+                if (rocketModule.On)
+                {
+                    var trailRandomScale = (float)(Random.NextDouble() * 0.1f) + 0.9f;
+                    _trailModel.Draw(Matrix.CreateScale(trailRandomScale, trailRandomScale, trailRandomScale) * moduleRot * worldTransform, view.Value, projection.Value);
+                }
             }
 
             // debug string

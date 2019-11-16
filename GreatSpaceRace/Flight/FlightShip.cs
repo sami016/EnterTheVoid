@@ -16,6 +16,8 @@ namespace GreatSpaceRace.Flight
         private readonly ShipTopology _topology;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
         [Inject] Transform Transform { get; set; }
+        public int Health => _topology.Health;
+        public int MaxHealth => _topology.MaxHealth;
 
         public FlightShip(ShipTopology topology)
         {
@@ -49,6 +51,37 @@ namespace GreatSpaceRace.Flight
             {
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
                 Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
+            });
+        }
+
+        /// <summary>
+        /// Repairs the ship.
+        /// </summary>
+        /// <param name="amount"></param>
+        public void Repair(int amount)
+        {
+            this.Update(() =>
+            {
+                var sections = new List<Section>();
+                foreach (var section in _topology.Sections)
+                {
+                    if (section != null)
+                    {
+                        sections.Add(section);
+                    }
+                }
+                sections.Sort((x, y) => x.Health - y.Health);
+
+                foreach (var section in sections)
+                {
+                    if (section.Health == section.Module.MaxHealth)
+                    {
+                        continue;
+                    }
+
+                    section.Repair(amount);
+                    return;
+                }
             });
         }
 

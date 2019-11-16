@@ -25,6 +25,7 @@ namespace GreatSpaceRace.Builder
         public float BuildSecondsRemaining => (float)_countDown.RemainingTime.TotalSeconds;
 
         private readonly ShipTopology _topology;
+        private bool _completed = false;
 
         public BuildModeState State { get; private set; }
         private CompletionTimer _countIn;
@@ -68,7 +69,11 @@ namespace GreatSpaceRace.Builder
                     _countOut.Tick(context.DeltaTime);
                     if (_countOut.Completed)
                     {
-                        SceneManager.SetScene(new FlightScene(_topology));
+                        if (!_completed)
+                        {
+                            _completed = true;
+                            SceneManager.SetScene(new FlightScene(_topology));
+                        }
                     }
                     return;
             }

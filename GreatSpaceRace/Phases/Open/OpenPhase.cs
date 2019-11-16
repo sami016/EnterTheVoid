@@ -5,11 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace GreatSpaceRace.Phases.Open
 {
     public class OpenPhase : Phase
     {
         private UIDispose _dispose;
+        private OpenPhaseControl _openPhaseControl;
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
 
@@ -22,12 +23,12 @@ namespace GreatSpaceRace.Phases.Asteroids
         public override void Start()
         {
             _dispose = UserInterfaceManager.Create(new OpenControls());
-            //_asteroidSpawner = Entity.Create().Add(new AsteroidSpawner());
+            _openPhaseControl = Entity.Create().Add(new OpenPhaseControl());
         }
 
         public override void Stop()
         {
-            //_asteroidSpawner.Entity.Delete();
+            _openPhaseControl.Entity.Delete();
             _dispose();
         }
     }

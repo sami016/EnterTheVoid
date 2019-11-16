@@ -19,6 +19,40 @@ namespace GreatSpaceRace.Ships
             Sections = new Section[gridWidth, gridHeight];
         }
 
+        public int Health
+        {
+            get
+            {
+                var health = 0;
+                foreach (var section in Sections)
+                {
+                    if (section == null)
+                    {
+                        continue;
+                    }
+                    health += section.Health;
+                }
+                return health;
+            }
+        }
+
+        public int MaxHealth
+        {
+            get
+            {
+                var maxHealth = 0;
+                foreach (var section in Sections)
+                {
+                    if (section == null)
+                    {
+                        continue;
+                    }
+                    maxHealth += section.Module.MaxHealth;
+                }
+                return maxHealth;
+            }
+        }
+
 
         public Section SectionAt(Point location)
         {
