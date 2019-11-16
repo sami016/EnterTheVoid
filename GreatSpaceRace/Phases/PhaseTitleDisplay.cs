@@ -61,6 +61,23 @@ namespace GreatSpaceRace.Phases
                 );
                 context.SpriteBatch.End();
             }
+            if (PhaseManager.State == PhaseManagerState.Ended)
+            {
+                var titleFont = Sprites.Get("Title");
+
+                var titleWidth = titleFont.MeasureString(PhaseManager.CurrentPhase.CompleteMessage).X;
+                context.SpriteBatch.Begin();
+                context.SpriteBatch.DrawString(
+                    Sprites.Get("Title"),
+                    PhaseManager.CurrentPhase.CompleteMessage,
+                    new Vector2(
+                        (int)(GraphicsDevice.Viewport.Width / 2 - titleWidth / 2),
+                        (int)(GraphicsDevice.Viewport.Height * 3 / 10)
+                    ),
+                    Color.White
+                );
+                context.SpriteBatch.End();
+            }
         }
     }
 }

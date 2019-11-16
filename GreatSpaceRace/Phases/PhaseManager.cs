@@ -74,6 +74,7 @@ namespace GreatSpaceRace.Phases
                 if (_startTimer.Completed)
                 {
                     CurrentPhase.Start();
+                    _phaseTimer.Restart();
                     State = PhaseManagerState.Running;
                 }
             }
@@ -84,6 +85,7 @@ namespace GreatSpaceRace.Phases
                 if (_phaseTimer.Completed)
                 {
                     CurrentPhase.Stop();
+                    _endedTimer.Restart();
                     State = PhaseManagerState.Ended;
                     //TODO: advanced.
                 }
@@ -91,9 +93,10 @@ namespace GreatSpaceRace.Phases
             else if (State == PhaseManagerState.Ended)
             {
                 _endedTimer.Tick(context.DeltaTime);
-                if (_phaseTimer.Completed)
+                if (_endedTimer.Completed)
                 {
                     CurrentPhase.Dispose();
+                    _startTimer.Restart();
                     StartPhase(PhaseIndex+1);
                 }
             }

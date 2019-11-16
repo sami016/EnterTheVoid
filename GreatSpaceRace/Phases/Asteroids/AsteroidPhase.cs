@@ -13,6 +13,7 @@ namespace GreatSpaceRace.Phases.Asteroids
         {
             Title = "Asteroid Field";
             Description = "Clear the asteroid field as quickly as possible.";
+            CompleteMessage = "Asteroid field cleared.";
         }
 
         public override void Start()

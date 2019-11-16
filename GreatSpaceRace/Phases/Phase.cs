@@ -11,6 +11,7 @@ namespace GreatSpaceRace.Phases
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
         public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(40);
+        public string CompleteMessage { get; set; } = "";
 
         public abstract void Start();
         public abstract void Stop();
