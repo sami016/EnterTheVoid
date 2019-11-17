@@ -49,7 +49,7 @@ namespace GreatSpaceRace.Scenes
 
             GraphicsDeviceManager.PreferredBackBufferWidth = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Width;
             GraphicsDeviceManager.PreferredBackBufferHeight = GraphicsDeviceManager.GraphicsDevice.DisplayMode.Height;
-            GraphicsDeviceManager.IsFullScreen = true;
+            //GraphicsDeviceManager.IsFullScreen = true;
             //GraphicsDeviceManager.PreferredBackBufferWidth = 800;
             //GraphicsDeviceManager.PreferredBackBufferHeight = 600;
             GraphicsDeviceManager.ApplyChanges();

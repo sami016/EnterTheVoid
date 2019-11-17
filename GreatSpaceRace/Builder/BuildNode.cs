@@ -59,9 +59,9 @@ namespace GreatSpaceRace.Builder
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
-            if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
+            if (_shipTopology.SectionAt(GridLocation) != null)
             {
-                _shipRenderer.Render(context, Transform.WorldTransform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                _shipRenderer.Render(context, Transform.WorldTransform, _shipTopology.SectionAt(GridLocation));
                //_floorModel.SetDiffuseColour(Color.Gray);
             } else
             {

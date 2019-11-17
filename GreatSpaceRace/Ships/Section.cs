@@ -1,6 +1,7 @@
 ﻿using GreatSpaceRace.Ships.Connections;
 using GreatSpaceRace.Ships.Modules;
 using GreatSpaceRace.Utility;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,8 @@ namespace GreatSpaceRace.Ships
         public int Rotation { get; private set; } = Direction.East;
         public Module Module { get; }
         public ConnectionLayout ConnectionLayout { get; }
-
         public int Health { get; set; }
+        public Point GridLocation { get; internal set; }
 
         public Section(Module module, ConnectionLayout connectionLayout, int rotation = 0)
         {

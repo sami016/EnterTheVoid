@@ -59,10 +59,10 @@ namespace GreatSpaceRace.Scenes
             //shipEnt.Add(new RocketControls(_shipTopology));
 
             var topology = new ShipTopology(6, 5);
-            topology.Sections[2, 2] = new Section(
+            topology.SetSection(new Point(2, 2), new Section(
                 new LifeSupportModule(),
                 ConnectionLayouts.FullyConnected
-            );
+            ));
 
             this.EntityManager.Update(() =>
             {

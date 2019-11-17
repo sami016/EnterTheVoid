@@ -51,21 +51,18 @@ namespace GreatSpaceRace.Flight
             // Accumulate acceleration capability.
             var rotationCapabilities = 0;
             var sectionCount = 0;
-            foreach (var section in _topology.Sections)
+            foreach (var section in _topology.AllSections)
             {
-                if (section != null)
+                sectionCount++;
+                if (section.Module is RocketModule rocketModule)
                 {
-                    sectionCount++;
-                    if (section.Module is RocketModule rocketModule)
-                    {
-                        _accelerationCapabilities[section.Rotation]++;
-                        rocketModule.On = false;
-                        rocketModuleSections.Add(section);
-                    }
-                    if (section.Module is RotaryEngine)
-                    {
-                        rotationCapabilities++;
-                    }
+                    _accelerationCapabilities[section.Rotation]++;
+                    rocketModule.On = false;
+                    rocketModuleSections.Add(section);
+                }
+                if (section.Module is RotaryEngine)
+                {
+                    rotationCapabilities++;
                 }
             }
 

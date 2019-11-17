@@ -9,10 +9,24 @@ namespace GreatSpaceRace.Ships
 {
     public class ShipTopology
     {
-        public Section[,] Sections { get; }
+        private Section[,] Sections { get; }
 
         public int GridWidth => Sections.GetLength(0);
         public int GridHeight => Sections.GetLength(1);
+
+        public IEnumerable<Section> AllSections
+        {
+            get
+            {
+                foreach (var section in Sections)
+                {
+                    if (section != null)
+                    {
+                        yield return section;
+                    }
+                }
+            }
+        }
 
         public ShipTopology(int gridWidth, int gridHeight)
         {
@@ -132,6 +146,12 @@ namespace GreatSpaceRace.Ships
             var noConnections = !aSmall && !aBig && !bSmall && !bBig;
             var connected = matchBig || matchSmall;
             return (connected || noConnections, connected);
+        }
+
+        public void SetSection(Point gridLocation, Section section)
+        {
+            section.GridLocation = gridLocation;
+            Sections[gridLocation.X, gridLocation.Y] = section;
         }
 
         public void Remove(Point gridLocation)

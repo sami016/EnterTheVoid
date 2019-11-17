@@ -49,7 +49,7 @@ namespace GreatSpaceRace.Flight
 
         public void Tick(TickContext context)
         {
-            if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] == null)
+            if (_shipTopology.SectionAt(GridLocation) == null)
             {
                 return;
             }
@@ -69,7 +69,7 @@ namespace GreatSpaceRace.Flight
                 {
                     if (entity.Has<IShipCollider>())
                     {
-                        entity.Get<IShipCollider>().OnHit(this, _ship, GridLocation, location, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                        entity.Get<IShipCollider>().OnHit(this, _ship, GridLocation, location, _shipTopology.SectionAt(GridLocation));
                     }
                 }
             }
@@ -87,9 +87,9 @@ namespace GreatSpaceRace.Flight
         public void Render(RenderContext context)
         {
             var parentTransform = Entity.Parent.Get<Transform>().WorldTransform;
-            if (_shipTopology.Sections[GridLocation.X, GridLocation.Y] != null)
+            if (_shipTopology.SectionAt(GridLocation) != null)
             {
-                _shipRenderer.Render(context, Transform.WorldTransform * parentTransform, _shipTopology.Sections[GridLocation.X, GridLocation.Y]);
+                _shipRenderer.Render(context, Transform.WorldTransform * parentTransform, _shipTopology.SectionAt(GridLocation));
             }
         }
     }

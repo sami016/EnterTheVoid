@@ -19,6 +19,8 @@ namespace GreatSpaceRace.Flight
         public int Health => _topology.Health;
         public int MaxHealth => _topology.MaxHealth;
 
+        private FlightNode[,] _flightNode;
+
         public FlightShip(ShipTopology topology)
         {
             _topology = topology;
@@ -26,6 +28,7 @@ namespace GreatSpaceRace.Flight
 
         public void Initialise()
         {
+            _flightNode = new FlightNode[_topology.GridWidth, _topology.GridHeight];
             this.Update(() =>
             {
                 for (var gridX = 0; gridX < _topology.GridWidth; gridX++)
@@ -39,10 +42,22 @@ namespace GreatSpaceRace.Flight
                             Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
                             Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
                         });
-                        child.Add(new FlightNode(this, gridPosition, _topology));
+                        _flightNode[gridX, gridZ] = child.Add(new FlightNode(this, gridPosition, _topology));
                     }
                 }
             });
+        }
+
+        public FlightNode GetNodeForSection(Point gridLocation)
+        {
+            if (gridLocation.X < 0
+                || gridLocation.X > _flightNode.GetLength(0)
+                || gridLocation.Y < 0
+                || gridLocation.Y > _flightNode.GetLength(1))
+            {
+                return null;
+            }
+            return _flightNode[gridLocation.X, gridLocation.Y];
         }
 
         public void Tick(TickContext context)
@@ -63,12 +78,9 @@ namespace GreatSpaceRace.Flight
             this.Update(() =>
             {
                 var sections = new List<Section>();
-                foreach (var section in _topology.Sections)
+                foreach (var section in _topology.AllSections)
                 {
-                    if (section != null)
-                    {
-                        sections.Add(section);
-                    }
+                    sections.Add(section);
                 }
                 sections.Sort((x, y) => x.Health - y.Health);
 

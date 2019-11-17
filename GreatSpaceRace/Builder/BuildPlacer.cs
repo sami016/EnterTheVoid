@@ -112,12 +112,12 @@ namespace GreatSpaceRace.Builder
                 else if (buildNode != null && MouseControls.LeftClicked)
                 {
                     var gridLocation = buildNode.GridLocation;
-                    if (_shipTopology.Sections[gridLocation.X, gridLocation.Y] == null
+                    if (_shipTopology.SectionAt(gridLocation) == null
                         && _shipTopology.LegalSectionCheck(PlacingSection, gridLocation))
                     {
                         this.Update(() =>
                         {
-                            _shipTopology.Sections[gridLocation.X, gridLocation.Y] = PlacingSection;
+                            _shipTopology.SetSection(gridLocation, PlacingSection);
                             _productionLine.Remove(PlacingSection);
                             PlacingSection = null;
                             SoundEffects.Get("Hammer")?.Play();

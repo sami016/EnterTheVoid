@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forge", "Forge", "{CABDEBD8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC640AC6-FF96-451A-B543-09F4AB8B0BC3}"
 	ProjectSection(SolutionItems) = preProject
+		Build.ps1 = Build.ps1
 		Tasks.txt = Tasks.txt
 	EndProjectSection
 EndProject

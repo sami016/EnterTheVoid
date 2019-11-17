@@ -49,14 +49,15 @@ namespace GreatSpaceRace.Scenes
             shipEnt.Add(new Transform());
             var flightShip = shipEnt.Add(new FlightShip(_shipTopology));
             shipEnt.Add(new RocketControls(_shipTopology));
+            shipEnt.Add(new CombatControls(_shipTopology));
             camera.Add(new FlightCameraControl(shipEnt));
 
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
-                    //Create().Add(new AsteroidPhase()),
+                    Create().Add(new AsteroidPhase(10)),
                     Create().Add(new OpenPhase()),
-                    Create().Add(new AsteroidPhase()),
+                    Create().Add(new AsteroidPhase(20)),
                 }
             ));
             phaseEnt.Add(new PhaseTitleDisplay());

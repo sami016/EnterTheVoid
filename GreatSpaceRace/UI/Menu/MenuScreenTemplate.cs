@@ -77,52 +77,52 @@ namespace GreatSpaceRace.UI.Menu
             //{
             //    for (var j=0; j<5; j++)
             //    {
-            //        topology.Sections[i, j] = new Section(
+            //        topology.SetSection(new Point(i, j] = new Section(
             //            new RocketModule(),
             //            ConnectionLayouts.FullyConnected,
             //            1
             //        );
             //    }
             //}
-            topology.Sections[2, 2] = new Section(
+            topology.SetSection(new Point(2, 2), new Section(
                 new LifeSupportModule(),
                 ConnectionLayouts.FullyConnected
-            );
-            topology.Sections[2, 1] = new Section(
+            ));
+            topology.SetSection(new Point(2, 1), new Section(
                 new BlasterModule(),
                 ConnectionLayouts.FullyConnected,
                 4
-            );
-            topology.Sections[2, 3] = new Section(
+            ));
+            topology.SetSection(new Point(2, 3), new Section(
                 new RocketModule(),
                 ConnectionLayouts.FullyConnected,
                 1
-            );
-            topology.Sections[1, 3] = new Section(
+            ));
+            topology.SetSection(new Point(1, 3), new Section(
                 new RocketModule(),
                 ConnectionLayouts.FullyConnected,
                 2
-            );
-            topology.Sections[3, 3] = new Section(
+            ));
+            topology.SetSection(new Point(3, 3), new Section(
                 new RocketModule(),
                 ConnectionLayouts.FullyConnected,
                 OffDirection.SouthEast
-            );
-            topology.Sections[3, 2] = new Section(
+            ));
+            topology.SetSection(new Point(3, 2), new Section(
                 new RotaryEngine(),
                 ConnectionLayouts.FullyConnected,
                 1
-            );
-            topology.Sections[4, 2] = new Section(
+            ));
+            topology.SetSection(new Point(4, 2), new Section(
                 new RotaryEngine(),
                 ConnectionLayouts.FullyConnected,
                 1
-            );
-            topology.Sections[5, 2] = new Section(
+            ));
+            topology.SetSection(new Point(5, 2), new Section(
                 new RotaryEngine(),
                 ConnectionLayouts.FullyConnected,
                 1
-            );
+            ));
 
 
             _sceneManager.SetScene(new FlightScene(topology));

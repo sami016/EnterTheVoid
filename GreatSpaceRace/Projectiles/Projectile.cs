@@ -7,7 +7,6 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
-using GreatSpaceRace.Projectiles;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -16,12 +15,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace GreatSpaceRace.Projectiles
 {
-    public class Asteroid : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider
+    public class Projectile : Component, IInit, ITick, IRenderable, IShipCollider
     {
         private static Random Random = new Random();
-        private static Model _asteroid1;
+        private static Model _projectileModel;
 
         public uint RenderOrder { get; } = 10;
 
@@ -32,27 +31,50 @@ namespace GreatSpaceRace.Phases.Asteroids
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
-        private Vector3 _spin;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
+
+        private readonly CompletionTimer _despawnTimer;
+
+        public Projectile(Vector3 direction, float speed, TimeSpan? despawnDuration = null)
+        {
+            direction.Normalize();
+            Velocity = direction * speed;
+            _despawnTimer = new CompletionTimer(despawnDuration ?? TimeSpan.FromSeconds(10));
+        }
 
         public void Initialise()
         {
-            _spin = new Vector3((float)Random.NextDouble(), (float)Random.NextDouble(), (float)Random.NextDouble());
-            if (_asteroid1 == null)
+            if (_projectileModel == null)
             {
-                _asteroid1 = Content.Load<Model>("Models/asteroid1");
-                _asteroid1.EnableDefaultLighting();
-                _asteroid1.SetDiffuseColour(Color.RosyBrown);
+                _projectileModel = Content.Load<Model>("Models/asteroid1");
+                _projectileModel.EnableDefaultLighting();
+                _projectileModel.SetDiffuseColour(Color.White);
             }
             FlightSpaces.ObstacleSpace.Add(Entity);
         }
 
         public void Tick(TickContext context)
         {
-            var spin = _spin * context.DeltaTimeSeconds;
+            var location = Transform.Location;
+            // Get every obstacle within 5 units of the node.
+            var obstacle = FlightSpaces.ObstacleSpace.GetNearby(location, 5f);
+            foreach (var entity in obstacle)
+            {
+                var pos = entity.Get<Transform>().Location;
+                var distance = (location - pos).Length();
+                if (distance < 1.1f)
+                {
+                    if (entity.Has<IProjectileCollider>())
+                    {
+                        entity.Get<IProjectileCollider>().OnHit(Entity, this);
+                    }
+                }
+            }
+
+            //var spin = _spin * context.DeltaTimeSeconds;
             Transform.Update(() =>
             {
-                Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
+                //Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
             });
         }
@@ -61,7 +83,7 @@ namespace GreatSpaceRace.Phases.Asteroids
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
-            _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
+            _projectileModel.Draw(Matrix.CreateScale(0.1f) * Transform.WorldTransform, camera.View, camera.Projection);
         }
 
         public override void Dispose()
@@ -71,13 +93,6 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
-            ship.Damage(gridLocation, 10);
-            Entity.Delete();
-        }
-
-        public void OnHit(Entity projectileEntity, Projectile projectile)
-        {
-            Entity.Delete();
         }
     }
 }

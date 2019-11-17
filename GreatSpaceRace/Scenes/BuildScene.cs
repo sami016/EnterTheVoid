@@ -30,10 +30,10 @@ namespace GreatSpaceRace.Scenes
         public override void Initialise()
         {
             _shipTopology = new ShipTopology(6, 5);
-            _shipTopology.Sections[2, 2] = new Section(
+            _shipTopology.SetSection(new Point(2, 2), new Section(
                 new LifeSupportModule(),
                 ConnectionLayouts.FullyConnected
-            );
+            ));
 
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
