@@ -18,6 +18,7 @@ namespace GreatSpaceRace.Phases.Open
         {
             Title = "Open Space";
             Description = "A safe stretch of open space. Clear as much distance as possible.";
+            Duration = TimeSpan.FromSeconds(18);
         }
 
         public override void Start()

@@ -40,7 +40,7 @@ namespace GreatSpaceRace.UI.Flight
                     }
                 )
                 {
-                    Position = new Rectangle(700, 300, 0, 0)
+                    Position = new Rectangle(GraphicsDevice.Viewport.Width/2-100, 300, 0, 0)
                 }
             );
         }

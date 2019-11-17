@@ -32,7 +32,7 @@ namespace GreatSpaceRace.Scenes
 
         public override void Initialise()
         {
-            AddSingleton(new BackgroundScoll());
+            AddSingleton(new SpaceBackgroundScroll());
 
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
@@ -54,8 +54,9 @@ namespace GreatSpaceRace.Scenes
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
+                    //Create().Add(new AsteroidPhase()),
+                    Create().Add(new OpenPhase()),
                     Create().Add(new AsteroidPhase()),
-                    Create().Add(new OpenPhase())
                 }
             ));
             phaseEnt.Add(new PhaseTitleDisplay());

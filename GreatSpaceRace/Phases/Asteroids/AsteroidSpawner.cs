@@ -15,12 +15,20 @@ namespace GreatSpaceRace.Phases.Asteroids
     public class AsteroidSpawner : Component, IInit, ITick
     {
         private static readonly Random Random = new Random();
+        private readonly int _difficult;
+        private readonly int _spawnPerWave;
         private IList<Entity> _entities = new List<Entity>();
         private float _lastZ = -5f;
         private bool _running = true;
 
         [Inject] FlightShip FlightShip { get; set; }
         private Transform _flightShipTransform;
+
+        public AsteroidSpawner(int difficult)
+        {
+            _difficult = difficult;
+            _spawnPerWave = 1 + (int)Math.Ceiling(_difficult / 10.0);
+        }
 
         public void Stop()
         {
@@ -50,7 +58,7 @@ namespace GreatSpaceRace.Phases.Asteroids
                 if (_lastZ > _flightShipTransform.Location.Z)
                 {
                     _lastZ -= 3;
-                    for (var i = 0; i < 10; i++)
+                    for (var i = 0; i < _spawnPerWave; i++)
                     {
                         var ent = Entity.Create();
                         ent.Add(new Transform()

@@ -15,7 +15,7 @@ namespace GreatSpaceRace
                 .UseEnginePrimitives()
                 .UseCollisionPrimitives()
                 .UseGlassUI()
-                .WithInitialScene(() => new DebugMenuScene())
+                .WithInitialScene(() => new StartupScene())
                 .AddSingleton(() => new GlobalControls())
                 .AddSingleton(() => new KeyControls())
                 .AddSingleton(() => new MouseControls())
