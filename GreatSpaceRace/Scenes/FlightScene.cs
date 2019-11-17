@@ -55,7 +55,7 @@ namespace GreatSpaceRace.Scenes
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
-                    Create().Add(new AsteroidPhase(10)),
+                    //Create().Add(new AsteroidPhase(10)),
                     Create().Add(new OpenPhase()),
                     Create().Add(new AsteroidPhase(20)),
                 }

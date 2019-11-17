@@ -50,9 +50,9 @@ namespace GreatSpaceRace.Phases
         {
             this.Update(() =>
             {
-                PhaseIndex = phaseIndex;
+                PhaseIndex = phaseIndex % NumberOfPhases;
                 State = PhaseManagerState.Starting;
-                CurrentPhase = _phases.ElementAt(phaseIndex);
+                CurrentPhase = _phases.ElementAt(PhaseIndex);
                 _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
 #if DEBUG
                 _startTimer = new CompletionTimer(TimeSpan.FromSeconds(10));

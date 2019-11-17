@@ -28,19 +28,20 @@ namespace GreatSpaceRace.UI.Flight
                     new ButtonTemplate("R", Keys.R)
                     {
                         Position = new Rectangle(50, 55, 40, 40)
-                    },
-                    new Text("Hold to leap")
-                    {
-                        Position = new Rectangle(420, 20, 0, 0),
-                        Font = "Default"
-                    },
-                    new ButtonTemplate("L", Keys.L)
-                    {
-                        Position = new Rectangle(450, 55, 40, 40)
                     }
+                    //,
+                    //new Text("Hold to leap")
+                    //{
+                    //    Position = new Rectangle(420, 20, 0, 0),
+                    //    Font = "Default"
+                    //},
+                    //new ButtonTemplate("L", Keys.L)
+                    //{
+                    //    Position = new Rectangle(450, 55, 40, 40)
+                    //}
                 )
                 {
-                    Position = new Rectangle(GraphicsDevice.Viewport.Width/2-100, 300, 0, 0)
+                    Position = new Rectangle(GraphicsDevice.Viewport.Width/2-300, 300, 0, 0)
                 }
             );
         }
