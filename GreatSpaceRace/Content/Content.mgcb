@@ -153,6 +153,25 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/floor2.obj
 
+#begin Models/ice.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:DefaultEffect=BasicEffect
+/processorParam:GenerateMipmaps=True
+/processorParam:GenerateTangentFrames=False
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=1
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=Compressed
+/build:Models/ice.fbx
+
 #begin Models/lifesupport.obj
 /importer:OpenAssetImporter
 /processor:ModelProcessor
@@ -273,6 +292,12 @@
 /processorParam:Quality=Best
 /build:Music/catinspace_hq.mp3
 
+#begin Music/Snow 02.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Snow 02.ogg
+
 #begin Music/Space Atmosphere.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -339,6 +364,18 @@
 /processorParam:TextureFormat=Color
 /build:Textures/concrete.jpg
 
+#begin Textures/frozen.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/frozen.jpg
+
 #begin Textures/hex.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -350,6 +387,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/hex.png
+
+#begin Textures/logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/logo.png
 
 #begin Textures/OGA-Background-1.png
 /importer:TextureImporter

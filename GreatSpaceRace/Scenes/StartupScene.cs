@@ -37,9 +37,11 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("Center", Content.Load<Texture2D>("Textures/center"));
             Textures.Load("Button", Content.Load<Texture2D>("Textures/button2"));
             Textures.Load("ButtonDown", Content.Load<Texture2D>("Textures/button"));
+            Textures.Load("Logo", Content.Load<Texture2D>("Textures/logo"));
 
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));
+            Songs.Load("Ice", Content.Load<Song>("Music/Snow 02"));
 
             SoundEffects.Load("Hammer", Content.Load<SoundEffect>("Sounds/hammer"));
             SoundEffects.Load("Click", Content.Load<SoundEffect>("Sounds/click"));

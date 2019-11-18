@@ -4,6 +4,7 @@ using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Ships.Generation;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace GreatSpaceRace.Phases.Asteroids
     public class AsteroidSpawner : Component, IInit, ITick
     {
         private static readonly Random Random = new Random();
+        private readonly Distribution<Type> _distribution;
         private readonly int _difficult;
         private readonly int _spawnPerWave;
         private IList<Entity> _entities = new List<Entity>();
@@ -24,8 +26,9 @@ namespace GreatSpaceRace.Phases.Asteroids
         [Inject] FlightShip FlightShip { get; set; }
         private Transform _flightShipTransform;
 
-        public AsteroidSpawner(int difficult)
+        public AsteroidSpawner(int difficult, Distribution<Type> distribution)
         {
+            _distribution = distribution;
             _difficult = difficult;
             _spawnPerWave = 1 + (int)Math.Ceiling(_difficult / 10.0);
         }
@@ -65,10 +68,9 @@ namespace GreatSpaceRace.Phases.Asteroids
                         {
                             Location = _flightShipTransform.Location + Vector3.Forward * 30 + new Vector3((float)(Random.NextDouble() - 0.5f) * 50, 0f, (float)Random.NextDouble() * 20)
                         });
-                        ent.Add(new Asteroid()
-                        {
-                            Velocity = new Vector3((float)Random.NextDouble() - 0.5f, 0f, (float)(0.8f + Random.NextDouble())) * 0.3f
-                        });
+                        var asteroidComponent = Activator.CreateInstance(_distribution.Sample());
+                        (asteroidComponent as IVelocity).Velocity = new Vector3((float)Random.NextDouble() - 0.5f, 0f, (float)(0.8f + Random.NextDouble())) * 0.3f;
+                        ent.Add(asteroidComponent as IComponent);
                         _entities.Add(ent);
                     }
                 }

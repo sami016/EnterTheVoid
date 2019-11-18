@@ -27,22 +27,30 @@ namespace GreatSpaceRace.UI.Menu
 
         public override IElement Evaluate() =>
             new Pane(
-                new Text("The Great Space Race")
-                {
-                    Position = new Rectangle(25, 25, 0, 0),
-                    Font = "Title"
-                },
+                //new Text("The Great Space Race")
+                //{
+                //    Position = new Rectangle(25, 25, 0, 0),
+                //    Font = "Title"
+                //},
                 new MenuButton("Play")//Campaign
                 {
-                    Position = new Rectangle(100, 100, GraphicsDevice.Viewport.Width - 200, 150),
+                    Position = new Rectangle(100, Vh * 60, GraphicsDevice.Viewport.Width - 200, Vh * 18),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickBuild)
                 },
                 new MenuButton("Start with pre-built ship")//Multiplayer
                 {
-                    Position = new Rectangle(100, 300, GraphicsDevice.Viewport.Width - 200, 150),
+                    Position = new Rectangle(100, Vh * 80, GraphicsDevice.Viewport.Width - 200, Vh * 18),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickFlight)
+                },
+                new Pane()
+                {
+                    Background = new ImageBackgroundStyling
+                    {
+                        ImageResource = "Logo",
+                    },
+                    Position = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 250, 100, 500, 300)
                 }
                 //new MenuButton("Hit Test")
                 //{

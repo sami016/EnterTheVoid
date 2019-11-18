@@ -20,17 +20,17 @@
  - Available parts rendering []
 
 ## Pilot mode
-- Flight controls [/]
+- Flight controls [x]
 - Abilities and cooldowns []
-- Ship health []
+- Ship health [x]
 - []
 
 ## Asteroid field phase
-- Collisions []
+- Collisions [x]
 
 ## Leap race phase
  - Rocket boost []
- - Repairs []
+ - Repairs [/]
  - 
 
 ## Combat phase
@@ -65,13 +65,15 @@ Week 2:
  - Basics asteroid phase [x]
  - Collisions [x]
  - Weapons control []
- - Projectiles []
+ - Projectiles [x]
 
 Week 3:
- - Health and damage.
+ - Health and damage [x]
  - Implement weapons.
  - Advanced In-game mechanics.
- - Expand with more phases.
+ - Additional asteroid types []
+ - Fuel mining []
+ - Fuel and energy resources []
  - Start improving presentation during the race.
 
  Week 4:
@@ -94,3 +96,7 @@ Assets in order of my perceived importance:
  - Gun projectile
  - Shield wall
  - Asteroids
+
+
+ Sources:
+ https://opengameart.org/content/snow-02

@@ -18,7 +18,7 @@ using System.Text;
 
 namespace GreatSpaceRace.Phases.Asteroids
 {
-    public class Asteroid : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity
+    public class IceAsteroid : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity
     {
         private static Random Random = new Random();
         private static Model _asteroid1;
@@ -42,7 +42,6 @@ namespace GreatSpaceRace.Phases.Asteroids
             {
                 _asteroid1 = Content.Load<Model>("Models/ice");
                 _asteroid1.EnableDefaultLighting();
-                _asteroid1.SetDiffuseColour(Color.RosyBrown);
             }
             FlightSpaces.ObstacleSpace.Add(Entity);
         }

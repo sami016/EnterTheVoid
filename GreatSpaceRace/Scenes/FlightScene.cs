@@ -7,6 +7,7 @@ using GreatSpaceRace.Flight;
 using GreatSpaceRace.Phases;
 using GreatSpaceRace.Phases.Asteroids;
 using GreatSpaceRace.Phases.Open;
+using GreatSpaceRace.Phases.Transmission;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.UI.Flight;
 using Microsoft.Xna.Framework;
@@ -55,9 +56,10 @@ namespace GreatSpaceRace.Scenes
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
-                    //Create().Add(new AsteroidPhase(10)),
+                    Create().Add(new IceAsteroidPhase(10, AsteroidDistributions.IceAsteroidDistribution)),
+                    Create().Add(new TransmissionPhase()),
                     Create().Add(new OpenPhase()),
-                    Create().Add(new AsteroidPhase(20)),
+                    Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
                 }
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
