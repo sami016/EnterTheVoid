@@ -9,11 +9,13 @@ namespace GreatSpaceRace.Phases.Asteroids
     {
         public static readonly Distribution<Type> StandardAsteroidDistribution = new Distribution<Type>()
         {
-            (1f, typeof(Asteroid))
+            (1f, typeof(Asteroid)),
+            (2f, typeof(FuelAsteroid))
         };
         public static readonly Distribution<Type> IceAsteroidDistribution = new Distribution<Type>()
         {
-            (1f, typeof(IceAsteroid))
+            (1f, typeof(IceAsteroid)),
+            (2f, typeof(FuelAsteroid))
         };
     }
 }

@@ -18,66 +18,37 @@ using System.Text;
 
 namespace GreatSpaceRace.Phases.Asteroids
 {
-    public class Asteroid : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity
+    public class Asteroid : AsteroidBase
     {
-        private static Random Random = new Random();
         private static Model _asteroid1;
 
-        public uint RenderOrder { get; } = 10;
-
-        public bool AutoRender { get; } = true;
-
-        [Inject] ContentManager Content { get; set; }
-        [Inject] Transform Transform { get; set; }
-        [Inject] CameraManager CameraManager { get; set; }
-        [Inject] FlightSpaces FlightSpaces { get; set; }
-
-        private Vector3 _spin;
-        public Vector3 Velocity { get; set; } = Vector3.Zero;
-
-        public void Initialise()
+        public override void Initialise()
         {
-            _spin = new Vector3((float)Random.NextDouble(), (float)Random.NextDouble(), (float)Random.NextDouble());
             if (_asteroid1 == null)
             {
-                _asteroid1 = Content.Load<Model>("Models/ice");
+                _asteroid1 = Content.Load<Model>("Models/asteroid1");
                 _asteroid1.EnableDefaultLighting();
                 _asteroid1.SetDiffuseColour(Color.RosyBrown);
             }
-            FlightSpaces.ObstacleSpace.Add(Entity);
+            base.Initialise();
         }
 
-        public void Tick(TickContext context)
-        {
-            var spin = _spin * context.DeltaTimeSeconds;
-            Transform.Update(() =>
-            {
-                Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
-                Transform.Location += Velocity * context.DeltaTimeSeconds;
-            });
-        }
-
-        public void Render(RenderContext context)
+        public override void Render(RenderContext context)
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
             _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
-        public override void Dispose()
-        {
-            FlightSpaces.ObstacleSpace.Remove(Entity);
-        }
+        //public override void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
+        //{
+        //    ship.Damage(gridLocation, 10);
+        //    Entity.Delete();
+        //}
 
-        public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
-        {
-            ship.Damage(gridLocation, 10);
-            Entity.Delete();
-        }
-
-        public void OnHit(Entity projectileEntity, Projectile projectile)
-        {
-            Entity.Delete();
-        }
+        //public override void OnHit(Entity projectileEntity, Projectile projectile)
+        //{
+        //    Entity.Delete();
+        //}
     }
 }

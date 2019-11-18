@@ -17,6 +17,7 @@ namespace GreatSpaceRace.Phases.Asteroids
             Title = "Ice Field";
             Description = "Clear the ice field as quickly as possible.";
             CompleteMessage = "Ice field cleared.";
+            Duration = TimeSpan.FromSeconds(45);
         }
 
         public override void Start()

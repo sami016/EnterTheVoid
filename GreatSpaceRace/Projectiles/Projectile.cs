@@ -7,6 +7,7 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Phases.Asteroids;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -46,8 +47,8 @@ namespace GreatSpaceRace.Projectiles
         {
             if (_projectileModel == null)
             {
-                _projectileModel = Content.Load<Model>("Models/asteroid1");
-                _projectileModel.EnableDefaultLighting();
+                _projectileModel = Content.Load<Model>("Models/bullet");
+                //_projectileModel.EnableDefaultLighting();
                 _projectileModel.SetDiffuseColour(Color.White);
             }
             FlightSpaces.ObstacleSpace.Add(Entity);
@@ -67,6 +68,7 @@ namespace GreatSpaceRace.Projectiles
                     if (entity.Has<IProjectileCollider>())
                     {
                         entity.Get<IProjectileCollider>().OnHit(Entity, this);
+                        EntityDidHit();
                     }
                 }
             }
@@ -77,6 +79,11 @@ namespace GreatSpaceRace.Projectiles
                 //Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
             });
+        }
+
+        public virtual float GetDamage(Entity hitEnt, IComponent hitComponent)
+        {
+            return 10f;
         }
 
         public void Render(RenderContext context)
@@ -91,7 +98,12 @@ namespace GreatSpaceRace.Projectiles
             FlightSpaces.ObstacleSpace.Remove(Entity);
         }
 
-        public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
+        public void EntityDidHit()
+        {
+            Entity.Delete();
+        }
+
+        public virtual void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
         }
     }

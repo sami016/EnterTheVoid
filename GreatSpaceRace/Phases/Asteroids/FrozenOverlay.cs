@@ -33,6 +33,7 @@ namespace GreatSpaceRace.Phases.Asteroids
         public void Fade()
         {
             _fading = true;
+            _fadeTimer.Restart();
         }
 
         public void Render(RenderContext context)
