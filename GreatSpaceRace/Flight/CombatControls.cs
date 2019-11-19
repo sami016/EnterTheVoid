@@ -13,6 +13,7 @@ using System.Text;
 using GreatSpaceRace.Ships.Modules;
 using GreatSpaceRace.Phases.Asteroids;
 using Forge.Core.Rendering;
+using GreatSpaceRace.Utility;
 
 namespace GreatSpaceRace.Flight
 {
@@ -50,6 +51,8 @@ namespace GreatSpaceRace.Flight
             foreach (var gun in guns)
             {
                 var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
+                var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3);
+                var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
                 var nodeTransform = flightNode.Entity.Get<Transform>();
                 var location = Vector3.Transform(Vector3.Zero, nodeTransform.WorldTransform * shipTransform.WorldTransform);
                 var shell = Entity.EntityManager.Create();
@@ -57,7 +60,7 @@ namespace GreatSpaceRace.Flight
                 {
                     Location = location
                 });
-                shell.Add(new Projectile(Vector3.Transform(Vector3.Forward, shipTransform.Rotation), 20f));
+                shell.Add(new Projectile(Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation), 20f));
             }
         }
 
