@@ -5,6 +5,7 @@ using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Ships.Generation;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,14 @@ namespace GreatSpaceRace.Builder
         private CompletionTimer _partTimer = new CompletionTimer(TimeSpan.FromSeconds(4));
         private CompletionTimer _shiftMovetimer = new CompletionTimer(TimeSpan.FromSeconds(1));
 
+        private CompletionTimer _redrawCooldownTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
+
         public IList<Section> Line { get; set; } = new List<Section>();
         public float SectionFractionalProgress => _shiftMovetimer.CompletedFraction;
 
         public void Initialise()
         {
+            _redrawCooldownTimer.Complete();
             for (var i=0; i<7; i++)
             {
                 Generate();
@@ -43,6 +47,28 @@ namespace GreatSpaceRace.Builder
             {
                 //Console.WriteLine($"Next in {_partTimer.RemainingTime.TotalMilliseconds} ms");
             }
+
+            var keys = Keyboard.GetState();
+            if (_redrawCooldownTimer.Completed && keys.IsKeyDown(Keys.Q))
+            {
+                Shuffle();
+            }else
+            {
+                _redrawCooldownTimer.Tick(context.DeltaTime);
+            }
+        }
+
+        private void Shuffle()
+        {
+            this.Update(() =>
+            {
+                _redrawCooldownTimer.Restart();
+                Line.Clear();
+                for (var i = 0; i < 7; i++)
+                {
+                    Generate();
+                }
+            });
         }
 
         private void Generate()

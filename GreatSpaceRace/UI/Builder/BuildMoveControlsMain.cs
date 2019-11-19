@@ -69,6 +69,15 @@ namespace GreatSpaceRace.UI.Builder
                 {
                     Position = new Rectangle(600, 60, 0, 0),
                     Font = "Default"
+                },
+                new ButtonTemplate("Q", Keys.Q)
+                {
+                    Position = new Rectangle(750, 50, 40, 40)
+                },
+                new Text("Shuffle")
+                {
+                    Position = new Rectangle(800, 60, 0, 0),
+                    Font = "Default"
                 }
             );
         }
