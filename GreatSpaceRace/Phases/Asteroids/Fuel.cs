@@ -7,6 +7,7 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Obstacles;
 using GreatSpaceRace.Projectiles;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
@@ -18,7 +19,7 @@ using System.Text;
 
 namespace GreatSpaceRace.Phases.Asteroids
 {
-    public class Fuel : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity
+    public class Fuel : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
     {
         private static Random Random = new Random();
         private static Model _fuelItemModel;
@@ -34,6 +35,8 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         private Vector3 _spin;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
+
+        public float Radius { get; protected set; } = 0.3f;
 
         public void Initialise()
         {

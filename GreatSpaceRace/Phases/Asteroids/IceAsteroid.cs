@@ -28,6 +28,7 @@ namespace GreatSpaceRace.Phases.Asteroids
         public IceAsteroid()
         {
             Health = 50;
+            Radius = 2f;
         }
 
         public override void Initialise()

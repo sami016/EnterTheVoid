@@ -6,6 +6,7 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
+using GreatSpaceRace.Obstacles;
 using GreatSpaceRace.Phases.Asteroids;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
@@ -64,8 +65,9 @@ namespace GreatSpaceRace.Flight
             foreach (var entity in obstacle)
             {
                 var pos = entity.Get<Transform>().Location;
+                var radius = entity.Get<IObstacle>()?.Radius ?? 1f;
                 var distance = (location - pos).Length();
-                if (distance < 2f)
+                if (distance < 1f + radius)
                 {
                     if (entity.Has<IShipCollider>())
                     {

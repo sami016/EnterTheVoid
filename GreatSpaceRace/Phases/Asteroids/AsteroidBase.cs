@@ -4,9 +4,11 @@ using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
+using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Obstacles;
 using GreatSpaceRace.Projectiles;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
@@ -18,7 +20,7 @@ using System.Text;
 
 namespace GreatSpaceRace.Phases.Asteroids
 {
-    public abstract class AsteroidBase : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity
+    public abstract class AsteroidBase : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
     {
         protected static readonly Random Random = new Random();
 
@@ -35,6 +37,8 @@ namespace GreatSpaceRace.Phases.Asteroids
         public Vector3 Velocity { get; set; } = Vector3.Zero;
         public float Health { get; set; } = 1f;
         public int Damage { get; set; } = 1;
+
+        public float Radius { get; protected set; } = 1f;
 
         public virtual void Initialise()
         {
