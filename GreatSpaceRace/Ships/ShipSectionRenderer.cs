@@ -27,6 +27,7 @@ namespace GreatSpaceRace.Ships
         private Model _connectorLargeModel;
         private Model _connectorSmallModel;
         private Model _turret1Model;
+        private Model _powerModule;
         private Model _biosphereModel;
         private Model _tankModel;
         private Model _rocket1Model;
@@ -54,6 +55,10 @@ namespace GreatSpaceRace.Ships
             _turret1Model = Content.Load<Model>("Models/turret1");
             _turret1Model.EnableDefaultLighting();
             _turret1Model.SetDiffuseColour(Color.Purple);
+
+            _powerModule = Content.Load<Model>("Models/power");
+            _powerModule.EnableDefaultLighting();
+            _powerModule.SetDiffuseColour(Color.Yellow);
 
             _biosphereModel = Content.Load<Model>("Models/lifesupport");
             _biosphereModel.EnableDefaultLighting();
@@ -118,6 +123,11 @@ namespace GreatSpaceRace.Ships
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _tankModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+            }
+            if (section.Module is EnergyModule)
+            {
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
+                _powerModule.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is RocketModule rocketModule)
             {

@@ -19,6 +19,12 @@ namespace GreatSpaceRace.Flight
         public int Health => _topology.Health;
         public int MaxHealth => _topology.MaxHealth;
 
+        public int Fuel { get; private set; } = 0;
+        public int Energy { get; private set; } = 0;
+
+        public int MaxFuel => _topology.MaxFuel;
+        public int MaxEnergy => _topology.MaxEnergy;
+
         private FlightNode[,] _flightNode;
 
         public FlightShip(ShipTopology topology)

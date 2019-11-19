@@ -69,12 +69,12 @@ Week 2:
 
 Week 3:
  - Health and damage [x]
- - Implement weapons.
- - Advanced In-game mechanics.
+ - Implement weapons. []
+ - Advanced In-game mechanics. []
  - Add ice-field [/]
- - Fuel mining []
+ - Fuel mining [/]
  - Fuel and energy resources []
- - Start improving presentation during the race.
+ - Start improving presentation during the race. []
 
  Week 4:
   - Particle effects

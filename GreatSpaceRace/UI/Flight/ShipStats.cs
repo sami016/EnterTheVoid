@@ -27,13 +27,37 @@ namespace GreatSpaceRace.UI.Flight
         }
 
         public override IElement Evaluate() => new Pane(
-            new Text("Hull Integity")
+            new Text(_flightShip.Energy.ToString())
             {
-                Position = new Rectangle(0, 0, 0, 0)
+                Position = new Rectangle(30, 20, 0, 0)
             },
             new Pane()
             {
-                Position = new Rectangle(0, 30, 100, 30),
+                Position = new Rectangle(60, 0, 50, 50),
+                Background = new ImageBackgroundStyling
+                {
+                    ImageResource = "Power"
+                }
+            },
+            new Text(_flightShip.Fuel.ToString())
+            {
+                Position = new Rectangle(30, 100, 0, 0)
+            },
+            new Pane()
+            {
+                Position = new Rectangle(60, 80, 50, 50),
+                Background = new ImageBackgroundStyling
+                {
+                    ImageResource = "Fuel"
+                }
+            },
+            new Text("Hull Integity")
+            {
+                Position = new Rectangle(0, 200, 0, 0)
+            },
+            new Pane()
+            {
+                Position = new Rectangle(0, 230, 100, 30),
                 Background = new ColourBackgroundStyling()
                 {
                     Colour = Color.Red
@@ -41,7 +65,7 @@ namespace GreatSpaceRace.UI.Flight
             },
             new Pane()
             {
-                Position = new Rectangle(0, 30, (int)(100 * _flightShip.Health / _flightShip.MaxHealth), 30),
+                Position = new Rectangle(0, 230, (int)(100 * _flightShip.Health / _flightShip.MaxHealth), 30),
                 Background = new ColourBackgroundStyling()
                 {
                     Colour = Color.Green

@@ -28,7 +28,7 @@ namespace GreatSpaceRace.UI.Flight
                 },
                 new ShipStats(_flightShip)
                 {
-                    Position = new Rectangle(_graphicsDevice.Viewport.Width - 200, _graphicsDevice.Viewport.Height - 100, 200, 100)
+                    Position = new Rectangle(_graphicsDevice.Viewport.Width - 200, _graphicsDevice.Viewport.Height - 300, 200, 300)
                 }
             )
             {

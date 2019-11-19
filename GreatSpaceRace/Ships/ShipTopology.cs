@@ -1,4 +1,5 @@
-﻿using GreatSpaceRace.Utility;
+﻿using GreatSpaceRace.Ships.Modules;
+using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,36 @@ namespace GreatSpaceRace.Ships
             }
         }
 
+        public int MaxEnergy
+        {
+            get
+            {
+                var maxEnergy = 20;
+                foreach (var section in Sections)
+                {
+                    if (section.Module is EnergyModule energyModule)
+                    {
+                        maxEnergy += energyModule.PassiveCapacity;
+                    }
+                }
+                return maxEnergy;
+            }
+        }
+        public int MaxFuel
+        {
+            get
+            {
+                var maxEnergy = 20;
+                foreach (var section in Sections)
+                {
+                    if (section.Module is FuelModule fuelModule)
+                    {
+                        maxEnergy += fuelModule.PassiveCapacity;
+                    }
+                }
+                return maxEnergy;
+            }
+        }
 
         public Section SectionAt(Point location)
         {

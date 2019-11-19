@@ -38,6 +38,8 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("Button", Content.Load<Texture2D>("Textures/button2"));
             Textures.Load("ButtonDown", Content.Load<Texture2D>("Textures/button"));
             Textures.Load("Logo", Content.Load<Texture2D>("Textures/logo"));
+            Textures.Load("Power", Content.Load<Texture2D>("Textures/power"));
+            Textures.Load("Fuel", Content.Load<Texture2D>("Textures/fuel"));
 
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));

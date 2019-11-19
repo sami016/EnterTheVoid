@@ -11,5 +11,6 @@ namespace GreatSpaceRace.Ships.Modules
         public override string ShortName { get; } = "Fuel Storage";
 
         public override string DescriptionShort { get; } = "Used to store rocket fuel, increasing the ship's fuel capacity.";
+        public virtual int PassiveCapacity { get; set; } = 5;
     }
 }
