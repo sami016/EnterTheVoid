@@ -9,6 +9,10 @@ namespace GreatSpaceRace.Phases.Asteroids
 {
     public class FuelAsteroid : Asteroid
     {
+        public FuelAsteroid()
+        {
+            Health = 40;
+        }
         public override void OnHit(Entity projectileEntity, Projectile projectile)
         {
             Entity.Delete();

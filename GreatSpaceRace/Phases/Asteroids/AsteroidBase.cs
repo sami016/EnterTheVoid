@@ -33,14 +33,13 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         private Vector3 _spin;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
-        public float Health { get; set; }
+        public float Health { get; set; } = 1f;
         public int Damage { get; set; } = 1;
 
         public virtual void Initialise()
         {
             _spin = new Vector3((float)Random.NextDouble(), (float)Random.NextDouble(), (float)Random.NextDouble());
             FlightSpaces.ObstacleSpace.Add(Entity);
-            Health = 1f;
         }
 
         public void Tick(TickContext context)
