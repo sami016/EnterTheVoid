@@ -73,7 +73,7 @@ namespace GreatSpaceRace.Ships
             get
             {
                 var maxEnergy = 20;
-                foreach (var section in Sections)
+                foreach (var section in AllSections)
                 {
                     if (section.Module is EnergyModule energyModule)
                     {
@@ -88,7 +88,7 @@ namespace GreatSpaceRace.Ships
             get
             {
                 var maxEnergy = 20;
-                foreach (var section in Sections)
+                foreach (var section in AllSections)
                 {
                     if (section.Module is FuelModule fuelModule)
                     {

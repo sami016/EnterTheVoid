@@ -74,7 +74,7 @@ namespace GreatSpaceRace.Phases.Asteroids
 
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
-            //TODO: add fuel to supply.
+            ship.AddFuel(1);
             Entity.Delete();
         }
 

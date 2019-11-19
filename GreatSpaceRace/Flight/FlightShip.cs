@@ -51,6 +51,9 @@ namespace GreatSpaceRace.Flight
                         _flightNode[gridX, gridZ] = child.Add(new FlightNode(this, gridPosition, _topology));
                     }
                 }
+
+                Fuel = MaxFuel;
+                Energy = MaxEnergy;
             });
         }
 
@@ -72,6 +75,22 @@ namespace GreatSpaceRace.Flight
             {
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
                 Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
+            });
+        }
+
+        public void AddFuel(int amount)
+        {
+            this.Update(() =>
+            {
+                Fuel = Math.Min(MaxFuel, Fuel + amount);
+            });
+        }
+
+        public void AddEnergy(int amount)
+        {
+            this.Update(() =>
+            {
+                Energy = Math.Min(MaxEnergy, Fuel + amount);
             });
         }
 
