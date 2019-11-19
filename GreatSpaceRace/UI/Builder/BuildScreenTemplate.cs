@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Forge.Core.Engine;
+using GreatSpaceRace.UI.Flight;
 
 namespace GreatSpaceRace.UI.Builder
 {
@@ -71,6 +72,10 @@ namespace GreatSpaceRace.UI.Builder
                         Colour = Color.SlateGray
                     }
                 },
+                new BuildMoveControlsMain()
+                {
+                    Position = new Rectangle(0, (int)(Vh*100 - 130), 100, 100)
+                },
                 // Bottom
                 EvaluateProductionLine()
             )
@@ -115,7 +120,8 @@ namespace GreatSpaceRace.UI.Builder
             var i = 0;
             foreach (var section in _productionLine.Line)
             {
-                var targetYPos = i * 150 + 5;
+                var height = (int)(12 * Vh);
+                var targetYPos = i * (height+10) + 5;
                 //var smoothYPos = 0;
                 //var fraction = _productionLine.SectionFractionalProgress;
                 //if (i == _productionLine.Line.Count() - 1)
@@ -128,7 +134,7 @@ namespace GreatSpaceRace.UI.Builder
                 //    smoothYPos = (int)(fraction * targetYPos + (1 - fraction) * targetYPosPrevious);
                 //}
                 var sectionView = EvaluateProductionLineItem(section);
-                sectionView.Position = new Rectangle(5, targetYPos, 240, 140);
+                sectionView.Position = new Rectangle(5, targetYPos, (int)(Vw * 20 - 10), height);
                 sections.Add(sectionView);
                 i++;
             }
@@ -136,7 +142,7 @@ namespace GreatSpaceRace.UI.Builder
                 sections.ToArray()
             )
             {
-                Position = new Rectangle(1650, 0, 250, 1200),
+                Position = new Rectangle((int)(Vw * 80), 0, (int)(Vw * 20), (int)(Vh*100)),
                 Background = new ColourBackgroundStyling
                 {
                     Colour = Color.SlateGray

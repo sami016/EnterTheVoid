@@ -12,16 +12,20 @@ using System.Collections.Generic;
 using System.Text;
 using GreatSpaceRace.Ships.Modules;
 using GreatSpaceRace.Phases.Asteroids;
+using Forge.Core.Rendering;
 
 namespace GreatSpaceRace.Flight
 {
-    public class CombatControls : Component, ITick
+    public class CombatControls : Component, ITick, IRenderable
     {
         private readonly ShipTopology _topology;
 
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
         [Inject] MouseControls MouseControls { get; set; }
+
+        public uint RenderOrder { get; } = 100;
+        public bool AutoRender { get; } = true;
 
         public CombatControls(ShipTopology topology)
         {
@@ -55,6 +59,11 @@ namespace GreatSpaceRace.Flight
                 });
                 shell.Add(new Projectile(Vector3.Transform(Vector3.Forward, shipTransform.Rotation), 20f));
             }
+        }
+
+        public void Render(RenderContext context)
+        {
+
         }
     }
 }

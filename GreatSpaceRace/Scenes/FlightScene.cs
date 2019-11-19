@@ -57,9 +57,9 @@ namespace GreatSpaceRace.Scenes
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
                     Create().Add(new IceAsteroidPhase(10, AsteroidDistributions.IceAsteroidDistribution)),
+                    Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
                     Create().Add(new TransmissionPhase()),
                     Create().Add(new OpenPhase()),
-                    Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
                 }
             ));
             phaseEnt.Add(new PhaseTitleDisplay());

@@ -34,13 +34,13 @@ namespace GreatSpaceRace.UI.Menu
                 //},
                 new MenuButton("Play")//Campaign
                 {
-                    Position = new Rectangle(100, Vh * 60, GraphicsDevice.Viewport.Width - 200, Vh * 18),
+                    Position = new Rectangle(100, (int)(Vh * 60), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 18)),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickBuild)
                 },
                 new MenuButton("Start with pre-built ship")//Multiplayer
                 {
-                    Position = new Rectangle(100, Vh * 80, GraphicsDevice.Viewport.Width - 200, Vh * 18),
+                    Position = new Rectangle(100, (int)(Vh * 80), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 18)),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickFlight)
                 },

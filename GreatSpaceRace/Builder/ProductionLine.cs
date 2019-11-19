@@ -51,7 +51,7 @@ namespace GreatSpaceRace.Builder
             this.Update(() =>
             {
                 Line.Add(generated);
-                if (Line.Count() > 10)
+                if (Line.Count() > 7)
                 {
                     Line.RemoveAt(0);
                 }
