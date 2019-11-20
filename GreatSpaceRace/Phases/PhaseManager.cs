@@ -55,7 +55,7 @@ namespace GreatSpaceRace.Phases
                 CurrentPhase = _phases.ElementAt(PhaseIndex);
                 _startTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
 #if DEBUG
-                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
+                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
 #endif
                 _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
                 _endedTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
@@ -82,7 +82,7 @@ namespace GreatSpaceRace.Phases
             {
                 CurrentPhase.Tick(context);
                 _phaseTimer.Tick(context.DeltaTime);
-                if (_phaseTimer.Completed)
+                if (_phaseTimer.Completed || CurrentPhase.Ended)
                 {
                     CurrentPhase.Stop();
                     _endedTimer.Restart();

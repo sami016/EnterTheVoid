@@ -1,5 +1,6 @@
 ﻿using GreatSpaceRace.Constants;
 using GreatSpaceRace.Ships.Modules;
+using GreatSpaceRace.Upgrades;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,7 +17,7 @@ namespace GreatSpaceRace.Ships
         public int GridWidth => Sections.GetLength(0);
         public int GridHeight => Sections.GetLength(1);
 
-        public IEnumerable<Upgrade> Upgrades { get; private set; } = new Upgrade[0];
+        public IEnumerable<UpgradeBase> Upgrades { get; private set; } = new UpgradeBase[0];
 
         public IEnumerable<Section> AllSections
         {
@@ -42,12 +43,8 @@ namespace GreatSpaceRace.Ships
             get
             {
                 var health = 0;
-                foreach (var section in Sections)
+                foreach (var section in AllSections)
                 {
-                    if (section == null)
-                    {
-                        continue;
-                    }
                     health += section.Health;
                 }
                 return health;
@@ -59,12 +56,8 @@ namespace GreatSpaceRace.Ships
             get
             {
                 var maxHealth = 0;
-                foreach (var section in Sections)
+                foreach (var section in AllSections)
                 {
-                    if (section == null)
-                    {
-                        continue;
-                    }
                     maxHealth += section.Module.MaxHealth;
                 }
                 return maxHealth;
@@ -107,7 +100,7 @@ namespace GreatSpaceRace.Ships
             get
             {
                 var count = 0;
-                foreach (var section in Sections)
+                foreach (var section in AllSections)
                 {
                     if (section.Module is LifeSupportModule)
                     {
@@ -214,7 +207,7 @@ namespace GreatSpaceRace.Ships
             return Upgrades.Count() < MaxUpgrades;
         }
 
-        public void ApplyUpgrade(Upgrade upgrade)
+        public void ApplyUpgrade(UpgradeBase upgrade)
         {
             Upgrades = Upgrades.Concat(new[] { upgrade }).ToArray();
         }

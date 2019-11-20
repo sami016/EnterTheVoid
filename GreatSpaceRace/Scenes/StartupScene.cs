@@ -42,6 +42,10 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("Fuel", Content.Load<Texture2D>("Textures/fuel"));
             Textures.Load("LeftMouse", Content.Load<Texture2D>("Textures/mouse_left"));
             Textures.Load("RightMouse", Content.Load<Texture2D>("Textures/mouse_right"));
+            Textures.Load("RocketThruster", Content.Load<Texture2D>("Textures/rocket-thruster"));
+            Textures.Load("RocketFlight", Content.Load<Texture2D>("Textures/rocket-flight"));
+            Textures.Load("PlasmaBolt", Content.Load<Texture2D>("Textures/plasma-bolt"));
+            Textures.Load("Cog", Content.Load<Texture2D>("Textures/cog"));
 
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));

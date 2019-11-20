@@ -3,6 +3,7 @@ using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using GreatSpaceRace.Ships;
+using GreatSpaceRace.Upgrades;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
@@ -24,6 +25,8 @@ namespace GreatSpaceRace.Flight
 
         public int MaxFuel => _topology.MaxFuel;
         public int MaxEnergy => _topology.MaxEnergy;
+
+        public IEnumerable<UpgradeBase> Upgrades => _topology.Upgrades;
 
         private FlightNode[,] _flightNode;
 
@@ -142,6 +145,19 @@ namespace GreatSpaceRace.Flight
                 {
                     _topology.Remove(gridLocation);
                 }
+            });
+        }
+
+        public bool UpgradeSlotFree()
+        {
+            return _topology.UpgradeSlotFree();
+        }
+
+        public void ApplyUpgrade(UpgradeBase upgrade)
+        {
+            this.Update(() =>
+            {
+                _topology.ApplyUpgrade(upgrade);
             });
         }
     }

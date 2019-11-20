@@ -4,11 +4,13 @@ using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Ships.Modules;
+using GreatSpaceRace.Upgrades;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GreatSpaceRace.Flight
@@ -22,10 +24,6 @@ namespace GreatSpaceRace.Flight
         [Inject] Transform Transform { get; set; }
         private float _rotation = 0;
 
-        private const float passiveAccel = 0.15f;
-        private const float passiveAccelBackwards = 0.35f;
-        private const float rocketAccel = 0.5f;
-        private const float rotationLimit = (float)Math.PI * 2 / 6;
         private static float Sin60 = (float)Math.Sin(Math.PI / 3);
         private static float Sin30 = (float)Math.Sin(Math.PI / 6);
 
@@ -37,6 +35,29 @@ namespace GreatSpaceRace.Flight
 
         public void Tick(TickContext context)
         {
+            float passiveAccel = 0.15f;
+            float passiveAccelBackwards = 0.25f;
+            float rocketAccel = 0.5f;
+            float rotationPenalty = 1f;
+            float rotationSpeedBase = 1f;
+            //float rotationLimit = (float)Math.PI;// * 2 / 6;
+
+            var upgrades = FlightShip.Upgrades
+                .Select(x => x.GetType())
+                .ToArray();
+
+            if (upgrades.Contains(typeof(EnhancedRotation))) 
+            {
+                rotationSpeedBase += 1f;
+                rotationPenalty = 0f;
+                //rotationLimit = (float)Math.PI;
+            }
+            if (upgrades.Contains(typeof(PrecisionRocketry)))
+            {
+                passiveAccel += 0.1f;
+                passiveAccelBackwards += 0.1f;
+            }
+
             var keys = Keyboard.GetState();
             //TODO - exclude damanged/destroyed.
             _accelerationCapabilities[0] = 0;
@@ -128,7 +149,7 @@ namespace GreatSpaceRace.Flight
                 }
             }
 
-            var rotationCoefficient = Math.Max(1 + rotationCapabilities - sectionCount * 0.05f, 0.5f);
+            var rotationCoefficient = Math.Max(rotationSpeedBase + rotationCapabilities - sectionCount * rotationPenalty * 0.05f, 0.5f);
             if (keys.IsKeyDown(Keys.Q))
             {
                 rotation += 1 * context.DeltaTimeSeconds * 0.3f * rotationCoefficient;
@@ -144,16 +165,16 @@ namespace GreatSpaceRace.Flight
                 }
                 else
                 {
-                    rotation += -1 * context.DeltaTimeSeconds * 0.2f * rotationCoefficient * (float)Math.Sin((Math.PI / 2) * rotation / rotationLimit);
+                    rotation += -1 * context.DeltaTimeSeconds * 0.2f * rotationCoefficient * (float)Math.Sin((Math.PI / 2) * rotation / Math.PI);
                 }
             }
-            if (rotation > rotationLimit)
+            if (rotation > Math.PI)
             {
-                rotation = rotationLimit;
+                rotation -= (float)Math.PI * 2;
             }
-            if (rotation < -rotationLimit)
+            if (rotation < -Math.PI)
             {
-                rotation = -rotationLimit;
+                rotation += (float)Math.PI * 2;
             }
 
             var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
