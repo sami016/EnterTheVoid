@@ -37,7 +37,9 @@ namespace GreatSpaceRace.Phases.Asteroids
             {
                 _iceCrystalsModel = Content.Load<Model>("Models/ice");
                 _iceCrystalsModel.EnableDefaultLighting();
-                _asteroid1Model = Content.Load<Model>("Models/asteroid1");
+                _asteroid1Model = Content.Load<Model>("Models/asteroid3");
+                _asteroid1Model.EnableDefaultLighting();
+                _asteroid1Model.SetDiffuseColour(Color.Gray);
             }
             base.Initialise();
         }
