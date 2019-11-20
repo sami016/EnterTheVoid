@@ -20,7 +20,7 @@ namespace GreatSpaceRace.Ships
     /// <summary>
     /// Not a renderable, but a render utility for drawing parts of ships.
     /// </summary>
-    public class ShipSectionRenderer : Component, IInit, ITick
+    public class ShipSectionRenderer : Component, IInit
     {
         private static Random Random = new Random();
         private Model _cellModel;
@@ -146,10 +146,6 @@ namespace GreatSpaceRace.Ships
             //context.SpriteBatch.Begin(depthStencilState: DepthStencilState.Default);
             //context.SpriteBatch.DrawString(_d, HexagonHelpers.GetWorldGridPosition(transform.Location).ToString(), new Vector2(screenPos.X * GraphicsDevice.Viewport.Width / 2, screenPos.Y * GraphicsDevice.Viewport.Width / 2), Color.White);
             //context.SpriteBatch.End();
-        }
-
-        public void Tick(TickContext context)
-        {
         }
     }
 }

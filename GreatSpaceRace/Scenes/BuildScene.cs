@@ -57,7 +57,8 @@ namespace GreatSpaceRace.Scenes
             var placer = placerEnt.Add(new BuildPlacer(CameraManager.ActiveCamera, _shipTopology, productionLine));
             placerEnt.Add(new BuildPlacerCursor());
 
-            var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode, productionLine, placer));
+            var shipRenderer = AddSingleton(new ShipSectionRenderer());
+            var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode, productionLine, placer, shipRenderer));
             Disposal += () => cleanBuildUI();
 
             MusicManager.Start("Building");

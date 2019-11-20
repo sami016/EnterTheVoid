@@ -1,4 +1,5 @@
-﻿using GreatSpaceRace.Ships.Modules;
+﻿using GreatSpaceRace.Constants;
+using GreatSpaceRace.Ships.Modules;
 using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,6 +15,8 @@ namespace GreatSpaceRace.Ships
 
         public int GridWidth => Sections.GetLength(0);
         public int GridHeight => Sections.GetLength(1);
+
+        public IEnumerable<Upgrade> Upgrades { get; private set; } = new Upgrade[0];
 
         public IEnumerable<Section> AllSections
         {
@@ -83,6 +86,7 @@ namespace GreatSpaceRace.Ships
                 return maxEnergy;
             }
         }
+
         public int MaxFuel
         {
             get
@@ -96,6 +100,21 @@ namespace GreatSpaceRace.Ships
                     }
                 }
                 return maxEnergy;
+            }
+        }
+        public int MaxUpgrades
+        {
+            get
+            {
+                var count = 0;
+                foreach (var section in Sections)
+                {
+                    if (section.Module is LifeSupportModule)
+                    {
+                        count++;
+                    }
+                }
+                return count;
             }
         }
 
@@ -188,6 +207,16 @@ namespace GreatSpaceRace.Ships
         public void Remove(Point gridLocation)
         {
             Sections[gridLocation.X, gridLocation.Y] = null;
+        }
+
+        public bool UpgradeSlotFree()
+        {
+            return Upgrades.Count() < MaxUpgrades;
+        }
+
+        public void ApplyUpgrade(Upgrade upgrade)
+        {
+            Upgrades = Upgrades.Concat(new[] { upgrade }).ToArray();
         }
     }
 }

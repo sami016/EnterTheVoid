@@ -3,6 +3,7 @@ using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
+using GreatSpaceRace.Constants;
 using GreatSpaceRace.Scenes;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Ships.Connections;
@@ -19,18 +20,26 @@ namespace GreatSpaceRace.UI.Menu
     class MenuScreenTemplate : Template
     {
         private readonly SceneManager _sceneManager;
+        private readonly string _tip;
 
         public MenuScreenTemplate(SceneManager SceneManager)
         {
             _sceneManager = SceneManager;
+
+            _tip = Tips.Sample();
         }
 
         public override IElement Evaluate() =>
             new Pane(
-                //new Text("The Great Space Race")
+                //new Pane(
+                //new Text($"Tip: {_tip}")
                 //{
-                //    Position = new Rectangle(25, 25, 0, 0),
-                //    Font = "Title"
+                //    Position = new Rectangle(10, 10, 0, 0),
+                //    Font = "Default"
+                //}
+                //)
+                //{
+                //    Position = new Rectangle(100, (int)(Vh * 50), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 5)),
                 //},
                 new MenuButton("Play")//Campaign
                 {
