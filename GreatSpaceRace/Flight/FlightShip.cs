@@ -2,6 +2,7 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
+using GreatSpaceRace.Projectiles;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Upgrades;
 using GreatSpaceRace.Utility;
@@ -15,7 +16,10 @@ namespace GreatSpaceRace.Flight
 {
     public class FlightShip : Component, IInit, ITick
     {
+        public Guid ShipGuid { get; }
+
         private readonly ShipTopology _topology;
+        public ShipTopology Topology => _topology;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
         [Inject] Transform Transform { get; set; }
         public int Health => _topology.Health;
@@ -31,9 +35,10 @@ namespace GreatSpaceRace.Flight
 
         private FlightNode[,] _flightNode;
 
-        public FlightShip(ShipTopology topology)
+        public FlightShip(ShipTopology topology, Guid? shipGuid = null)
         {
             _topology = topology;
+            ShipGuid = shipGuid ?? Guid.NewGuid();
         }
 
         public void Initialise()
@@ -47,7 +52,7 @@ namespace GreatSpaceRace.Flight
                     {
                         var gridPosition = new Point(gridX, gridZ);
                         var child = Entity.Create();
-                        child.Add(new Transform
+                        child.Add(new Transform(Transform)
                         {
                             Location = HexagonHelpers.GetGridWorldPosition(gridPosition),
                             Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, 0)
@@ -134,6 +139,14 @@ namespace GreatSpaceRace.Flight
             });
         }
 
+        public void Push(Vector3 direction, float magnitude)
+        {
+            this.Update(() =>
+            {
+                Velocity += direction * magnitude;
+            });
+        }
+
         /// <summary>
         /// Damages a section of ship.
         /// </summary>
@@ -177,5 +190,6 @@ namespace GreatSpaceRace.Flight
                 _topology.ApplyUpgrade(upgrade);
             });
         }
+
     }
 }

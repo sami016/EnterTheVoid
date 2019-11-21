@@ -17,21 +17,14 @@ using GreatSpaceRace.Utility;
 
 namespace GreatSpaceRace.Flight
 {
-    public class CombatControls : Component, ITick, IRenderable
+    public class CombatControls : Component, ITick
     {
-        private readonly ShipTopology _topology;
-
-        [Inject] FlightShip FlightShip { get; set; }
-        [Inject] Transform Transform { get; set; }
+        [Inject] WeaponCapability WeaponCapability { get; set; }
         [Inject] MouseControls MouseControls { get; set; }
 
         public uint RenderOrder { get; } = 100;
         public bool AutoRender { get; } = true;
 
-        public CombatControls(ShipTopology topology)
-        {
-            _topology = topology;
-        }
 
         public void Tick(TickContext context)
         {
@@ -39,34 +32,9 @@ namespace GreatSpaceRace.Flight
             
             if (MouseControls.LeftClicked)
             {
-                FireGuns();
+                WeaponCapability?.StandardFire();
             }
         }
 
-        private void FireGuns()
-        {
-            var guns = _topology.AllSections
-                .Where(x => x.Module is BlasterModule);
-            var shipTransform = Transform;
-            foreach (var gun in guns)
-            {
-                var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
-                var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3);
-                var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
-                var nodeTransform = flightNode.Entity.Get<Transform>();
-                var location = Vector3.Transform(Vector3.Zero, nodeTransform.WorldTransform * shipTransform.WorldTransform);
-                var shell = Entity.EntityManager.Create();
-                shell.Add(new Transform
-                {
-                    Location = location
-                });
-                shell.Add(new Projectile(Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation), 20f));
-            }
-        }
-
-        public void Render(RenderContext context)
-        {
-
-        }
     }
 }

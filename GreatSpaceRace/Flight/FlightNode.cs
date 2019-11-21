@@ -8,6 +8,7 @@ using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
 using GreatSpaceRace.Obstacles;
 using GreatSpaceRace.Phases.Asteroids;
+using GreatSpaceRace.Projectiles;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,13 +19,14 @@ using System.Text;
 
 namespace GreatSpaceRace.Flight
 {
-    public class FlightNode : Component, IInit, ITick, IRenderable
+    public class FlightNode : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider
     {
 
         private readonly ShipTopology _shipTopology;
         private ShipSectionRenderer _shipRenderer;
         private readonly FlightShip _ship;
 
+        public Guid ShipGuid => _ship.ShipGuid;
         public Point GridLocation { get; }
 
         public uint RenderOrder { get; } = 100;
@@ -46,23 +48,23 @@ namespace GreatSpaceRace.Flight
         public void Initialise()
         {
             _shipRenderer = Entity.Add(new ShipSectionRenderer());
+            FlightSpaces.ShipSpace.Add(Entity);
         }
+
+        public bool Active => _shipTopology.SectionAt(GridLocation) != null;
 
         public void Tick(TickContext context)
         {
-            if (_shipTopology.SectionAt(GridLocation) == null)
+            if (!Active)
             {
                 return;
             }
             
             // Get location of node.
-            var parentTransform = Entity.Parent.Get<Transform>().WorldTransform;
-            var transform = Transform.WorldTransform * parentTransform;
-            var location = Vector3.Transform(Vector3.Zero, transform);
+            var location = GlobalLocation;
 
             // Get every obstacle within 5 units of the node.
-            var obstacle = FlightSpaces.ObstacleSpace.GetNearby(location, 5f);
-            foreach (var entity in obstacle)
+            foreach (var entity in FlightSpaces.ObstacleSpace.GetNearby(location, 5f))
             {
                 var pos = entity.Get<Transform>().Location;
                 var radius = entity.Get<IObstacle>()?.Radius ?? 1f;
@@ -75,15 +77,39 @@ namespace GreatSpaceRace.Flight
                     }
                 }
             }
+
+            foreach (var entity in FlightSpaces.ShipSpace.GetNearby(location, 5f))
+            {
+                var otherNode = entity.Get<FlightNode>();
+                if (!otherNode.Active || otherNode.ShipGuid == ShipGuid)
+                {
+                    continue;
+                }
+                var pos = otherNode.GlobalLocation;
+                var distance = (location - pos).Length();
+                if (distance < 2f)
+                {
+                    if (entity.Has<IShipCollider>())
+                    {
+                        entity.Get<IShipCollider>().OnHit(this, _ship, GridLocation, location, _shipTopology.SectionAt(GridLocation));
+                    }
+                }
+            }
         }
 
-        private void HandleHit(Entity ent)
+        public Vector3 GlobalLocation
         {
-            Console.WriteLine("Hit obstacle");
-            if (ent.Has<Asteroid>())
+            get
             {
-                ent.Delete();
+                var parentTransform = Entity.Parent.Get<Transform>().WorldTransform;
+                var transform = Transform.WorldTransform * parentTransform;
+                return Vector3.Transform(Vector3.Zero, transform);
             }
+        }
+
+        public override void Dispose()
+        {
+            FlightSpaces.ShipSpace.Remove(Entity);
         }
 
         public void Render(RenderContext context)
@@ -93,6 +119,20 @@ namespace GreatSpaceRace.Flight
             {
                 _shipRenderer.Render(context, Transform.WorldTransform * parentTransform, _shipTopology.SectionAt(GridLocation));
             }
+        }
+
+        public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
+        {
+            var otherLocation = node.Entity.Get<Transform>().Location;
+            var direction = (Transform.Location - otherLocation);
+            direction.Normalize();
+            _ship.Damage(GridLocation, 1);
+            _ship.Push(direction, 0.1f);
+        }
+
+        public void OnHit(Entity projectileEntity, Projectile projectile)
+        {
+            _ship.Damage(GridLocation, (int)Math.Floor(projectile.GetDamage(Entity, this)));
         }
     }
 }

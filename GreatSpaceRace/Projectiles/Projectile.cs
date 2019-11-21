@@ -7,6 +7,7 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using GreatSpaceRace.Flight;
+using GreatSpaceRace.Obstacles;
 using GreatSpaceRace.Phases.Asteroids;
 using GreatSpaceRace.Ships;
 using Microsoft.Xna.Framework;
@@ -33,11 +34,13 @@ namespace GreatSpaceRace.Projectiles
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
         public Vector3 Velocity { get; set; } = Vector3.Zero;
+        public Guid ShipGuid { get; }
 
         private readonly CompletionTimer _despawnTimer;
 
-        public Projectile(Vector3 direction, float speed, TimeSpan? despawnDuration = null)
+        public Projectile(Guid shipGuid, Vector3 direction, float speed, TimeSpan? despawnDuration = null)
         {
+            ShipGuid = shipGuid;
             direction.Normalize();
             Velocity = direction * speed;
             _despawnTimer = new CompletionTimer(despawnDuration ?? TimeSpan.FromSeconds(10));
@@ -62,6 +65,25 @@ namespace GreatSpaceRace.Projectiles
             foreach (var entity in obstacle)
             {
                 var pos = entity.Get<Transform>().Location;
+                var distance = (location - pos).Length();
+                var radius = entity.Get<IObstacle>()?.Radius ?? 1f;
+                if (distance < 0.1f + radius)
+                {
+                    if (entity.Has<IProjectileCollider>())
+                    {
+                        entity.Get<IProjectileCollider>().OnHit(Entity, this);
+                        EntityDidHit();
+                    }
+                }
+            }
+            foreach (var entity in FlightSpaces.ShipSpace.GetNearby(location, 5f))
+            {
+                var node = entity.Get<FlightNode>();
+                if (!node.Active || node.ShipGuid == ShipGuid)
+                {
+                    continue;
+                }
+                var pos = node.GlobalLocation;
                 var distance = (location - pos).Length();
                 if (distance < 1.1f)
                 {

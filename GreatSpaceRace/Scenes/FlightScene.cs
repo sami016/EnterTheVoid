@@ -6,6 +6,7 @@ using GreatSpaceRace.Builder;
 using GreatSpaceRace.Flight;
 using GreatSpaceRace.Phases;
 using GreatSpaceRace.Phases.Asteroids;
+using GreatSpaceRace.Phases.Combat;
 using GreatSpaceRace.Phases.Open;
 using GreatSpaceRace.Phases.Transmission;
 using GreatSpaceRace.Ships;
@@ -49,13 +50,16 @@ namespace GreatSpaceRace.Scenes
             var shipEnt = Create();
             shipEnt.Add(new Transform());
             var flightShip = shipEnt.Add(new FlightShip(_shipTopology));
-            shipEnt.Add(new RocketControls(_shipTopology));
-            shipEnt.Add(new CombatControls(_shipTopology));
+            shipEnt.Add(new WeaponCapability());
+            shipEnt.Add(new RocketCapabilities());
+            shipEnt.Add(new RocketControls());
+            shipEnt.Add(new CombatControls());
             camera.Add(new FlightCameraControl(shipEnt));
 
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
+                    Create().Add(new DroneStrikePhase()),
                     Create().Add(new TransmissionPhase()),
                     Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
                     Create().Add(new IceAsteroidPhase(10, AsteroidDistributions.IceAsteroidDistribution)),
