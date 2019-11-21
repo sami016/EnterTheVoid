@@ -19,7 +19,9 @@ namespace GreatSpaceRace.Phases.Transmission
             new PrecisionRocketry(),
             new EfficientRocketry(),
             new BlastRocketry(),
-            new EnhancedRotation()
+            new EnhancedRotation(),
+            new ProficientRepair(),
+            new HullReinforcement()
         };
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }

@@ -8,6 +8,7 @@ using GreatSpaceRace.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GreatSpaceRace.Flight
@@ -103,6 +104,14 @@ namespace GreatSpaceRace.Flight
         /// <param name="amount"></param>
         public void Repair(int amount)
         {
+            var repairScale = 1f;
+            var upgrades = _topology.Upgrades
+                .Select(x => x.GetType())
+                .ToArray();
+            if (upgrades.Contains(typeof(HullReinforcement)))
+            {
+                repairScale += 1f;
+            }
             this.Update(() =>
             {
                 var sections = new List<Section>();
@@ -119,7 +128,7 @@ namespace GreatSpaceRace.Flight
                         continue;
                     }
 
-                    section.Repair(amount);
+                    section.Repair((int)(amount * repairScale));
                     return;
                 }
             });
@@ -132,6 +141,14 @@ namespace GreatSpaceRace.Flight
         /// <param name="amount">amount</param>
         public void Damage(Point gridLocation, int amount)
         {
+            var damageScale = 1f;
+            var upgrades = _topology.Upgrades
+                .Select(x => x.GetType())
+                .ToArray();
+            if (upgrades.Contains(typeof(HullReinforcement)))
+            {
+                damageScale -= 0.1f;
+            }
             this.Update(() =>
             {
                 var section = _topology.SectionAt(gridLocation);
@@ -140,7 +157,7 @@ namespace GreatSpaceRace.Flight
                     return;
                 }
 
-                section.Damage(amount);
+                section.Damage((int)(amount * damageScale));
                 if (section.Health == 0)
                 {
                     _topology.Remove(gridLocation);

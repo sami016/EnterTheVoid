@@ -46,6 +46,8 @@ namespace GreatSpaceRace.Scenes
             Textures.Load("RocketFlight", Content.Load<Texture2D>("Textures/rocket-flight"));
             Textures.Load("PlasmaBolt", Content.Load<Texture2D>("Textures/plasma-bolt"));
             Textures.Load("Cog", Content.Load<Texture2D>("Textures/cog"));
+            Textures.Load("ShieldComb", Content.Load<Texture2D>("Textures/shieldcomb"));
+            Textures.Load("LightningRepair", Content.Load<Texture2D>("Textures/lightning-spanner"));
 
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));
