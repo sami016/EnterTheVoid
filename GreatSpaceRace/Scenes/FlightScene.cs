@@ -34,7 +34,7 @@ namespace GreatSpaceRace.Scenes
 
         public override void Initialise()
         {
-            //AddSingleton(new SpaceBackgroundScroll());
+            AddSingleton(new SpaceBackgroundScroll());
 
             var camera = Create();
             var cameraPos = camera.Add(new Transform()

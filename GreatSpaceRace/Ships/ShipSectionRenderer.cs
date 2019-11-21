@@ -31,12 +31,16 @@ namespace GreatSpaceRace.Ships
         private Model _biosphereModel;
         private Model _tankModel;
         private Model _rocket1Model;
+        private Model _rocket2aModel;
+        private Model _rocket2bModel;
+        private Model _rotaryModel;
         private Model _trailModel;
         private SpriteFont _d;
 
         private static float turretOffsetRotation = (float)(Math.PI / 6);
 
-        private static float rocketOffsetRotation = (float)(Math.PI / 6);
+        private static float rocketOffsetRotation = (float)(Math.PI / 6 + Math.PI);
+        private static float rocketTrailOffsetRotation = (float)(Math.PI / 6);
 
         [Inject] ContentManager Content { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
@@ -68,9 +72,21 @@ namespace GreatSpaceRace.Ships
             _tankModel.EnableDefaultLighting();
             _tankModel.SetDiffuseColour(Color.Red);
 
+            _rotaryModel = Content.Load<Model>("Models/rotary");
+            _rotaryModel.EnableDefaultLighting();
+            _rotaryModel.SetDiffuseColour(Color.Orange);
+
             _rocket1Model = Content.Load<Model>("Models/rocket1");
             _rocket1Model.EnableDefaultLighting();
             _rocket1Model.SetDiffuseColour(Color.LightSteelBlue);
+
+            _rocket2aModel = Content.Load<Model>("Models/rocket2a");
+            _rocket2aModel.EnableDefaultLighting();
+            _rocket2aModel.SetDiffuseColour(Color.LightSteelBlue);
+
+            _rocket2bModel = Content.Load<Model>("Models/rocket2b");
+            _rocket2bModel.EnableDefaultLighting();
+            _rocket2bModel.SetDiffuseColour(Color.GhostWhite);
 
             _trailModel = Content.Load<Model>("Models/trail");
             _trailModel.EnableDefaultLighting();
@@ -124,6 +140,11 @@ namespace GreatSpaceRace.Ships
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _tankModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
+            if (section.Module is RotaryEngine)
+            {
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
+                _rotaryModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+            }
             if (section.Module is EnergyModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
@@ -131,8 +152,11 @@ namespace GreatSpaceRace.Ships
             }
             if (section.Module is RocketModule rocketModule)
             {
-                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketOffsetRotation);
-                _rocket1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketTrailOffsetRotation);
+                var moduleRotRocket = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketOffsetRotation);
+                //_rocket1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+                _rocket2aModel.Draw(moduleRotRocket * worldTransform, view.Value, projection.Value);
+                _rocket2bModel.Draw(moduleRotRocket * worldTransform, view.Value, projection.Value);
 
                 if (rocketModule.On)
                 {
