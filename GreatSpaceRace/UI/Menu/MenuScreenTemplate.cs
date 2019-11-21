@@ -61,12 +61,6 @@ namespace GreatSpaceRace.UI.Menu
                     },
                     Position = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 250, 100, 500, 300)
                 }
-                //new MenuButton("Hit Test")
-                //{
-                //    Position = new Rectangle(100, 500, 250, 150),
-                //    Init = el => el.Events
-                //        .Subscribe<ClickUIEvent>(ClickHitTest)
-                //}
             )
             {
                 Background = new ImageBackgroundStyling
@@ -75,10 +69,6 @@ namespace GreatSpaceRace.UI.Menu
                 }
             };
 
-        private void ClickHitTest(ClickUIEvent ev)
-        {
-            _sceneManager.SetScene(new HitTestScene());
-        }
 
         public void ClickBuild(ClickUIEvent ev)
         {
@@ -102,7 +92,7 @@ namespace GreatSpaceRace.UI.Menu
             //    }
             //}
             topology.SetSection(new Point(2, 2), new Section(
-                new LifeSupportModule(),
+                new ResearchCenterModule(),
                 ConnectionLayouts.FullyConnected
             ));
             topology.SetSection(new Point(2, 1), new Section(

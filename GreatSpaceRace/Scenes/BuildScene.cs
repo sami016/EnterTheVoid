@@ -31,7 +31,7 @@ namespace GreatSpaceRace.Scenes
         {
             _shipTopology = new ShipTopology(6, 5);
             _shipTopology.SetSection(new Point(2, 2), new Section(
-                new LifeSupportModule(),
+                new ResearchCenterModule(),
                 ConnectionLayouts.FullyConnected
             ));
 

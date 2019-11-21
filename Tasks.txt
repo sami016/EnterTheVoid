@@ -17,7 +17,7 @@
  - Build mode basic logic [x]
  - Available parts collection [x]
  - Part probability generation [x]
- - Available parts rendering []
+ - Available parts rendering [x]
 
 ## Pilot mode
 - Flight controls [x]
@@ -68,12 +68,13 @@ Week 2:
  - Projectiles [x]
 
 Week 3:
+ - Tidy build UI [x]
  - Health and damage [x]
- - Implement weapons. []
- - Advanced In-game mechanics. []
  - Add ice-field [x]
  - Fuel mining [x]
  - Fuel and energy resources [/]
+ - Implement a set of basic upgrades [/]
+ - Implement weapons. []
  - Start improving presentation during the race. []
  - Shield generator []
  - Shield []

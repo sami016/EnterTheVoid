@@ -12,10 +12,13 @@ using System.Text;
 
 namespace GreatSpaceRace.Flight
 {
-    public class FlightCameraControl : Component, ITick
+    public class FlightCameraControl : Component, IInit, ITick
     {
         private readonly Entity _shipEntity;
         private readonly Transform _shipTransform;
+
+        private float _activeCameraScale;
+        public float CameraScale { get; set; }
 
         [Inject] Transform Transform { get; set; }
         [Inject] Camera Camera { get; set; }
@@ -24,6 +27,12 @@ namespace GreatSpaceRace.Flight
         {
             _shipEntity = shipEntity;
             _shipTransform = _shipEntity.Get<Transform>();
+        }
+
+        public void Initialise()
+        {
+            CameraScale = (Camera.CameraParameters as OrthographicCameraParameters).Width;
+            _activeCameraScale = (Camera.CameraParameters as OrthographicCameraParameters).Width;
         }
 
         public void Tick(TickContext context)
@@ -49,6 +58,16 @@ namespace GreatSpaceRace.Flight
             });
             this.Update(() =>
             {
+                if (_activeCameraScale != CameraScale)
+                {
+                    Console.WriteLine($"Active camera scale: {_activeCameraScale} Seeking: {CameraScale}");
+                    _activeCameraScale = _activeCameraScale - (float)Math.Sign(_activeCameraScale - CameraScale) * 10f * context.DeltaTimeSeconds;
+                    if (Math.Abs(_activeCameraScale - CameraScale) < 0.1f)
+                    {
+                        _activeCameraScale = CameraScale;
+                    }
+                    Camera.CameraParameters = new OrthographicCameraParameters(_activeCameraScale);
+                }
                 Transform.RotationCenter = averageLocation;
                 Transform.Location = _shipTransform.Location + averageLocation + 20 * Vector3.Up + 2 * Vector3.Backward + forwardOffset;
                 Camera.LookAt(_shipTransform.Location + averageLocation + forwardOffset);
@@ -56,5 +75,6 @@ namespace GreatSpaceRace.Flight
                 Camera.RecalculateParameters();
             });
         }
+
     }
 }

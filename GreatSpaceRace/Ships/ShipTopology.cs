@@ -102,7 +102,7 @@ namespace GreatSpaceRace.Ships
                 var count = 0;
                 foreach (var section in AllSections)
                 {
-                    if (section.Module is LifeSupportModule)
+                    if (section.Module is ResearchCenterModule)
                     {
                         count++;
                     }

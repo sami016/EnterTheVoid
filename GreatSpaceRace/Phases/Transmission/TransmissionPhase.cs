@@ -26,6 +26,8 @@ namespace GreatSpaceRace.Phases.Transmission
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         FlightShip Ship { get; set; }
+        FlightCameraControl _camera;
+        private float _oldCameraScale;
 
         public TransmissionPhase()
         {
@@ -36,6 +38,10 @@ namespace GreatSpaceRace.Phases.Transmission
         public override void Start()
         {
             Ship = Entity.EntityManager.GetAll<FlightShip>().First();
+            _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
+
+            _oldCameraScale = _camera.CameraScale;
+            _camera.CameraScale = 5f;
 
             var random = new Random();
             var takenUpgrades = Ship.Upgrades.ToArray();
@@ -74,6 +80,7 @@ namespace GreatSpaceRace.Phases.Transmission
 
         public override void Stop()
         {
+            _camera.CameraScale = _oldCameraScale;
             _dispose?.Invoke();
         }
     }

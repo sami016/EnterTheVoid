@@ -114,7 +114,7 @@ namespace GreatSpaceRace.Ships
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - turretOffsetRotation);
                 _turret1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
-            if (section.Module is LifeSupportModule)
+            if (section.Module is ResearchCenterModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _biosphereModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
