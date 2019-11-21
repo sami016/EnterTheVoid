@@ -1,4 +1,5 @@
 ﻿using Forge.Core.Components;
+using GreatSpaceRace.AI;
 using GreatSpaceRace.Flight;
 using GreatSpaceRace.Ships;
 using GreatSpaceRace.Ships.Connections;
@@ -39,10 +40,17 @@ namespace GreatSpaceRace.Phases.Combat
 
             var drone = Entity.EntityManager.Create();
             drone.Add(new Transform { 
-                Location = shipTransform.Location + Vector3.Forward * 5
+                Location = shipTransform.Location + Vector3.Forward * 5,
             });
             drone.Add(new FlightShip(CreateDrone()));
             drone.Add(new WeaponCapability());
+            drone.Add(new RocketCapability());
+            drone.Add(new EnemyHarness(Ship)
+            {
+                FixZ = 15f,
+                FixX = -5f
+            });
+            drone.Add(new ChaseDroneBrain());
         }
 
         public override void Stop()

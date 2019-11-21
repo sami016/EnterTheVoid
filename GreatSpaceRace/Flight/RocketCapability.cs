@@ -25,7 +25,7 @@ namespace GreatSpaceRace.Flight
         public bool RotatePort;
     }
 
-    public class RocketCapabilities : Component, ITick
+    public class RocketCapability : Component, ITick
     {
         private ShipTopology _topology => FlightShip.Topology;
         private readonly Dictionary<int, int> _accelerationCapabilities;
@@ -39,7 +39,7 @@ namespace GreatSpaceRace.Flight
 
         public RocketControl RocketControl { get; set; }
 
-        public RocketCapabilities()
+        public RocketCapability()
         {
             _accelerationCapabilities = new Dictionary<int, int>();
         }
@@ -170,14 +170,14 @@ namespace GreatSpaceRace.Flight
             }
             else
             {
-                if (Math.Abs(rotation) < 0.001)
-                {
-                    rotation = 0;
-                }
-                else
-                {
-                    rotation += -1 * context.DeltaTimeSeconds * 0.2f * rotationCoefficient * (float)Math.Sin((Math.PI / 2) * rotation / Math.PI);
-                }
+                //if (Math.Abs(rotation) < 0.001)
+                //{
+                //    rotation = 0;
+                //}
+                //else
+                //{
+                //    rotation += -1 * context.DeltaTimeSeconds * 0.2f * rotationCoefficient * (float)Math.Sin((Math.PI / 2) * rotation / Math.PI);
+                //}
             }
             if (rotation > Math.PI)
             {

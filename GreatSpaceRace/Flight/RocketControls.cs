@@ -17,7 +17,7 @@ namespace GreatSpaceRace.Flight
 {
     public class RocketControls : Component, ITick
     {
-        [Inject] RocketCapabilities RocketCapabilities { get; set; }
+        [Inject] RocketCapability RocketCapabilities { get; set; }
 
         public RocketControls()
         {
