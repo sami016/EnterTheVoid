@@ -8,10 +8,15 @@ using System.Text;
 
 namespace GreatSpaceRace.AI
 {
-    public abstract class Brain : Component, ITick
+    public abstract class Brain : Component, ITick, IInit
     {
         [Inject] public RocketCapability RocketCapability { get; set; }
         [Inject] public WeaponCapability WeaponCapability { get; set; }
+
+        public virtual void Initialise()
+        {
+
+        }
 
         public abstract void Tick(TickContext context);
     }

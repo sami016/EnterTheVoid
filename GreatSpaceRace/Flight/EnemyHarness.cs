@@ -17,7 +17,7 @@ namespace GreatSpaceRace.Flight
         private readonly FlightShip _playerShip;
 
         public float? FixX { get; set; }
-        public float FixZ { get; set; } = 10;
+        public float FixZ { get; set; }
 
         [Inject] FlightShip Ship { get; set; }
         [Inject] Transform Transform { get; set; }

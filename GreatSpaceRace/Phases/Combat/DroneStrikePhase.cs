@@ -1,4 +1,5 @@
 ﻿using Forge.Core.Components;
+using Forge.Core.Engine;
 using GreatSpaceRace.AI;
 using GreatSpaceRace.Flight;
 using GreatSpaceRace.Ships;
@@ -14,6 +15,10 @@ namespace GreatSpaceRace.Phases.Combat
 {
     public class DroneStrikePhase : Phase
     {
+        private Entity _drone1;
+        private Entity _drone2;
+        private Entity _drone3;
+
         FlightShip Ship { get; set; }
         //FlightCameraControl _camera;
 
@@ -38,23 +43,38 @@ namespace GreatSpaceRace.Phases.Combat
             Ship = Entity.EntityManager.GetAll<FlightShip>().First();
             var shipTransform = Ship.Entity.Get<Transform>();
 
-            var drone = Entity.EntityManager.Create();
-            drone.Add(new Transform { 
-                Location = shipTransform.Location + Vector3.Forward * 5,
-            });
-            drone.Add(new FlightShip(CreateDrone()));
-            drone.Add(new WeaponCapability());
-            drone.Add(new RocketCapability());
-            drone.Add(new EnemyHarness(Ship)
+            //_drone1 = Entity.EntityManager.Create();
+            //_drone1.Add(new Transform
+            //{
+            //    Location = shipTransform.Location + Vector3.Forward * 5,
+            //});
+            //_drone1.AddShipBasics(CreateDrone());
+            //_drone1.Add(new ChaseDroneBrain(Ship, -5));
+
+
+            //_drone2 = Entity.EntityManager.Create();
+            //_drone2.Add(new Transform
+            //{
+            //    Location = shipTransform.Location + Vector3.Forward * 10,
+            //});
+            //_drone2.AddShipBasics(CreateDrone());
+            //_drone2.Add(new ChaseDroneBrain(Ship, 10));
+
+
+            _drone3 = Entity.EntityManager.Create();
+            _drone3.Add(new Transform
             {
-                FixZ = 15f,
-                FixX = -5f
+                Rotation = Quaternion.CreateFromYawPitchRoll(0f, (float)Math.PI, 0f),
+                Location = shipTransform.Location + Vector3.Forward * 100,
             });
-            drone.Add(new ChaseDroneBrain());
+            _drone3.AddShipBasics(CreateDrone());
+            _drone3.Add(new ChaseDroneBrain(Ship, 10, -10));
         }
 
         public override void Stop()
         {
+            //_drone1.Delete();
+            //_drone2.Delete();
         }
     }
 }

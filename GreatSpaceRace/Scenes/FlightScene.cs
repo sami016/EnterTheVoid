@@ -49,9 +49,7 @@ namespace GreatSpaceRace.Scenes
 
             var shipEnt = Create();
             shipEnt.Add(new Transform());
-            var flightShip = shipEnt.Add(new FlightShip(_shipTopology));
-            shipEnt.Add(new WeaponCapability());
-            shipEnt.Add(new RocketCapability());
+            var flightShip = shipEnt.AddShipBasics(_shipTopology);
             shipEnt.Add(new RocketControls());
             shipEnt.Add(new CombatControls());
             camera.Add(new FlightCameraControl(shipEnt));

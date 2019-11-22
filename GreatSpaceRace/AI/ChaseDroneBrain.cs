@@ -13,20 +13,45 @@ namespace GreatSpaceRace.AI
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
         private CompletionTimer _oscillateTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
         private CompletionTimer _rotateOscillateTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
-        [Inject] EnemyHarness EnemyHarness { get; set; }
+
+        private EnemyHarness _enemyHarness;
         private bool _oscillateMode = false;
         private bool _rotateOscillateMode = false;
 
+        private readonly FlightShip _playerShip;
+        private readonly float _fixXBase;
+        private readonly float _fixZBase;
+
+        public ChaseDroneBrain(FlightShip playerShip, float fixXBase, float fixZBase = 15f)
+        {
+            _playerShip = playerShip;
+            _fixXBase = fixXBase;
+            _fixZBase = fixZBase;
+        }
+
+        public override void Initialise()
+        {
+            _enemyHarness = Entity.Add(new EnemyHarness(_playerShip)
+            {
+                FixZ = _fixZBase,
+                FixX = _fixXBase
+            });
+        }
+
         public override void Tick(TickContext context)
         {
-            if (EnemyHarness.FixZ > 10)
+            if (_enemyHarness.FixZ > 10)
             {
-                EnemyHarness.FixZ -= 1f * context.DeltaTimeSeconds;
+                _enemyHarness.FixZ -= 1f * context.DeltaTimeSeconds;
+            }
+            else if(_enemyHarness.FixZ < 10)
+            {
+                _enemyHarness.FixZ += 1f * context.DeltaTimeSeconds;
             } else
             {
-                EnemyHarness.FixZ = 10f;
+                _enemyHarness.FixZ = 10f;
             }
-            EnemyHarness.FixX += context.DeltaTimeSeconds * (_oscillateMode ? 1f : -1f);
+            _enemyHarness.FixX += context.DeltaTimeSeconds * (_oscillateMode ? 1f : -1f);
             RocketCapability.RocketControl = new RocketControl
             {
                 Forwards = true,
