@@ -29,8 +29,9 @@ namespace GreatSpaceRace.Flight
         public void Tick(TickContext context)
         {
             var keys = Keyboard.GetState();
+            var mouse = Mouse.GetState();
             
-            if (MouseControls.LeftClicked)
+            if (mouse.LeftButton == ButtonState.Pressed)
             {
                 WeaponCapability?.StandardFire();
             }
