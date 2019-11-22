@@ -3,11 +3,11 @@ using Forge.Core.Debugging;
 using Forge.Core.Sound;
 using Forge.Core.Utilities;
 using Forge.UI.Glass;
-using GreatSpaceRace.Scenes;
+using IntoTheVoid.Scenes;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace GreatSpaceRace
+namespace IntoTheVoid
 {
     class Program
     {

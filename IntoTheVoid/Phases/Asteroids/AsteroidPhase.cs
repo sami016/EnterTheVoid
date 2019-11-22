@@ -1,10 +1,10 @@
 ﻿using Forge.Core.Space;
-using GreatSpaceRace.Ships.Generation;
+using IntoTheVoid.Ships.Generation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class AsteroidPhase : Phase
     {

@@ -3,15 +3,15 @@ using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Flight;
-using GreatSpaceRace.Ships.Generation;
+using IntoTheVoid.Flight;
+using IntoTheVoid.Ships.Generation;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class AsteroidSpawner : Component, IInit, ITick
     {

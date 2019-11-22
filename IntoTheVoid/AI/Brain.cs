@@ -1,12 +1,12 @@
 ﻿using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
-using GreatSpaceRace.Flight;
+using IntoTheVoid.Flight;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.AI
+namespace IntoTheVoid.AI
 {
     public abstract class Brain : Component, ITick, IInit
     {

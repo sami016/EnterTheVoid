@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GreatSpaceRace.Ships.Generation
+namespace IntoTheVoid.Ships.Generation
 {
     public class Distribution<T> : List<(float probability, T value)>
     {

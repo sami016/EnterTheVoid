@@ -2,17 +2,17 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
-using GreatSpaceRace.Projectiles;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Upgrades;
-using GreatSpaceRace.Utility;
+using IntoTheVoid.Projectiles;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Upgrades;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Flight
+namespace IntoTheVoid.Flight
 {
     public class FlightShip : Component, IInit, ITick
     {

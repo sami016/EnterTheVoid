@@ -2,22 +2,22 @@
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
 using Forge.UI.Glass;
-using GreatSpaceRace.Builder;
-using GreatSpaceRace.Flight;
-using GreatSpaceRace.Phases;
-using GreatSpaceRace.Phases.Asteroids;
-using GreatSpaceRace.Phases.Combat;
-using GreatSpaceRace.Phases.Open;
-using GreatSpaceRace.Phases.Transmission;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.UI.Flight;
+using IntoTheVoid.Builder;
+using IntoTheVoid.Flight;
+using IntoTheVoid.Phases;
+using IntoTheVoid.Phases.Asteroids;
+using IntoTheVoid.Phases.Combat;
+using IntoTheVoid.Phases.Open;
+using IntoTheVoid.Phases.Transmission;
+using IntoTheVoid.Ships;
+using IntoTheVoid.UI.Flight;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Scenes
+namespace IntoTheVoid.Scenes
 {
     public class FlightScene : Scene
     {

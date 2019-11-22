@@ -4,9 +4,9 @@ using System.Text;
 using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Flight;
+using IntoTheVoid.Flight;
 
-namespace GreatSpaceRace.AI
+namespace IntoTheVoid.AI
 {
     public class ChaseDroneBrain : Brain
     {

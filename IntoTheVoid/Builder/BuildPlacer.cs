@@ -7,9 +7,9 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Resources;
 using Forge.Core.Space;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Constants;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Utility;
+using IntoTheVoid.Constants;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public class BuildPlacer : Component, IInit, ITick, IRenderable
     {

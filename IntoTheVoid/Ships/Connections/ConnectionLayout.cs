@@ -1,10 +1,10 @@
-﻿using GreatSpaceRace.Utility;
+﻿using IntoTheVoid.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Ships.Connections
+namespace IntoTheVoid.Ships.Connections
 {
     public class ConnectionLayout
     {

@@ -2,15 +2,15 @@
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Projectiles;
-using GreatSpaceRace.Ships.Modules;
+using IntoTheVoid.Projectiles;
+using IntoTheVoid.Ships.Modules;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Flight
+namespace IntoTheVoid.Flight
 {
     public class WeaponCapability : Component, ITick
     {

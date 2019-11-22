@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class FrozenOverlay : Component, IInit, IRenderable, ITick
     {

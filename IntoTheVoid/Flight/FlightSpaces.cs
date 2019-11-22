@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Flight
+namespace IntoTheVoid.Flight
 {
     public class FlightSpaces : Component, IInit
     {

@@ -3,13 +3,13 @@ using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Scenes;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Scenes;
+using IntoTheVoid.Scenes;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Intro
+namespace IntoTheVoid.Intro
 {
     public class IntroControls : Component, ITick
     {

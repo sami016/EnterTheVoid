@@ -1,10 +1,10 @@
-﻿using GreatSpaceRace.Ships;
+﻿using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Flight
+namespace IntoTheVoid.Flight
 {
     public interface IShipCollider
     {

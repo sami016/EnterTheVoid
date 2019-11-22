@@ -5,18 +5,18 @@ using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
-using GreatSpaceRace.Builder;
-using GreatSpaceRace.Scenes;
-using GreatSpaceRace.Ships;
+using IntoTheVoid.Builder;
+using IntoTheVoid.Scenes;
+using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Forge.Core.Engine;
-using GreatSpaceRace.UI.Flight;
+using IntoTheVoid.UI.Flight;
 
-namespace GreatSpaceRace.UI.Builder
+namespace IntoTheVoid.UI.Builder
 {
 
     class BuildScreenTemplate : Template

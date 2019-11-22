@@ -1,14 +1,14 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Scenes;
 using Forge.UI.Glass;
-using GreatSpaceRace.Flight;
-using GreatSpaceRace.Intro;
-using GreatSpaceRace.UI.Intro;
+using IntoTheVoid.Flight;
+using IntoTheVoid.Intro;
+using IntoTheVoid.UI.Intro;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Scenes
+namespace IntoTheVoid.Scenes
 {
     public class IntroScene : Scene
     {

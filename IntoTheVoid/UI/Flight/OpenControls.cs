@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.UI.Flight
+namespace IntoTheVoid.UI.Flight
 {
     class OpenControls : Template
     {

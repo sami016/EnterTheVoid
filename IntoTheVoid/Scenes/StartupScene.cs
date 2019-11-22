@@ -3,7 +3,7 @@ using Forge.Core.Resources;
 using Forge.Core.Scenes;
 using Forge.Core.Sound;
 using Forge.UI.Glass;
-using GreatSpaceRace.UI.Menu;
+using IntoTheVoid.UI.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Scenes
+namespace IntoTheVoid.Scenes
 {
     public class StartupScene : Scene
     {

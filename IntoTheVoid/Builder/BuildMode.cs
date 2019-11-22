@@ -3,14 +3,14 @@ using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Scenes;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Scenes;
-using GreatSpaceRace.Ships;
+using IntoTheVoid.Scenes;
+using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public enum BuildModeState
     {

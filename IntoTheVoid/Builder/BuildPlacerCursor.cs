@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public class BuildPlacerCursor : Component, IInit, IRenderable
     {

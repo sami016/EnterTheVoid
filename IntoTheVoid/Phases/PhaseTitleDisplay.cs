@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases
+namespace IntoTheVoid.Phases
 {
     public class PhaseTitleDisplay : Component, IRenderable
     {

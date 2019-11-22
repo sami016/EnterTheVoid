@@ -3,14 +3,14 @@ using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Rendering.Cameras;
-using GreatSpaceRace.Ships;
+using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Flight
+namespace IntoTheVoid.Flight
 {
     public class FlightCameraControl : Component, IInit, ITick
     {

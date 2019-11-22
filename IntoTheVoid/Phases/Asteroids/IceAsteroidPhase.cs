@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Forge.Core.Components;
 using Forge.Core.Sound;
-using GreatSpaceRace.Ships.Generation;
+using IntoTheVoid.Ships.Generation;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class IceAsteroidPhase : AsteroidPhase
     {

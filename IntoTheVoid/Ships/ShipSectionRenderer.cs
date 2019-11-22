@@ -5,8 +5,8 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Resources;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Ships.Modules;
-using GreatSpaceRace.Utility;
+using IntoTheVoid.Ships.Modules;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Resources;
 using System.Text;
 
-namespace GreatSpaceRace.Ships
+namespace IntoTheVoid.Ships
 {
     /// <summary>
     /// Not a renderable, but a render utility for drawing parts of ships.

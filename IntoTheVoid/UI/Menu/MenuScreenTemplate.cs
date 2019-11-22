@@ -3,18 +3,18 @@ using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
-using GreatSpaceRace.Constants;
-using GreatSpaceRace.Scenes;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Ships.Connections;
-using GreatSpaceRace.Ships.Modules;
-using GreatSpaceRace.Utility;
+using IntoTheVoid.Constants;
+using IntoTheVoid.Scenes;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Ships.Connections;
+using IntoTheVoid.Ships.Modules;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.UI.Menu
+namespace IntoTheVoid.UI.Menu
 {
 
     class MenuScreenTemplate : Template

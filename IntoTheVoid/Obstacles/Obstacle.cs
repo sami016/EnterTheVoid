@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Obstacles
+namespace IntoTheVoid.Obstacles
 {
     public abstract class Obstacle
     {

@@ -2,14 +2,14 @@
 using Forge.Core.Engine;
 using Forge.Core.Rendering;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Projectiles;
+using IntoTheVoid.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class FuelAsteroid : AsteroidBase
     {

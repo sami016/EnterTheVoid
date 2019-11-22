@@ -1,14 +1,14 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Interfaces;
-using GreatSpaceRace.Constants;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Utility;
+using IntoTheVoid.Constants;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public class BuildFloor : Component, IInit
     {

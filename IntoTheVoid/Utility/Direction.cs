@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Utility
+namespace IntoTheVoid.Utility
 {
     public static class Direction
     {

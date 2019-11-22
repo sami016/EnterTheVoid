@@ -1,10 +1,10 @@
-﻿using GreatSpaceRace.Ships.Connections;
-using GreatSpaceRace.Ships.Modules;
+﻿using IntoTheVoid.Ships.Connections;
+using IntoTheVoid.Ships.Modules;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Ships.Generation
+namespace IntoTheVoid.Ships.Generation
 {
     public static class StandardGeneration
     {

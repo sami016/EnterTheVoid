@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.UI.Builder
+namespace IntoTheVoid.UI.Builder
 {
     class BuildMoveControlsMain : Template
     {

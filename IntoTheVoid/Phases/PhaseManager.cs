@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Phases
+namespace IntoTheVoid.Phases
 {
     public enum PhaseManagerState
     {

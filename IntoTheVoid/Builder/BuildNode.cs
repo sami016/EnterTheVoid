@@ -12,13 +12,13 @@ using System.Collections.Generic;
 using System.Text;
 using Forge.Core.Utilities;
 using Microsoft.Xna.Framework.Input;
-using GreatSpaceRace.Ships;
+using IntoTheVoid.Ships;
 using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
-using GreatSpaceRace.Constants;
+using IntoTheVoid.Constants;
 using Forge.Core.Rendering.VertexTypes;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public class BuildNode : Component, IRenderable, IInit, ITick
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Upgrades
+namespace IntoTheVoid.Upgrades
 {
     public class EnhancedRotation : UpgradeBase
     {

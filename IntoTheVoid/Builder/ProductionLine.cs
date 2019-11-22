@@ -3,15 +3,15 @@ using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Ships.Generation;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Ships.Generation;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Builder
+namespace IntoTheVoid.Builder
 {
     public class ProductionLine : Component, IInit, ITick
     {

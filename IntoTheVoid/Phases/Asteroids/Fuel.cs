@@ -6,10 +6,10 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
-using GreatSpaceRace.Flight;
-using GreatSpaceRace.Obstacles;
-using GreatSpaceRace.Projectiles;
-using GreatSpaceRace.Ships;
+using IntoTheVoid.Flight;
+using IntoTheVoid.Obstacles;
+using IntoTheVoid.Projectiles;
+using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases.Asteroids
+namespace IntoTheVoid.Phases.Asteroids
 {
     public class Fuel : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
     {

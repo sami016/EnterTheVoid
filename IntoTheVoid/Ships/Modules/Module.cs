@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Ships.Modules
+namespace IntoTheVoid.Ships.Modules
 {
     /// <summary>
     /// Represents a type of ship module.

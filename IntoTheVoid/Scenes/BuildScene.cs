@@ -3,11 +3,11 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
 using Forge.Core.Sound;
 using Forge.UI.Glass;
-using GreatSpaceRace.Builder;
-using GreatSpaceRace.Ships;
-using GreatSpaceRace.Ships.Connections;
-using GreatSpaceRace.Ships.Modules;
-using GreatSpaceRace.UI.Builder;
+using IntoTheVoid.Builder;
+using IntoTheVoid.Ships;
+using IntoTheVoid.Ships.Connections;
+using IntoTheVoid.Ships.Modules;
+using IntoTheVoid.UI.Builder;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Scenes
+namespace IntoTheVoid.Scenes
 {
     public class BuildScene : Scene
     {

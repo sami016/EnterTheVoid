@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.UI.Intro
+namespace IntoTheVoid.UI.Intro
 {
     class IntroScreenTemplate : Template
     {

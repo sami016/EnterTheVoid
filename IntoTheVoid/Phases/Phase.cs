@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Phases
+namespace IntoTheVoid.Phases
 {
     public abstract class Phase : Component
     {

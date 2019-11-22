@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreatSpaceRace.Constants
+namespace IntoTheVoid.Constants
 {
     public static class Tips
     {

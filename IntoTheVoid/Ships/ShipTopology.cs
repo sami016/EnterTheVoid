@@ -1,14 +1,14 @@
-﻿using GreatSpaceRace.Constants;
-using GreatSpaceRace.Ships.Modules;
-using GreatSpaceRace.Upgrades;
-using GreatSpaceRace.Utility;
+﻿using IntoTheVoid.Constants;
+using IntoTheVoid.Ships.Modules;
+using IntoTheVoid.Upgrades;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GreatSpaceRace.Ships
+namespace IntoTheVoid.Ships
 {
     public class ShipTopology
     {

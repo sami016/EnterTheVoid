@@ -1,6 +1,6 @@
-﻿using GreatSpaceRace.Ships.Connections;
+﻿using IntoTheVoid.Ships.Connections;
 
-namespace GreatSpaceRace.Ships.Generation
+namespace IntoTheVoid.Ships.Generation
 {
     public class ConnectionLayoutDistribution : Distribution<ConnectionLayout>
     {
