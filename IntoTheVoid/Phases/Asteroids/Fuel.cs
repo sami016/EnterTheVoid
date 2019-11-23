@@ -78,7 +78,7 @@ namespace IntoTheVoid.Phases.Asteroids
             Entity.Delete();
         }
 
-        public virtual void OnHit(Entity projectileEntity, Projectile projectile)
+        public virtual void OnHit(Entity projectileEntity, ProjectileBase projectile)
         {
             Entity.Delete();
         }

@@ -15,6 +15,7 @@ namespace IntoTheVoid.Flight
     public class WeaponCapability : Component, ITick
     {
         private CompletionTimer _lightweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(0.5f));
+        private CompletionTimer _heavyweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
 
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
@@ -22,6 +23,7 @@ namespace IntoTheVoid.Flight
         public WeaponCapability()
         {
             _lightweightCooldown.Complete();
+            _heavyweightCooldown.Complete();
         }
 
         public void StandardFire()
@@ -44,10 +46,11 @@ namespace IntoTheVoid.Flight
                         Location = location
                     });
                     shell.Add(
-                        new Projectile(
+                        new LightBlasterProjectile(
                             FlightShip.ShipGuid,
+                            FlightShip.Velocity,
                             Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation),
-                            20f
+                            false
                         )
                     );
                 }
@@ -58,12 +61,41 @@ namespace IntoTheVoid.Flight
 
         public void HeavyFire()
         {
+            if (_heavyweightCooldown.Completed)
+            {
+                var guns = FlightShip.Topology.AllSections
+                    .Where(x => x.Module is BlasterModule);
+                var shipTransform = Transform;
+                foreach (var gun in guns)
+                {
+                    var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
+                    var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3);
+                    var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
+                    //var nodeTransform = flightNode.Entity.Get<Transform>();
+                    var location = flightNode.GlobalLocation;
+                    var shell = Entity.EntityManager.Create();
+                    shell.Add(new Transform
+                    {
+                        Location = location
+                    });
+                    shell.Add(
+                        new HeavyBlasterProjectile(
+                            FlightShip.ShipGuid,
+                            FlightShip.Velocity,
+                            Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation),
+                            false
+                        )
+                    );
+                }
 
+                _heavyweightCooldown.Restart();
+            }
         }
 
         public void Tick(TickContext context)
         {
             _lightweightCooldown.Tick(context.DeltaTime);
+            _heavyweightCooldown.Tick(context.DeltaTime);
         }
     }
 }

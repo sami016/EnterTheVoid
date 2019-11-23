@@ -4,11 +4,9 @@ using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
-using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
 using IntoTheVoid.Flight;
 using IntoTheVoid.Obstacles;
-using IntoTheVoid.Phases.Asteroids;
 using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -19,7 +17,7 @@ using System.Text;
 
 namespace IntoTheVoid.Projectiles
 {
-    public class Projectile : Component, IInit, ITick, IRenderable, IShipCollider
+    public abstract class ProjectileBase : Component, IInit, ITick, IRenderable, IShipCollider
     {
         private static Random Random = new Random();
         private static Model _projectileModel;
@@ -28,25 +26,25 @@ namespace IntoTheVoid.Projectiles
 
         public bool AutoRender { get; } = true;
 
-        [Inject] ContentManager Content { get; set; }
-        [Inject] Transform Transform { get; set; }
-        [Inject] CameraManager CameraManager { get; set; }
-        [Inject] FlightSpaces FlightSpaces { get; set; }
+        [Inject] public ContentManager Content { get; set; }
+        [Inject] public Transform Transform { get; set; }
+        [Inject] public CameraManager CameraManager { get; set; }
+        [Inject] public FlightSpaces FlightSpaces { get; set; }
 
         public Vector3 Velocity { get; set; } = Vector3.Zero;
         public Guid ShipGuid { get; }
 
         private readonly CompletionTimer _despawnTimer;
 
-        public Projectile(Guid shipGuid, Vector3 direction, float speed, TimeSpan? despawnDuration = null)
+        public ProjectileBase(Guid shipGuid, Vector3 parentVelocity, Vector3 direction, float speed, TimeSpan? despawnDuration = null)
         {
             ShipGuid = shipGuid;
             direction.Normalize();
-            Velocity = direction * speed;
+            Velocity = direction * speed + parentVelocity;
             _despawnTimer = new CompletionTimer(despawnDuration ?? TimeSpan.FromSeconds(10));
         }
 
-        public void Initialise()
+        public virtual void Initialise()
         {
             if (_projectileModel == null)
             {
@@ -59,6 +57,13 @@ namespace IntoTheVoid.Projectiles
 
         public void Tick(TickContext context)
         {
+            _despawnTimer.Tick(context.DeltaTime);
+            if (_despawnTimer.Completed)
+            {
+                Entity.Delete();
+                return;
+            }
+
             var location = Transform.Location;
             // Get every obstacle within 5 units of the node.
             var obstacle = FlightSpaces.ObstacleSpace.GetNearby(location, 5f);
@@ -101,6 +106,7 @@ namespace IntoTheVoid.Projectiles
                 //Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
             });
+
         }
 
         public virtual float GetDamage(Entity hitEnt, IComponent hitComponent)
@@ -108,12 +114,7 @@ namespace IntoTheVoid.Projectiles
             return 10f;
         }
 
-        public void Render(RenderContext context)
-        {
-            context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            var camera = CameraManager.ActiveCamera;
-            _projectileModel.Draw(Matrix.CreateScale(0.1f) * Transform.WorldTransform, camera.View, camera.Projection);
-        }
+        public abstract void Render(RenderContext context);
 
         public override void Dispose()
         {

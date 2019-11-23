@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace IntoTheVoid.Obstacles
 {
     public class IceAsteroid : AsteroidBase
     {
@@ -27,6 +27,7 @@ namespace IntoTheVoid.Phases.Asteroids
 
         public IceAsteroid()
         {
+            Damage = 25;
             Health = 50;
             Radius = 2f;
         }

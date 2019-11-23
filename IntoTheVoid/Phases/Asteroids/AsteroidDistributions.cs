@@ -1,4 +1,5 @@
-﻿using IntoTheVoid.Ships.Generation;
+﻿using IntoTheVoid.Obstacles;
+using IntoTheVoid.Ships.Generation;
 using System;
 using System.Collections.Generic;
 using System.Text;

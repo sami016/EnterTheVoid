@@ -2,6 +2,7 @@
 using Forge.Core.Engine;
 using Forge.Core.Rendering;
 using Forge.Core.Utilities;
+using IntoTheVoid.Phases.Asteroids;
 using IntoTheVoid.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace IntoTheVoid.Obstacles
 {
     public class FuelAsteroid : AsteroidBase
     {
@@ -18,6 +19,7 @@ namespace IntoTheVoid.Phases.Asteroids
 
         public FuelAsteroid()
         {
+            Damage = 20;
             Health = 40;
         }
 
@@ -39,7 +41,7 @@ namespace IntoTheVoid.Phases.Asteroids
             _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
-        public override void OnHit(Entity projectileEntity, Projectile projectile)
+        public override void OnHit(Entity projectileEntity, ProjectileBase projectile)
         {
             Entity.Delete();
 

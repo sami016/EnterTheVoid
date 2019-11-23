@@ -30,10 +30,14 @@ namespace IntoTheVoid.Flight
         {
             var keys = Keyboard.GetState();
             var mouse = Mouse.GetState();
-            
+
             if (mouse.LeftButton == ButtonState.Pressed)
             {
                 WeaponCapability?.StandardFire();
+            }
+            if (mouse.RightButton == ButtonState.Pressed)
+            {
+                WeaponCapability?.HeavyFire();
             }
         }
 

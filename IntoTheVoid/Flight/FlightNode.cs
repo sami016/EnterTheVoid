@@ -132,7 +132,7 @@ namespace IntoTheVoid.Flight
             _ship.Push(direction, 0.1f);
         }
 
-        public void OnHit(Entity projectileEntity, Projectile projectile)
+        public void OnHit(Entity projectileEntity, ProjectileBase projectile)
         {
             _ship.Damage(GridLocation, (int)Math.Floor(projectile.GetDamage(Entity, this)));
         }

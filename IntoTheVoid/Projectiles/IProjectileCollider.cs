@@ -7,6 +7,6 @@ namespace IntoTheVoid.Projectiles
 {
     public interface IProjectileCollider
     {
-        void OnHit(Entity projectileEntity, Projectile projectile);
+        void OnHit(Entity projectileEntity, ProjectileBase projectile);
     }
 }

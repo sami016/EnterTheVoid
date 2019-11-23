@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace IntoTheVoid.Obstacles
 {
     public abstract class AsteroidBase : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
     {
@@ -69,7 +69,7 @@ namespace IntoTheVoid.Phases.Asteroids
             Entity.Delete();
         }
 
-        public virtual void OnHit(Entity projectileEntity, Projectile projectile)
+        public virtual void OnHit(Entity projectileEntity, ProjectileBase projectile)
         {
             this.Update(() =>
             {

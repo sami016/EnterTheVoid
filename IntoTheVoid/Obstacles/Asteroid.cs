@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace IntoTheVoid.Obstacles
 {
     public class Asteroid : AsteroidBase
     {
@@ -24,6 +24,7 @@ namespace IntoTheVoid.Phases.Asteroids
 
         public override void Initialise()
         {
+            Damage = 20;
             if (_asteroid1 == null)
             {
                 _asteroid1 = Content.Load<Model>("Models/asteroid1");
