@@ -15,9 +15,7 @@ namespace IntoTheVoid.Phases.Combat
 {
     public class DroneStrikePhase : Phase
     {
-        private Entity _drone1;
-        private Entity _drone2;
-        private Entity _drone3;
+        private IList<Entity> _droneEntities = new List<Entity>();
 
         FlightShip Ship { get; set; }
         //FlightCameraControl _camera;
@@ -41,7 +39,7 @@ namespace IntoTheVoid.Phases.Combat
         public override void Start()
         {
             Ship = Entity.EntityManager.GetAll<FlightShip>().First();
-            var shipTransform = Ship.Entity.Get<Transform>();
+            Ship = Entity.EntityManager.GetAll<FlightShip>().First();
 
             //_drone1 = Entity.EntityManager.Create();
             //_drone1.Add(new Transform
@@ -60,17 +58,23 @@ namespace IntoTheVoid.Phases.Combat
             //_drone2.AddShipBasics(CreateDrone());
             //_drone2.Add(new ChaseDroneBrain(Ship, 10));
 
-
-            _drone3 = Entity.EntityManager.Create();
-            _drone3.Add(new Transform
-            {
-                Rotation = Quaternion.CreateFromYawPitchRoll(0f, (float)Math.PI, 0f),
-                Location = shipTransform.Location + Vector3.Forward * 100,
-            });
-            _drone3.AddShipBasics(CreateDrone());
-            _drone3.Add(new ChaseDroneBrain(Ship, 10, -10));
+            SpawnDrone(new Vector3(0, 0, -5), 2);
+            SpawnDrone(new Vector3(0, 0, 10), 2);
         }
 
+        private void SpawnDrone(Vector3 playerOffset, float rotationRadius)
+        {
+            var shipTransform = Ship.Entity.Get<Transform>();
+            var drone = Entity.EntityManager.Create();
+            drone.Add(new Transform
+            {
+                Rotation = Quaternion.CreateFromYawPitchRoll(0f, (float)(Random.NextDouble() * Math.PI * 2), 0f),
+                Location = shipTransform.Location + playerOffset * 10,
+            });
+            drone.AddShipBasics(CreateDrone());
+            drone.Add(new ChaseDroneBrain(Ship, playerOffset, rotationRadius));
+            _droneEntities.Add(drone);
+        }
         public override void Stop()
         {
             //_drone1.Delete();

@@ -97,7 +97,6 @@ namespace IntoTheVoid.Flight
                 }
             }
 
-            var rotation = _rotation;
 
             var acceleration = Vector3.Zero;
             if (RocketControl.Forwards)
@@ -159,14 +158,15 @@ namespace IntoTheVoid.Flight
                 }
             }
 
+            var rotationDiff = 0f;
             var rotationCoefficient = Math.Max(rotationSpeedBase + rotationCapabilities - sectionCount * rotationPenalty * 0.05f, 0.5f);
             if (RocketControl.RotatePort)
             {
-                rotation += 1 * context.DeltaTimeSeconds * 0.3f * rotationCoefficient;
+                rotationDiff = 1 * context.DeltaTimeSeconds * 0.3f * rotationCoefficient;
             }
             else if (RocketControl.RotateStarboard)
             {
-                rotation += -1 * context.DeltaTimeSeconds * 0.3f * rotationCoefficient;
+                rotationDiff = -1 * context.DeltaTimeSeconds * 0.3f * rotationCoefficient;
             }
             else
             {
@@ -179,26 +179,23 @@ namespace IntoTheVoid.Flight
                 //    rotation += -1 * context.DeltaTimeSeconds * 0.2f * rotationCoefficient * (float)Math.Sin((Math.PI / 2) * rotation / Math.PI);
                 //}
             }
-            if (rotation > Math.PI)
+            if (rotationDiff > Math.PI)
             {
-                rotation -= (float)Math.PI * 2;
+                rotationDiff = -(float)Math.PI * 2;
             }
-            if (rotation < -Math.PI)
+            if (rotationDiff < -Math.PI)
             {
-                rotation += (float)Math.PI * 2;
+                rotationDiff = (float)Math.PI * 2;
             }
 
-            var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
 
 
             FlightShip.Update(() =>
             {
+                _rotation += rotationDiff;
+                var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(_rotation, 0, 0);
                 var velocity = FlightShip.Velocity + context.DeltaTimeSeconds * Vector3.Transform(acceleration, rotationQuaternion);
-                if (velocity.Z > 1)
-                {
-                    velocity = new Vector3(FlightShip.Velocity.X, FlightShip.Velocity.Y, FlightShip.Velocity.Z * 0.98f);
-                }
-                _rotation = rotation;
+                _rotation = rotationDiff;
                 FlightShip.Velocity = velocity;
                 Transform.Rotation = rotationQuaternion;
             });

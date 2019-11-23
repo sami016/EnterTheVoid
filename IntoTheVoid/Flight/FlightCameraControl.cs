@@ -16,7 +16,7 @@ namespace IntoTheVoid.Flight
     {
         private readonly Entity _shipEntity;
         private readonly Transform _shipTransform;
-
+        private readonly FlightShip _flightShip;
         private float _activeCameraScale;
         public float CameraScale { get; set; }
 
@@ -27,6 +27,7 @@ namespace IntoTheVoid.Flight
         {
             _shipEntity = shipEntity;
             _shipTransform = _shipEntity.Get<Transform>();
+            _flightShip = shipEntity.Get<FlightShip>();
         }
 
         public void Initialise()

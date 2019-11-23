@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Utilities;
 using IntoTheVoid.Flight;
+using Microsoft.Xna.Framework;
 
 namespace IntoTheVoid.AI
 {
@@ -12,52 +14,37 @@ namespace IntoTheVoid.AI
     {
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
         private CompletionTimer _oscillateTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
-        private CompletionTimer _rotateOscillateTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
 
-        private EnemyHarness _enemyHarness;
+        public PositionChaserBehaviour PositionChaserBehaviour { get; private set; }
+
         private bool _oscillateMode = false;
-        private bool _rotateOscillateMode = false;
+        private float _pos = 0f;
 
         private readonly FlightShip _playerShip;
-        private readonly float _fixXBase;
-        private readonly float _fixZBase;
+        private readonly float _circleRadius;
+        private readonly Vector3 _playerOffset;
 
-        public ChaseDroneBrain(FlightShip playerShip, float fixXBase, float fixZBase = 15f)
+        public ChaseDroneBrain(FlightShip playerShip, Vector3 playerOffset, float circleRadius)
         {
             _playerShip = playerShip;
-            _fixXBase = fixXBase;
-            _fixZBase = fixZBase;
+            _circleRadius = circleRadius;
+            _playerOffset = playerOffset;
         }
 
         public override void Initialise()
         {
-            _enemyHarness = Entity.Add(new EnemyHarness(_playerShip)
-            {
-                FixZ = _fixZBase,
-                FixX = _fixXBase
-            });
+            PositionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location);
         }
 
         public override void Tick(TickContext context)
         {
-            if (_enemyHarness.FixZ > 10)
-            {
-                _enemyHarness.FixZ -= 1f * context.DeltaTimeSeconds;
-            }
-            else if(_enemyHarness.FixZ < 10)
-            {
-                _enemyHarness.FixZ += 1f * context.DeltaTimeSeconds;
-            } else
-            {
-                _enemyHarness.FixZ = 10f;
-            }
-            _enemyHarness.FixX += context.DeltaTimeSeconds * (_oscillateMode ? 1f : -1f);
-            RocketCapability.RocketControl = new RocketControl
-            {
-                Forwards = true,
-                RotatePort = _oscillateMode,
-                RotateStarboard = !_oscillateMode
-            };
+            _pos += context.DeltaTimeSeconds * (float)(Math.PI / 10f);
+            PositionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(
+                (float)Math.Cos(_pos) * _circleRadius,
+                0f, 
+                (float)Math.Sin(_pos) * _circleRadius
+            ) + _playerOffset;
+            PositionChaserBehaviour.Tick(context);
 
             _fireTimer.Tick(context.DeltaTime);
             if (_fireTimer.Completed)
@@ -70,13 +57,16 @@ namespace IntoTheVoid.AI
             {
                 _oscillateMode = !_oscillateMode;
                 _oscillateTimer.Restart();
+
+                var aimAt = _playerShip.GetNodeForSection(_playerShip.Topology.AllSections.First().GridLocation).GlobalLocation;
+                var lookAt = Matrix.CreateLookAt(Transform.Location, aimAt, Vector3.Up);
+                Transform.Rotation = Quaternion.CreateFromRotationMatrix(lookAt);
             }
-            _rotateOscillateTimer.Tick(context.DeltaTime);
-            if (_oscillateTimer.Completed)
+            // Rotate controls.
+            RocketCapability.RocketControl = new RocketControl
             {
-                _rotateOscillateMode = !_rotateOscillateMode;
-                _rotateOscillateTimer.Restart();
-            }
+                //RotatePort = _oscillateMode,
+            };
         }
     }
 }

@@ -33,6 +33,8 @@ namespace IntoTheVoid.Flight
 
         public IEnumerable<UpgradeBase> Upgrades => _topology.Upgrades;
 
+        public Vector3 CenterLocation { get; set; }
+
         private FlightNode[,] _flightNode;
 
         public FlightShip(ShipTopology topology, Guid? shipGuid = null)
@@ -82,8 +84,11 @@ namespace IntoTheVoid.Flight
         {
             Transform.Update(() =>
             {
-                Transform.Location += Velocity * context.DeltaTimeSeconds;
-                Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
+                if (Velocity != Vector3.Zero)
+                {
+                    Transform.Location += Velocity * context.DeltaTimeSeconds;
+                }
+                //Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
             });
         }
 

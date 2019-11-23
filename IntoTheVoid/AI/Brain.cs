@@ -12,6 +12,8 @@ namespace IntoTheVoid.AI
     {
         [Inject] public RocketCapability RocketCapability { get; set; }
         [Inject] public WeaponCapability WeaponCapability { get; set; }
+        [Inject] public Transform Transform { get; set; }
+        [Inject] public FlightShip FlightShip { get; set; }
 
         public virtual void Initialise()
         {
