@@ -27,14 +27,22 @@ namespace IntoTheVoid.Scenes
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
         [Inject] MusicManager MusicManager { get; set; }
 
+        public BuildScene(ShipTopology shipTopology = null)
+        {
+            _shipTopology = shipTopology;
+            // Default ship.
+            if (shipTopology == null)
+            {
+                _shipTopology = new ShipTopology(6, 5);
+                _shipTopology.SetSection(new Point(2, 2), new Section(
+                    new ResearchCenterModule(),
+                    ConnectionLayouts.FullyConnected
+                ));
+            }
+        }
+
         public override void Initialise()
         {
-            _shipTopology = new ShipTopology(6, 5);
-            _shipTopology.SetSection(new Point(2, 2), new Section(
-                new ResearchCenterModule(),
-                ConnectionLayouts.FullyConnected
-            ));
-
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
             {

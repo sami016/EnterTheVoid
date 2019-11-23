@@ -3,11 +3,13 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
 using Forge.UI.Glass;
 using IntoTheVoid.Builder;
+using IntoTheVoid.Constants;
 using IntoTheVoid.Flight;
 using IntoTheVoid.Phases;
 using IntoTheVoid.Phases.Asteroids;
 using IntoTheVoid.Phases.Combat;
 using IntoTheVoid.Phases.Open;
+using IntoTheVoid.Phases.Satellite;
 using IntoTheVoid.Phases.Transmission;
 using IntoTheVoid.Ships;
 using IntoTheVoid.UI.Flight;
@@ -59,6 +61,7 @@ namespace IntoTheVoid.Scenes
             var phaseEnt = Create();
             phaseEnt.Add(new PhaseManager(
                 new Phase[] {
+                    Create().Add(new SatellitePhase(Planet.Mars)),
                     Create().Add(new DroneStrikePhase()),
                     Create().Add(new TransmissionPhase()),
                     Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
