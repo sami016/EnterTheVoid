@@ -52,6 +52,8 @@ namespace IntoTheVoid.Scenes
             var flightShip = shipEnt.AddShipBasics(_shipTopology);
             shipEnt.Add(new RocketControls());
             shipEnt.Add(new CombatControls());
+            shipEnt.Add(new ShipVelocityLimiter());
+
             camera.Add(new FlightCameraControl(shipEnt));
 
             var phaseEnt = Create();

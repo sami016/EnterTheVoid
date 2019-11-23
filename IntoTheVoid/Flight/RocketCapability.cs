@@ -32,7 +32,6 @@ namespace IntoTheVoid.Flight
 
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
-        private float _rotation = 0;
 
         private static float Sin60 = (float)Math.Sin(Math.PI / 3);
         private static float Sin30 = (float)Math.Sin(Math.PI / 6);
@@ -192,12 +191,9 @@ namespace IntoTheVoid.Flight
 
             FlightShip.Update(() =>
             {
-                _rotation += rotationDiff;
-                var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(_rotation, 0, 0);
-                var velocity = FlightShip.Velocity + context.DeltaTimeSeconds * Vector3.Transform(acceleration, rotationQuaternion);
-                _rotation = rotationDiff;
+                FlightShip.Rotation += rotationDiff;
+                var velocity = FlightShip.Velocity + context.DeltaTimeSeconds * Vector3.Transform(acceleration, Transform.Rotation);
                 FlightShip.Velocity = velocity;
-                Transform.Rotation = rotationQuaternion;
             });
         }
     }

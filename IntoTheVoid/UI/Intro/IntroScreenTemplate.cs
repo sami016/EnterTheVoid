@@ -14,7 +14,7 @@ namespace IntoTheVoid.UI.Intro
         {
             return new Pane(
                 new Pane(
-                    new AnimatedText("The Great Space Race")
+                    new AnimatedText("Into The Void")
                     {
                         Font = "Title",
                     },

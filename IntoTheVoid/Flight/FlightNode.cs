@@ -38,6 +38,8 @@ namespace IntoTheVoid.Flight
         [Inject] StaticBody Body { get; set; }
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
+        public Vector3 GloalLocation => Transform.GlobalLocation;
+
         public FlightNode(FlightShip ship, Point gridPosition, ShipTopology shipTopology)
         {
             _ship = ship;

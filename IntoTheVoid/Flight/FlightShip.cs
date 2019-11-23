@@ -16,11 +16,14 @@ namespace IntoTheVoid.Flight
 {
     public class FlightShip : Component, IInit, ITick
     {
+        private static Random Random = new Random();
         public Guid ShipGuid { get; }
 
         private readonly ShipTopology _topology;
         public ShipTopology Topology => _topology;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
+        public float Rotation { get; set; } = 0f;
+        public float RotationalSpeed { get; set; } = 0f;
         [Inject] Transform Transform { get; set; }
         public int Health => _topology.Health;
         public int MaxHealth => _topology.MaxHealth;
@@ -32,8 +35,6 @@ namespace IntoTheVoid.Flight
         public int MaxEnergy => _topology.MaxEnergy;
 
         public IEnumerable<UpgradeBase> Upgrades => _topology.Upgrades;
-
-        public Vector3 CenterLocation { get; set; }
 
         private FlightNode[,] _flightNode;
 
@@ -68,6 +69,25 @@ namespace IntoTheVoid.Flight
             });
         }
 
+        public IEnumerable<FlightNode> GetNodes()
+        {
+            var nodes = new List<FlightNode>();
+            foreach (var flightNode in _flightNode)
+            {
+                if (flightNode.Active)
+                {
+                    nodes.Add(flightNode);
+                }
+            }
+            return nodes;
+        }
+
+        public FlightNode GetRandomNode()
+        {
+            var nodes = GetNodes().ToArray();
+            return nodes[Random.Next(nodes.Length)];
+        }
+
         public FlightNode GetNodeForSection(Point gridLocation)
         {
             if (gridLocation.X < 0
@@ -88,6 +108,9 @@ namespace IntoTheVoid.Flight
                 {
                     Transform.Location += Velocity * context.DeltaTimeSeconds;
                 }
+                Rotation += RotationalSpeed;
+                var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(Rotation, 0, 0);
+                Transform.Rotation = rotationQuaternion;
                 //Console.WriteLine($"Ship location: {Transform.Location}   (Velocity: {Velocity})");
             });
         }

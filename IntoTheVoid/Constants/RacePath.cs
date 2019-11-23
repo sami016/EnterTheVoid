@@ -17,5 +17,6 @@ namespace IntoTheVoid.Constants
 
     public static class RacePath
     {
+        
     }
 }

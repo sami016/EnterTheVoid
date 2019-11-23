@@ -6,6 +6,7 @@ using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Utilities;
 using IntoTheVoid.Flight;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 
 namespace IntoTheVoid.AI
@@ -13,9 +14,10 @@ namespace IntoTheVoid.AI
     public class ChaseDroneBrain : Brain
     {
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
-        private CompletionTimer _oscillateTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
+        private CompletionTimer _changeAimTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
 
-        public PositionChaserBehaviour PositionChaserBehaviour { get; private set; }
+        private PositionChaserBehaviour _positionChaserBehaviour;
+        private TakeAimBehaviour _takeAimBehaviour;
 
         private bool _oscillateMode = false;
         private float _pos = 0f;
@@ -33,18 +35,20 @@ namespace IntoTheVoid.AI
 
         public override void Initialise()
         {
-            PositionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location);
+            _positionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location);
+            _takeAimBehaviour = new TakeAimBehaviour(_playerShip, FlightShip, Transform);
         }
 
         public override void Tick(TickContext context)
         {
             _pos += context.DeltaTimeSeconds * (float)(Math.PI / 10f);
-            PositionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(
+            _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(
                 (float)Math.Cos(_pos) * _circleRadius,
                 0f, 
                 (float)Math.Sin(_pos) * _circleRadius
             ) + _playerOffset;
-            PositionChaserBehaviour.Tick(context);
+            _positionChaserBehaviour.Tick(context);
+            _takeAimBehaviour.Tick(context);
 
             _fireTimer.Tick(context.DeltaTime);
             if (_fireTimer.Completed)
@@ -52,21 +56,13 @@ namespace IntoTheVoid.AI
                 WeaponCapability.StandardFire();
                 _fireTimer.Restart();
             }
-            _oscillateTimer.Tick(context.DeltaTime);
-            if (_oscillateTimer.Completed)
+            _changeAimTimer.Tick(context.DeltaTime);
+            if (_changeAimTimer.Completed)
             {
                 _oscillateMode = !_oscillateMode;
-                _oscillateTimer.Restart();
-
-                var aimAt = _playerShip.GetNodeForSection(_playerShip.Topology.AllSections.First().GridLocation).GlobalLocation;
-                var lookAt = Matrix.CreateLookAt(Transform.Location, aimAt, Vector3.Up);
-                Transform.Rotation = Quaternion.CreateFromRotationMatrix(lookAt);
+                _changeAimTimer.Restart();
+                _takeAimBehaviour.SetRandomAimOffset(1f);
             }
-            // Rotate controls.
-            RocketCapability.RocketControl = new RocketControl
-            {
-                //RotatePort = _oscillateMode,
-            };
         }
     }
 }

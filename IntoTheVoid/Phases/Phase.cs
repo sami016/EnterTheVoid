@@ -15,8 +15,15 @@ namespace IntoTheVoid.Phases
         public string CompleteMessage { get; set; } = "";
         public bool Ended { get; set; } = false;
 
-        public abstract void Start();
-        public abstract void Stop();
+        public virtual void Start()
+        {
+
+        }
+        public virtual void Stop()
+        {
+
+        }
+
         public virtual void Tick(TickContext context)
         {
         }

@@ -10,6 +10,7 @@ namespace IntoTheVoid.AI
 {
     public abstract class Brain : Component, ITick, IInit
     {
+        protected static readonly Random Random = new Random();
         [Inject] public RocketCapability RocketCapability { get; set; }
         [Inject] public WeaponCapability WeaponCapability { get; set; }
         [Inject] public Transform Transform { get; set; }

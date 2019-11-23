@@ -2,6 +2,7 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using IntoTheVoid.Flight;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace IntoTheVoid.AI
     {
         private readonly FlightShip _ship;
         private readonly Transform _transform;
+
         public Vector3 Target { get; set; }
         public float CatchupSpeed { get; set; } = 1f;
 
