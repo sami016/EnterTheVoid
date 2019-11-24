@@ -39,8 +39,8 @@ namespace IntoTheVoid.Builder
         {
             _topology = topology;
             State = BuildModeState.CountIn;
-            _countIn = new CompletionTimer(TimeSpan.FromSeconds(10));
-            _countDown = new CompletionTimer(TimeSpan.FromSeconds(90));
+            _countIn = new CompletionTimer(TimeSpan.FromSeconds(8));
+            _countDown = new CompletionTimer(TimeSpan.FromSeconds(50));
             _countOut = new CompletionTimer(TimeSpan.FromSeconds(5));
         }
 

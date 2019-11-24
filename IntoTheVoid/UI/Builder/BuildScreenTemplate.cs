@@ -54,7 +54,7 @@ namespace IntoTheVoid.UI.Builder
         {
             if (_gamemode.Building)
             {
-                return $"{(int)Math.Ceiling(_gamemode.BuildSecondsRemaining)} days remaining";
+                return $"{(int)Math.Ceiling(_gamemode.BuildSecondsRemaining)} seconds remaining...";
             }
             if (_gamemode.State == BuildModeState.CountIn)
             {
@@ -89,8 +89,28 @@ namespace IntoTheVoid.UI.Builder
                 {
                     Position = new Rectangle(0, (int)(Vh*100 - 130), 100, 100)
                 },
-                // Bottom
-                EvaluateProductionLine()
+                //
+                _gamemode.State == BuildModeState.CountIn ? new Pane(
+                    new Text("Get ready to build...")
+                    {
+                        Position = new Rectangle(110, 100, 0, 0)
+                    }    
+                )
+                {
+                    Position = new Rectangle
+                    {
+                        Width = 400,
+                        Height = 200,
+                        X = (int)(Vw * 50 - 200),
+                        Y = (int)(Vh * 50 - 100),
+                    },
+                    Background = new ColourBackgroundStyling
+                    {
+                        Colour = new Color(45, 45, 45)
+                    }
+                } : new Pane(),
+                // Production line UI.
+                _gamemode.State == BuildModeState.Building ? EvaluateProductionLine() : new Pane()
             )
             {
                 //Background = new ImageBackgroundStyling

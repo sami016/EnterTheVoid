@@ -45,8 +45,8 @@ namespace IntoTheVoid.Ships.Generation
 
         private static ConnectionLayoutDistribution _gunConnectionLayoutDistribution = new ConnectionLayoutDistribution
         {
-            ( 10f, ConnectionLayouts.OnlySouthEast ),
-            ( 10f, ConnectionLayouts.OnlySouthWest ),
+            ( 5f, ConnectionLayouts.OnlyNorthEast ),
+            ( 5f, ConnectionLayouts.OnlyNorthWest ),
             ( 1f, ConnectionLayouts.OnlyEast ),
             ( 1f, ConnectionLayouts.OnlyWest ),
             ( 1f, ConnectionLayouts.PassThroughD1 ),
@@ -103,10 +103,10 @@ namespace IntoTheVoid.Ships.Generation
         public static ModuleDistribution Distribution { get; } = new ModuleDistribution()
             .Add(1f, typeof(ResearchCenterModule), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(BlasterModule), _gunConnectionLayoutDistribution)
-            .Add(1f, typeof(FuelModule), _standardConnectionLayoutDistribution)
+            .Add(0.5f, typeof(FuelModule), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(RocketModule), _rocketConnectionLayoutDistribution)
             .Add(0.5f, typeof(RotaryEngine), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(EmptyModule), _highConnectivityConnectionLayoutDistribution)
-            .Add(1f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
+            .Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
     }
 }

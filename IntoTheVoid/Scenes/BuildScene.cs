@@ -9,6 +9,7 @@ using IntoTheVoid.Ships;
 using IntoTheVoid.Ships.Connections;
 using IntoTheVoid.Ships.Modules;
 using IntoTheVoid.UI.Builder;
+using IntoTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,17 +38,19 @@ namespace IntoTheVoid.Scenes
 
         public override void Initialise()
         {
+            var focusLocation = HexagonHelpers.GetGridWorldPosition(new Point(2, 2));
+
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
             {
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
+                Location = focusLocation + (Vector3.Backward + Vector3.Up) * 5
             });
             //CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
             CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
-            cameraPos.Location = (Vector3.Backward + Vector3.Up) * 5;
-            CameraManager.ActiveCamera.LookAt(Vector3.Zero);
+            CameraManager.ActiveCamera.LookAt(focusLocation);
             CameraManager.ActiveCamera.Recalculate();
-            camera.Add(new DebugCameraControl());
+            camera.Add(new BuildCameraControl());
 
             var floor = Create();
             floor.Add(new BuildFloor(_shipTopology));
