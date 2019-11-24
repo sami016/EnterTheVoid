@@ -35,7 +35,10 @@ namespace IntoTheVoid.AI
 
         public override void Initialise()
         {
-            _positionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location);
+            _positionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location)
+            {
+               CatchupSpeed = 0.1f 
+            };
             _takeAimBehaviour = new TakeAimBehaviour(_playerShip, FlightShip, Transform);
         }
 
@@ -61,7 +64,7 @@ namespace IntoTheVoid.AI
             {
                 _oscillateMode = !_oscillateMode;
                 _changeAimTimer.Restart();
-                _takeAimBehaviour.SetRandomAimOffset(1f);
+                _takeAimBehaviour.SetRandomAimOffset((float)Math.PI/3);
             }
         }
     }

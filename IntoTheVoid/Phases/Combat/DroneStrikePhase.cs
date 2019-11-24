@@ -52,7 +52,7 @@ namespace IntoTheVoid.Phases.Combat
             if (_numDrones >= 2) SpawnDrone(new Vector3(0, 0, 10), 2, 20);
             if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 40);
             if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 40);
-            if (_numDrones >= 5) SpawnDrone(new Vector3(0, 0, 10), 3, 40);
+            if (_numDrones >= 5) SpawnDrone(new Vector3(15, 0, 5), 3, 40);
         }
 
         private void SpawnDrone(Vector3 playerOffset, float rotationRadius, float spawnDistace)
