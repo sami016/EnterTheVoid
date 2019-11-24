@@ -3,6 +3,7 @@ using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Scenes;
 using Forge.Core.Utilities;
+using IntoTheVoid.Orchestration;
 using IntoTheVoid.Scenes;
 using IntoTheVoid.Ships;
 using Microsoft.Xna.Framework.Input;
@@ -32,7 +33,7 @@ namespace IntoTheVoid.Builder
         private CompletionTimer _countDown;
         private CompletionTimer _countOut;
 
-        [Inject] SceneManager SceneManager { get; set; }
+        [Inject] Orchestrator Orchestrator { get; set; }
 
         public BuildMode(ShipTopology topology)
         {
@@ -72,7 +73,7 @@ namespace IntoTheVoid.Builder
                         if (!_completed)
                         {
                             _completed = true;
-                            SceneManager.SetScene(new FlightScene(_topology));
+                            Orchestrator.NextFlight();
                         }
                     }
                     return;

@@ -4,6 +4,7 @@ using Forge.Core.Scenes;
 using Forge.Core.Sound;
 using Forge.UI.Glass;
 using IntoTheVoid.Builder;
+using IntoTheVoid.Constants;
 using IntoTheVoid.Ships;
 using IntoTheVoid.Ships.Connections;
 using IntoTheVoid.Ships.Modules;
@@ -21,24 +22,17 @@ namespace IntoTheVoid.Scenes
     {
 
         private ShipTopology _shipTopology;
+        private readonly Planet _planet;
 
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
         [Inject] MusicManager MusicManager { get; set; }
 
-        public BuildScene(ShipTopology shipTopology = null)
+        public BuildScene(ShipTopology shipTopology, Planet planet)
         {
             _shipTopology = shipTopology;
-            // Default ship.
-            if (shipTopology == null)
-            {
-                _shipTopology = new ShipTopology(6, 5);
-                _shipTopology.SetSection(new Point(2, 2), new Section(
-                    new ResearchCenterModule(),
-                    ConnectionLayouts.FullyConnected
-                ));
-            }
+            _planet = planet;
         }
 
         public override void Initialise()
@@ -66,8 +60,7 @@ namespace IntoTheVoid.Scenes
             placerEnt.Add(new BuildPlacerCursor());
 
             var shipRenderer = AddSingleton(new ShipSectionRenderer());
-            var cleanBuildUI = UserInterfaceManager.Create(new BuildScreenTemplate(gameMode, productionLine, placer, shipRenderer));
-            Disposal += () => cleanBuildUI();
+            UserInterfaceManager.AddSceneUI(this, new BuildScreenTemplate(gameMode, _planet, productionLine, placer, shipRenderer));
 
             MusicManager.Start("Building");
         }

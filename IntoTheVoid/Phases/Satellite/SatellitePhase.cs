@@ -2,6 +2,7 @@
 using Forge.Core.Scenes;
 using IntoTheVoid.Constants;
 using IntoTheVoid.Flight;
+using IntoTheVoid.Orchestration;
 using IntoTheVoid.Scenes;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace IntoTheVoid.Phases.Satellite
 {
     public class SatellitePhase : Phase
     {
-        [Inject] SceneManager SceneManager { get; set; }
+        [Inject] Orchestrator Orchestrator { get; set; }
 
         public SatellitePhase(Planet location)
         {
@@ -22,8 +23,7 @@ namespace IntoTheVoid.Phases.Satellite
 
         public override void Start()
         {
-            var ship = Entity.EntityManager.GetAll<FlightShip>().First();
-            SceneManager.SetScene(new BuildScene(ship.Topology));
+            Orchestrator.NextBuild();
         }
     }
 }

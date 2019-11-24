@@ -4,6 +4,7 @@ using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
 using IntoTheVoid.Constants;
+using IntoTheVoid.Orchestration;
 using IntoTheVoid.Scenes;
 using IntoTheVoid.Ships;
 using IntoTheVoid.Ships.Connections;
@@ -19,12 +20,12 @@ namespace IntoTheVoid.UI.Menu
 
     class MenuScreenTemplate : Template
     {
-        private readonly SceneManager _sceneManager;
+        private readonly MenuScene _menuScene;
         private readonly string _tip;
 
-        public MenuScreenTemplate(SceneManager SceneManager)
+        public MenuScreenTemplate(MenuScene menuScene)
         {
-            _sceneManager = SceneManager;
+            _menuScene = menuScene;
 
             _tip = Tips.Sample();
         }
@@ -72,8 +73,8 @@ namespace IntoTheVoid.UI.Menu
 
         public void ClickBuild(ClickUIEvent ev)
         {
-            
-            _sceneManager.SetScene(new BuildScene());
+            var orchestrator = _menuScene.Create(false).Add(new Orchestrator());
+            orchestrator.NextBuild();
         }
 
         public void ClickFlight(ClickUIEvent ev)
@@ -130,9 +131,11 @@ namespace IntoTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 1
             ));
+            var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
+            orchestrator.CurrentPlanet = Planet.Earth;
+            orchestrator.NextFlight();
 
-
-            _sceneManager.SetScene(new FlightScene(topology));
+            //_menuScene.SetScene(new FlightScene(topology));
         }
     }
 }

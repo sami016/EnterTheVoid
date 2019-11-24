@@ -15,12 +15,14 @@ using System.Linq;
 using System.Text;
 using Forge.Core.Engine;
 using IntoTheVoid.UI.Flight;
+using IntoTheVoid.Constants;
 
 namespace IntoTheVoid.UI.Builder
 {
 
     class BuildScreenTemplate : Template
     {
+        private readonly Planet _planet;
         private readonly ShipSectionRenderer _shipSectionRenderer;
         private readonly BuildMode _gamemode;
         private readonly ProductionLine _productionLine;
@@ -28,8 +30,9 @@ namespace IntoTheVoid.UI.Builder
 
         private int _refreshCount = 0;
 
-        public BuildScreenTemplate(BuildMode gamemode, ProductionLine productionLine, BuildPlacer buildPlacer, ShipSectionRenderer shipSectionRenderer)
+        public BuildScreenTemplate(BuildMode gamemode, Planet planet, ProductionLine productionLine, BuildPlacer buildPlacer, ShipSectionRenderer shipSectionRenderer)
         {
+            _planet = planet;
             _shipSectionRenderer = shipSectionRenderer;
             _gamemode = gamemode;
             _productionLine = productionLine;
@@ -66,7 +69,7 @@ namespace IntoTheVoid.UI.Builder
             new Pane(
                 // Top
                 new Pane(
-                    new Text($"Ship Construction")
+                    new Text($"{_planet.ToString()} Construction Satellite")
                     {
                         Position = new Rectangle(15, 15, 0, 0)
                     },

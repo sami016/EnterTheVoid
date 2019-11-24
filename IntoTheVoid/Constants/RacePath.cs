@@ -6,6 +6,7 @@ namespace IntoTheVoid.Constants
 {
     public enum Planet
     {
+        None,
         Earth,
         Mars,
         Jupiter,

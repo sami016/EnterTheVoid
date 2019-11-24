@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace IntoTheVoid.Scenes
@@ -24,14 +25,16 @@ namespace IntoTheVoid.Scenes
     public class FlightScene : Scene
     {
         private readonly ShipTopology _shipTopology;
+        private readonly IEnumerable<Func<Phase>> _phaseFactories;
 
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
 
-        public FlightScene(ShipTopology shipTopology)
+        public FlightScene(ShipTopology shipTopology, IEnumerable<Func<Phase>> phaseFactories)
         {
             _shipTopology = shipTopology;
+            _phaseFactories = phaseFactories;
         }
 
         public override void Initialise()
@@ -59,15 +62,11 @@ namespace IntoTheVoid.Scenes
             camera.Add(new FlightCameraControl(shipEnt));
 
             var phaseEnt = Create();
+            var phases = _phaseFactories
+                .Select(x => Create().Add(x()))
+                .ToArray();
             phaseEnt.Add(new PhaseManager(
-                new Phase[] {
-                    Create().Add(new SatellitePhase(Planet.Mars)),
-                    Create().Add(new DroneStrikePhase()),
-                    Create().Add(new TransmissionPhase()),
-                    Create().Add(new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution)),
-                    Create().Add(new IceAsteroidPhase(10, AsteroidDistributions.IceAsteroidDistribution)),
-                    Create().Add(new OpenPhase()),
-                }
+                phases
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
 

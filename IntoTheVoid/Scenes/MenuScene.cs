@@ -18,7 +18,7 @@ namespace IntoTheVoid.Scenes
 
         public override void Initialise()
         {
-            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(SceneManager));
+            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(this));
 
             MusicManager.Start("Menu");
         }
