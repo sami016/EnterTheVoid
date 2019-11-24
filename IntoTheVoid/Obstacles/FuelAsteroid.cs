@@ -41,16 +41,5 @@ namespace IntoTheVoid.Obstacles
             _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
-        public override void OnHit(Entity projectileEntity, ProjectileBase projectile)
-        {
-            Entity.Delete();
-
-            var fuelEnt = Entity.EntityManager.Create();
-            fuelEnt.Add(new Transform
-            {
-                Location = Transform.Location
-            });
-            fuelEnt.Add(new Fuel());
-        }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using Forge.Core.Space;
+using IntoTheVoid.Flight;
 using IntoTheVoid.Ships.Generation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace IntoTheVoid.Phases.Asteroids
 {
     public class AsteroidPhase : Phase
     {
+        private PhaseDistanceTarget _phaseDistanceTarget;
         private AsteroidSpawner _asteroidSpawner;
         private readonly int _difficult;
         private readonly Distribution<Type> _distribution;
@@ -23,6 +26,9 @@ namespace IntoTheVoid.Phases.Asteroids
 
         public override void Start()
         {
+            var targetEnt = Entity.Create();
+            _phaseDistanceTarget = targetEnt.Add(new PhaseDistanceTarget(this, Entity.EntityManager.GetAll<FlightShip>().First(), 50f + 2f * _difficult / 5f));
+            targetEnt.Add(new PhaseDistanceTargetRenderable());
             _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(_difficult, _distribution));
         }
 
@@ -30,6 +36,7 @@ namespace IntoTheVoid.Phases.Asteroids
         {
             _asteroidSpawner.Stop();
             _asteroidSpawner.Entity.Delete();
+            _phaseDistanceTarget.Entity.Delete();
         }
 
     }

@@ -43,7 +43,7 @@ namespace IntoTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                //() => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 //() => new TransmissionPhase(),
                 () => new DroneStrikePhase(5),
                 () => new SatellitePhase(Planet.Mars)
@@ -64,7 +64,33 @@ namespace IntoTheVoid.Orchestration
                 () => new IceAsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new TransmissionPhase(),
                 () => new DroneStrikePhase(5),
+                () => new AsteroidPhase(30, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Saturn)
+            );
+            AddPlanet(
+                Planet.Saturn,
+                () => new IceAsteroidPhase(40, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new TransmissionPhase(),
+                () => new DroneStrikePhase(5),
+                () => new AsteroidPhase(50, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new SatellitePhase(Planet.Uranus)
+            );
+            AddPlanet(
+                Planet.Uranus,
+                () => new IceAsteroidPhase(60, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new TransmissionPhase(),
+                () => new DroneStrikePhase(5),
+                () => new AsteroidPhase(70, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new SatellitePhase(Planet.Neptune)
+            );
+            AddPlanet(
+                Planet.Neptune,
+                () => new IceAsteroidPhase(90, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new TransmissionPhase(),
+                () => new DroneStrikePhase(5),
+                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
+                // TODO - end game here.
+                () => new SatellitePhase(Planet.Pluto)
             );
         }
 

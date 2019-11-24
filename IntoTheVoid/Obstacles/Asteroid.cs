@@ -24,6 +24,7 @@ namespace IntoTheVoid.Obstacles
 
         public override void Initialise()
         {
+            Health = 30f;
             Damage = 20;
             if (_asteroid1 == null)
             {

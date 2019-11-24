@@ -57,7 +57,13 @@ namespace IntoTheVoid.Phases
 #if DEBUG
                 _startTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
 #endif
-                _phaseTimer = new CompletionTimer(CurrentPhase.Duration);
+                if (CurrentPhase.Duration.HasValue)
+                {
+                    _phaseTimer = new CompletionTimer(CurrentPhase.Duration.Value);
+                } else
+                {
+                    _phaseTimer = null;
+                }
                 _endedTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
             });
         }
@@ -74,15 +80,15 @@ namespace IntoTheVoid.Phases
                 if (_startTimer.Completed)
                 {
                     CurrentPhase.Start();
-                    _phaseTimer.Restart();
+                    _phaseTimer?.Restart();
                     State = PhaseManagerState.Running;
                 }
             }
             else if (State == PhaseManagerState.Running)
             {
                 CurrentPhase.Tick(context);
-                _phaseTimer.Tick(context.DeltaTime);
-                if (_phaseTimer.Completed || CurrentPhase.Ended)
+                _phaseTimer?.Tick(context.DeltaTime);
+                if (_phaseTimer?.Completed == true || CurrentPhase.Ended)
                 {
                     CurrentPhase.Stop();
                     _endedTimer.Restart();

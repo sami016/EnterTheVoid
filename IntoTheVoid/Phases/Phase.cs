@@ -11,7 +11,7 @@ namespace IntoTheVoid.Phases
         protected static readonly Random Random = new Random();
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
-        public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(40);
+        public TimeSpan? Duration { get; set; } = TimeSpan.FromSeconds(40);
         public string CompleteMessage { get; set; } = "";
         public bool Ended { get; set; } = false;
 
