@@ -43,8 +43,8 @@ namespace IntoTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                //() => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
-                //() => new TransmissionPhase(),
+                () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new TransmissionPhase(),
                 () => new DroneStrikePhase(1),
                 () => new SatellitePhase(Planet.Mars)
                 //() => new DroneStrikePhase(),
