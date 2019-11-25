@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forge.Core", "Forge\Librari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forge.UI.Glass", "Forge\Libraries\Forge.UI.Glass\Forge.UI.Glass.csproj", "{10533388-6B47-40E4-969E-217AA53ABE21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntoTheVoid", "IntoTheVoid\IntoTheVoid.csproj", "{18873D51-9330-49C0-BD34-69A823976E84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnterTheVoid", "EnterTheVoid\EnterTheVoid.csproj", "{B8922A23-3A11-463B-A026-0F299747B2DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,10 @@ Global
 		{10533388-6B47-40E4-969E-217AA53ABE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10533388-6B47-40E4-969E-217AA53ABE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10533388-6B47-40E4-969E-217AA53ABE21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18873D51-9330-49C0-BD34-69A823976E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18873D51-9330-49C0-BD34-69A823976E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18873D51-9330-49C0-BD34-69A823976E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18873D51-9330-49C0-BD34-69A823976E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8922A23-3A11-463B-A026-0F299747B2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8922A23-3A11-463B-A026-0F299747B2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8922A23-3A11-463B-A026-0F299747B2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8922A23-3A11-463B-A026-0F299747B2DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
