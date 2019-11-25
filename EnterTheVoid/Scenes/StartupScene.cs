@@ -33,7 +33,7 @@ namespace EnterTheVoid.Scenes
             Fonts.Load("Title", Content.Load<SpriteFont>("Font/Title"));
 
             Textures.Load("StarCluster1", Content.Load<Texture2D>("Textures/StarCluster1"));
-            Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Starfield-7"));
+            Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Space1"));
             Textures.Load("Center", Content.Load<Texture2D>("Textures/center"));
             Textures.Load("Button", Content.Load<Texture2D>("Textures/button2"));
             Textures.Load("ButtonDown", Content.Load<Texture2D>("Textures/button"));

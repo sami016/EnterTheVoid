@@ -62,8 +62,8 @@ namespace EnterTheVoid.Orchestration
             AddPlanet(
                 Planet.Jupiter,
                 () => new IceAsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
-                () => new TransmissionPhase(),
                 () => new DroneStrikePhase(3),
+                () => new TransmissionPhase(),
                 () => new AsteroidPhase(30, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Saturn)
             );

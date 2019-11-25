@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EnterTheVoid.Menu;
 
 namespace EnterTheVoid.Scenes
 {
@@ -70,10 +71,11 @@ namespace EnterTheVoid.Scenes
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
 
+            var progressTracker = Create().Add(new ProgressTracker());
             //var radarEnt = Create();
             //radarEnt.Add(new RadarRenderer());
 
-            var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice, flightShip));
+            var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice, flightShip, progressTracker));
             Disposal += () => cleanBuildUI();
         }
     }

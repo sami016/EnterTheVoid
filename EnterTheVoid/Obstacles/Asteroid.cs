@@ -20,10 +20,15 @@ namespace EnterTheVoid.Obstacles
 {
     public class Asteroid : AsteroidBase
     {
+        private static readonly Random Random = new Random();
         private static Model _asteroid1;
+        private Matrix _scaleMatrix;
 
         public override void Initialise()
         {
+            var scale = 0.6f + (float)Random.NextDouble() * 1.5f;
+            _scaleMatrix = Matrix.CreateScale(scale);
+            Radius = scale;
             Health = 30f;
             Damage = 20;
             if (_asteroid1 == null)
@@ -39,7 +44,7 @@ namespace EnterTheVoid.Obstacles
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
-            _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
+            _asteroid1.Draw(_scaleMatrix * Transform.WorldTransform, camera.View, camera.Projection);
         }
 
         //public override void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)

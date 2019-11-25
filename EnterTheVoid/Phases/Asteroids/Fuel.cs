@@ -45,7 +45,7 @@ namespace EnterTheVoid.Phases.Asteroids
             {
                 _fuelItemModel = Content.Load<Model>("Models/fuelItem");
                 //_fuelItemModel.EnableDefaultLighting();
-                //_fuelItemModel.SetDiffuseColour(Color.RosyBrown);
+                _fuelItemModel.SetDiffuseColour(Color.LightGoldenrodYellow);
             }
             FlightSpaces.ObstacleSpace.Add(Entity);
         }

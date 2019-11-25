@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.Menu;
 
 namespace EnterTheVoid.UI.Menu
 {
@@ -62,6 +63,13 @@ namespace EnterTheVoid.UI.Menu
                     },
                     Position = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 250, 100, 500, 300)
                 }
+                //new ModelView()
+                //{
+                //    RenderFunc = ctx => _planetRenderer.Render(ctx),
+                //    Position = new Rectangle(0, 0, 100, 100),
+                //    View = Matrix.CreateLookAt(Vector3.Backward * 4, Vector3.Zero, Vector3.Up),
+                //    Projection = Matrix.CreatePerspective(100, 100, 0.001f, 10000f)
+                //}
             )
             {
                 Background = new ImageBackgroundStyling

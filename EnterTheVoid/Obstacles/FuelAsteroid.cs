@@ -29,7 +29,7 @@ namespace EnterTheVoid.Obstacles
             {
                 _asteroid1 = Content.Load<Model>("Models/asteroid2");
                 _asteroid1.EnableDefaultLighting();
-                _asteroid1.SetDiffuseColour(new Color(60, 30, 30));
+                _asteroid1.SetDiffuseColour(Color.LightGoldenrodYellow);
             }
             base.Initialise();
         }
@@ -41,5 +41,14 @@ namespace EnterTheVoid.Obstacles
             _asteroid1.Draw(Transform.WorldTransform, camera.View, camera.Projection);
         }
 
+        protected override void OnDie()
+        {
+            var fuelEnt = Entity.EntityManager.Create();
+            fuelEnt.Add(new Transform
+            {
+                Location = Transform.Location
+            });
+            fuelEnt.Add(new Fuel());
+        }
     }
 }

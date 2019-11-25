@@ -76,9 +76,15 @@ namespace EnterTheVoid.Obstacles
                 Health -= projectile.GetDamage(Entity, this);
                 if (Health <= 0)
                 {
+                    OnDie();
                     Entity.Delete();
                 }
             });
+        }
+
+        protected virtual void OnDie()
+        {
+
         }
     }
 }

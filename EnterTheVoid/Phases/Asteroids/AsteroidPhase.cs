@@ -22,6 +22,7 @@ namespace EnterTheVoid.Phases.Asteroids
             Title = "Asteroid Field";
             Description = "Clear the asteroid field as quickly as possible.";
             CompleteMessage = "Asteroid field cleared.";
+            Duration = null;
         }
 
         public override void Start()

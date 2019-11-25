@@ -17,6 +17,7 @@ namespace EnterTheVoid.Phases.Asteroids
             Title = "Ice Field";
             Description = "Clear the ice field as quickly as possible.";
             CompleteMessage = "Ice field cleared.";
+            Duration = null;
         }
 
         public override void Start()

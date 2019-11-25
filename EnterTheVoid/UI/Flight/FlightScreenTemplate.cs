@@ -13,11 +13,13 @@ namespace EnterTheVoid.UI.Flight
     {
         private readonly GraphicsDevice _graphicsDevice;
         private readonly FlightShip _flightShip;
+        private readonly ProgressTracker _progressTracker;
 
-        public FlightScreenTemplate(GraphicsDevice graphicsDevice, FlightShip flightShip)
+        public FlightScreenTemplate(GraphicsDevice graphicsDevice, FlightShip flightShip, ProgressTracker progressTracker)
         {
             _graphicsDevice = graphicsDevice;
             _flightShip = flightShip;
+            _progressTracker = progressTracker;
         }
 
         public override IElement Evaluate() =>
@@ -29,6 +31,14 @@ namespace EnterTheVoid.UI.Flight
                 new ShipStats(_flightShip)
                 {
                     Position = new Rectangle(_graphicsDevice.Viewport.Width - 200, _graphicsDevice.Viewport.Height - 300, 200, 300)
+                },
+                new ModelView()
+                {
+                    Renderable = _progressTracker,
+                    Position = new Rectangle((int)(Vw * 20), (int)(Vh * 100 - 100), (int)(Vw * 60), 100),
+                    View = _progressTracker.View,
+                    Projection = Matrix.CreateOrthographic(10f, 1f, 0.001f, 1000f)
+                    //Projection = _progressTracker.Projection
                 }
             )
             {
