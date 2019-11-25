@@ -1,14 +1,14 @@
 ﻿using Forge.Core.Components;
 using Forge.UI.Glass;
-using IntoTheVoid.Flight;
-using IntoTheVoid.UI.Upgrades;
-using IntoTheVoid.Upgrades;
+using EnterTheVoid.Flight;
+using EnterTheVoid.UI.Upgrades;
+using EnterTheVoid.Upgrades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Transmission
+namespace EnterTheVoid.Phases.Transmission
 {
     class TransmissionPhase : Phase
     {

@@ -1,22 +1,22 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Scenes;
-using IntoTheVoid.Constants;
-using IntoTheVoid.Phases;
-using IntoTheVoid.Phases.Asteroids;
-using IntoTheVoid.Phases.Combat;
-using IntoTheVoid.Phases.Open;
-using IntoTheVoid.Phases.Satellite;
-using IntoTheVoid.Phases.Transmission;
-using IntoTheVoid.Scenes;
-using IntoTheVoid.Ships;
-using IntoTheVoid.Ships.Connections;
-using IntoTheVoid.Ships.Modules;
+using EnterTheVoid.Constants;
+using EnterTheVoid.Phases;
+using EnterTheVoid.Phases.Asteroids;
+using EnterTheVoid.Phases.Combat;
+using EnterTheVoid.Phases.Open;
+using EnterTheVoid.Phases.Satellite;
+using EnterTheVoid.Phases.Transmission;
+using EnterTheVoid.Scenes;
+using EnterTheVoid.Ships;
+using EnterTheVoid.Ships.Connections;
+using EnterTheVoid.Ships.Modules;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Orchestration
+namespace EnterTheVoid.Orchestration
 {
     public class Orchestrator : Component
     {

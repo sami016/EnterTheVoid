@@ -6,9 +6,9 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Projectiles;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Projectiles;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Obstacles
+namespace EnterTheVoid.Obstacles
 {
     public class IceAsteroid : AsteroidBase
     {

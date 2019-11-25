@@ -1,6 +1,6 @@
-﻿using IntoTheVoid.Ships.Connections;
+﻿using EnterTheVoid.Ships.Connections;
 
-namespace IntoTheVoid.Ships.Generation
+namespace EnterTheVoid.Ships.Generation
 {
     public class ConnectionLayoutDistribution : Distribution<ConnectionLayout>
     {

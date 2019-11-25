@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Intro
+namespace EnterTheVoid.Intro
 {
     public class IntroBackgroundScroll : Component, IInit, IRenderable, ITick
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Upgrades
+namespace EnterTheVoid.Upgrades
 {
     public class HullReinforcement : UpgradeBase
     {

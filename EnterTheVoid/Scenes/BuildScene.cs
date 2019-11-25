@@ -3,13 +3,13 @@ using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
 using Forge.Core.Sound;
 using Forge.UI.Glass;
-using IntoTheVoid.Builder;
-using IntoTheVoid.Constants;
-using IntoTheVoid.Ships;
-using IntoTheVoid.Ships.Connections;
-using IntoTheVoid.Ships.Modules;
-using IntoTheVoid.UI.Builder;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Builder;
+using EnterTheVoid.Constants;
+using EnterTheVoid.Ships;
+using EnterTheVoid.Ships.Connections;
+using EnterTheVoid.Ships.Modules;
+using EnterTheVoid.UI.Builder;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Scenes
+namespace EnterTheVoid.Scenes
 {
     public class BuildScene : Scene
     {

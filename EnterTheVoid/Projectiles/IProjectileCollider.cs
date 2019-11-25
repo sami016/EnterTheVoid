@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Projectiles
+namespace EnterTheVoid.Projectiles
 {
     public interface IProjectileCollider
     {

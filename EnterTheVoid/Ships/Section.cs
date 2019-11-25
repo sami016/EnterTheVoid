@@ -1,12 +1,12 @@
-﻿using IntoTheVoid.Ships.Connections;
-using IntoTheVoid.Ships.Modules;
-using IntoTheVoid.Utility;
+﻿using EnterTheVoid.Ships.Connections;
+using EnterTheVoid.Ships.Modules;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Ships
+namespace EnterTheVoid.Ships
 {
     /// <summary>
     /// A ship section.

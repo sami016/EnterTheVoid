@@ -1,12 +1,12 @@
 ﻿using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
-using IntoTheVoid.Flight;
+using EnterTheVoid.Flight;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases
+namespace EnterTheVoid.Phases
 {
     public class PhaseDistanceTarget : Component, ITick
     {

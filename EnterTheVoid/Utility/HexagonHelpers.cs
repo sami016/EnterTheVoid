@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Utility
+namespace EnterTheVoid.Utility
 {
     /// <summary>
     /// Assumptions:

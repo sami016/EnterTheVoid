@@ -1,14 +1,14 @@
-﻿using IntoTheVoid.Constants;
-using IntoTheVoid.Ships.Modules;
-using IntoTheVoid.Upgrades;
-using IntoTheVoid.Utility;
+﻿using EnterTheVoid.Constants;
+using EnterTheVoid.Ships.Modules;
+using EnterTheVoid.Upgrades;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Ships
+namespace EnterTheVoid.Ships
 {
     public class ShipTopology
     {

@@ -2,17 +2,17 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
-using IntoTheVoid.Projectiles;
-using IntoTheVoid.Ships;
-using IntoTheVoid.Upgrades;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Projectiles;
+using EnterTheVoid.Ships;
+using EnterTheVoid.Upgrades;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public class FlightShip : Component, IInit, ITick
     {

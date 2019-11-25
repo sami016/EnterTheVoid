@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Ships.Modules
+namespace EnterTheVoid.Ships.Modules
 {
     class FuelModule : Module
     {

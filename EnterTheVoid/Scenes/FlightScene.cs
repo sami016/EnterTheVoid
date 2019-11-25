@@ -2,17 +2,17 @@
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Scenes;
 using Forge.UI.Glass;
-using IntoTheVoid.Builder;
-using IntoTheVoid.Constants;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Phases;
-using IntoTheVoid.Phases.Asteroids;
-using IntoTheVoid.Phases.Combat;
-using IntoTheVoid.Phases.Open;
-using IntoTheVoid.Phases.Satellite;
-using IntoTheVoid.Phases.Transmission;
-using IntoTheVoid.Ships;
-using IntoTheVoid.UI.Flight;
+using EnterTheVoid.Builder;
+using EnterTheVoid.Constants;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Phases;
+using EnterTheVoid.Phases.Asteroids;
+using EnterTheVoid.Phases.Combat;
+using EnterTheVoid.Phases.Open;
+using EnterTheVoid.Phases.Satellite;
+using EnterTheVoid.Phases.Transmission;
+using EnterTheVoid.Ships;
+using EnterTheVoid.UI.Flight;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Scenes
+namespace EnterTheVoid.Scenes
 {
     public class FlightScene : Scene
     {

@@ -1,10 +1,10 @@
 ﻿using Forge.Core.Engine;
-using IntoTheVoid.Flight;
+using EnterTheVoid.Flight;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Ships
+namespace EnterTheVoid.Ships
 {
     public static class ShipComponentHelper
     {

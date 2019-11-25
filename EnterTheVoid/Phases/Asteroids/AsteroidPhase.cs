@@ -1,12 +1,12 @@
 ﻿using Forge.Core.Space;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Ships.Generation;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Ships.Generation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace EnterTheVoid.Phases.Asteroids
 {
     public class AsteroidPhase : Phase
     {

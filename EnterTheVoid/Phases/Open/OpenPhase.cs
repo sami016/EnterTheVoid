@@ -1,11 +1,11 @@
 ﻿using Forge.Core.Components;
 using Forge.UI.Glass;
-using IntoTheVoid.UI.Flight;
+using EnterTheVoid.UI.Flight;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Open
+namespace EnterTheVoid.Phases.Open
 {
     public class OpenPhase : Phase
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid
+namespace EnterTheVoid
 {
     public class GlobalControls : Component, ITick
     {

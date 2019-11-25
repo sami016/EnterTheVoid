@@ -1,15 +1,15 @@
 ﻿using Forge.Core.Components;
 using Forge.Core.Scenes;
-using IntoTheVoid.Constants;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Orchestration;
-using IntoTheVoid.Scenes;
+using EnterTheVoid.Constants;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Orchestration;
+using EnterTheVoid.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Satellite
+namespace EnterTheVoid.Phases.Satellite
 {
     public class SatellitePhase : Phase
     {

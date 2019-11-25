@@ -3,7 +3,7 @@ using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
 using Microsoft.Xna.Framework;
 
-namespace IntoTheVoid.UI.Menu
+namespace EnterTheVoid.UI.Menu
 {
     class MenuButton : Template
     {

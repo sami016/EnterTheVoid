@@ -5,11 +5,11 @@ using System.Text;
 using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Utilities;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 
-namespace IntoTheVoid.AI
+namespace EnterTheVoid.AI
 {
     public class ChaseDroneBrain : Brain
     {

@@ -6,10 +6,10 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
-using IntoTheVoid.Obstacles;
-using IntoTheVoid.Phases.Asteroids;
-using IntoTheVoid.Projectiles;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Obstacles;
+using EnterTheVoid.Phases.Asteroids;
+using EnterTheVoid.Projectiles;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public class FlightNode : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider
     {

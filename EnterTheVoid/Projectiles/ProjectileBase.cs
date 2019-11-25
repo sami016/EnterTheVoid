@@ -5,9 +5,9 @@ using Forge.Core.Interfaces;
 using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Utilities;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Obstacles;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Obstacles;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Projectiles
+namespace EnterTheVoid.Projectiles
 {
     public abstract class ProjectileBase : Component, IInit, ITick, IRenderable, IShipCollider
     {

@@ -2,15 +2,15 @@
 using Forge.Core.Engine;
 using Forge.Core.Rendering;
 using Forge.Core.Utilities;
-using IntoTheVoid.Phases.Asteroids;
-using IntoTheVoid.Projectiles;
+using EnterTheVoid.Phases.Asteroids;
+using EnterTheVoid.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Obstacles
+namespace EnterTheVoid.Obstacles
 {
     public class FuelAsteroid : AsteroidBase
     {

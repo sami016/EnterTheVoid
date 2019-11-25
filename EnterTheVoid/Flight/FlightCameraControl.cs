@@ -3,14 +3,14 @@ using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
 using Forge.Core.Rendering.Cameras;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public class FlightCameraControl : Component, IInit, ITick
     {

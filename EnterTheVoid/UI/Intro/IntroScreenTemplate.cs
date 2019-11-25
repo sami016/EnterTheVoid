@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.UI.Intro
+namespace EnterTheVoid.UI.Intro
 {
     class IntroScreenTemplate : Template
     {

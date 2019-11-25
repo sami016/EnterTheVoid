@@ -1,9 +1,9 @@
-﻿using IntoTheVoid.Ships.Modules;
+﻿using EnterTheVoid.Ships.Modules;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Ships.Generation
+namespace EnterTheVoid.Ships.Generation
 {
     public class ModuleWithConnectorDistribution
     {

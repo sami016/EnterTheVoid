@@ -1,10 +1,10 @@
-﻿using IntoTheVoid.Utility;
+﻿using EnterTheVoid.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Ships.Connections
+namespace EnterTheVoid.Ships.Connections
 {
     public class ConnectionLayout
     {

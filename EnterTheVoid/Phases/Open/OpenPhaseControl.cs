@@ -2,13 +2,13 @@
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
-using IntoTheVoid.Flight;
+using EnterTheVoid.Flight;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Open
+namespace EnterTheVoid.Phases.Open
 {
     public class OpenPhaseControl : Component, ITick
     {

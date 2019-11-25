@@ -6,10 +6,10 @@ using Forge.Core.Rendering;
 using Forge.Core.Rendering.Cameras;
 using Forge.Core.Space.Shapes;
 using Forge.Core.Utilities;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Obstacles;
-using IntoTheVoid.Phases.Asteroids;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Obstacles;
+using EnterTheVoid.Phases.Asteroids;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Projectiles
+namespace EnterTheVoid.Projectiles
 {
     public class HeavyBlasterProjectile : ProjectileBase
     {

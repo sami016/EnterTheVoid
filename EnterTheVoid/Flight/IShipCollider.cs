@@ -1,10 +1,10 @@
-﻿using IntoTheVoid.Ships;
+﻿using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public interface IShipCollider
     {

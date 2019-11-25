@@ -1,10 +1,10 @@
-﻿using IntoTheVoid.Obstacles;
-using IntoTheVoid.Ships.Generation;
+﻿using EnterTheVoid.Obstacles;
+using EnterTheVoid.Ships.Generation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace EnterTheVoid.Phases.Asteroids
 {
     public class AsteroidDistributions
     {

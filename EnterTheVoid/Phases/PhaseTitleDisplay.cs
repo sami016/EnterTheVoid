@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Phases
+namespace EnterTheVoid.Phases
 {
     public class PhaseTitleDisplay : Component, IRenderable
     {

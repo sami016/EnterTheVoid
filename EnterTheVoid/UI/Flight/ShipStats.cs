@@ -2,13 +2,13 @@
 using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
-using IntoTheVoid.Flight;
+using EnterTheVoid.Flight;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.UI.Flight
+namespace EnterTheVoid.UI.Flight
 {
     public class ShipStats : Template
     {

@@ -12,13 +12,13 @@ using System.Collections.Generic;
 using System.Text;
 using Forge.Core.Utilities;
 using Microsoft.Xna.Framework.Input;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Ships;
 using Forge.Core.Space.Bodies;
 using Forge.Core.Space.Shapes;
-using IntoTheVoid.Constants;
+using EnterTheVoid.Constants;
 using Forge.Core.Rendering.VertexTypes;
 
-namespace IntoTheVoid.Builder
+namespace EnterTheVoid.Builder
 {
     public class BuildNode : Component, IRenderable, IInit, ITick
     {

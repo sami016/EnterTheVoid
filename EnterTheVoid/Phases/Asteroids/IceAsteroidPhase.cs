@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Forge.Core.Components;
 using Forge.Core.Sound;
-using IntoTheVoid.Ships.Generation;
+using EnterTheVoid.Ships.Generation;
 
-namespace IntoTheVoid.Phases.Asteroids
+namespace EnterTheVoid.Phases.Asteroids
 {
     public class IceAsteroidPhase : AsteroidPhase
     {

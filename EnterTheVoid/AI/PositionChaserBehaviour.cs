@@ -1,14 +1,14 @@
 ﻿using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Engine;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.AI
+namespace EnterTheVoid.AI
 {
     public class PositionChaserBehaviour
     {

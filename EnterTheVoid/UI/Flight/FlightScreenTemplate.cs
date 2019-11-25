@@ -1,13 +1,13 @@
 ﻿using Forge.UI.Glass.Elements;
 using Forge.UI.Glass.Templates;
-using IntoTheVoid.Flight;
+using EnterTheVoid.Flight;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.UI.Flight
+namespace EnterTheVoid.UI.Flight
 {
     class FlightScreenTemplate : Template
     {

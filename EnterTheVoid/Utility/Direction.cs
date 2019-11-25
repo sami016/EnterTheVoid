@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Utility
+namespace EnterTheVoid.Utility
 {
     public static class Direction
     {

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Builder
+namespace EnterTheVoid.Builder
 {
     public class BuildPlacerCursor : Component, IInit, IRenderable
     {

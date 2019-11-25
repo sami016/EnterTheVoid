@@ -3,11 +3,11 @@ using Forge.Core.Debugging;
 using Forge.Core.Sound;
 using Forge.Core.Utilities;
 using Forge.UI.Glass;
-using IntoTheVoid.Scenes;
+using EnterTheVoid.Scenes;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace IntoTheVoid
+namespace EnterTheVoid
 {
     class Program
     {

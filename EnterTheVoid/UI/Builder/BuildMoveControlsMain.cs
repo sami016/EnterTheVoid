@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.UI.Builder
+namespace EnterTheVoid.UI.Builder
 {
     class BuildMoveControlsMain : Template
     {

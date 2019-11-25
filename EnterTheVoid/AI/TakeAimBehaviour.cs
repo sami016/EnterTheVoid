@@ -1,14 +1,14 @@
 ﻿using Forge.Core;
 using Forge.Core.Engine;
 using Forge.Core.Components;
-using IntoTheVoid.Flight;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Flight;
+using EnterTheVoid.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.AI
+namespace EnterTheVoid.AI
 {
     public class TakeAimBehaviour
     {

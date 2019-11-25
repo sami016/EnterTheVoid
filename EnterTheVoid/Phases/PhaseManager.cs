@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Phases
+namespace EnterTheVoid.Phases
 {
     public enum PhaseManagerState
     {

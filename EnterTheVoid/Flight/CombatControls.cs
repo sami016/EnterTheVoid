@@ -2,20 +2,20 @@
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
 using Forge.Core.Utilities;
-using IntoTheVoid.Projectiles;
-using IntoTheVoid.Ships;
+using EnterTheVoid.Projectiles;
+using EnterTheVoid.Ships;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using IntoTheVoid.Ships.Modules;
-using IntoTheVoid.Phases.Asteroids;
+using EnterTheVoid.Ships.Modules;
+using EnterTheVoid.Phases.Asteroids;
 using Forge.Core.Rendering;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Utility;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public class CombatControls : Component, ITick
     {

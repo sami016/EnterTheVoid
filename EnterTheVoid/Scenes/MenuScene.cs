@@ -2,12 +2,12 @@
 using Forge.Core.Scenes;
 using Forge.Core.Sound;
 using Forge.UI.Glass;
-using IntoTheVoid.UI.Menu;
+using EnterTheVoid.UI.Menu;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Scenes
+namespace EnterTheVoid.Scenes
 {
     public class MenuScene : Scene
     {

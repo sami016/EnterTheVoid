@@ -2,14 +2,14 @@
 using Forge.UI.Glass.Interaction;
 using Forge.UI.Glass.Stylings;
 using Forge.UI.Glass.Templates;
-using IntoTheVoid.Phases.Transmission;
-using IntoTheVoid.Upgrades;
+using EnterTheVoid.Phases.Transmission;
+using EnterTheVoid.Upgrades;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.UI.Upgrades
+namespace EnterTheVoid.UI.Upgrades
 {
     public class UpgradeMenuOption : Template
     {

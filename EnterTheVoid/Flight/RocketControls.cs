@@ -2,10 +2,10 @@
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
-using IntoTheVoid.Ships;
-using IntoTheVoid.Ships.Modules;
-using IntoTheVoid.Upgrades;
-using IntoTheVoid.Utility;
+using EnterTheVoid.Ships;
+using EnterTheVoid.Ships.Modules;
+using EnterTheVoid.Upgrades;
+using EnterTheVoid.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IntoTheVoid.Flight
+namespace EnterTheVoid.Flight
 {
     public class RocketControls : Component, ITick
     {

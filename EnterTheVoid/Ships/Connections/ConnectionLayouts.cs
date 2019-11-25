@@ -1,9 +1,9 @@
-﻿using IntoTheVoid.Utility;
+﻿using EnterTheVoid.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntoTheVoid.Ships.Connections
+namespace EnterTheVoid.Ships.Connections
 {
     public static class ConnectionLayouts
     {
