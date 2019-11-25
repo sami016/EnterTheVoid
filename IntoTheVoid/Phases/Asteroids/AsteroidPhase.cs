@@ -27,9 +27,9 @@ namespace IntoTheVoid.Phases.Asteroids
         public override void Start()
         {
             var targetEnt = Entity.Create();
-            _phaseDistanceTarget = targetEnt.Add(new PhaseDistanceTarget(this, Entity.EntityManager.GetAll<FlightShip>().First(), 50f + 2f * _difficult / 5f));
+            _phaseDistanceTarget = targetEnt.Add(new PhaseDistanceTarget(this, Entity.EntityManager.GetAll<FlightShip>().First(), 90f + 2f * _difficult / 5f));
             targetEnt.Add(new PhaseDistanceTargetRenderable());
-            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(_difficult, _distribution));
+            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(_difficult, _distribution, _phaseDistanceTarget));
         }
 
         public override void Stop()

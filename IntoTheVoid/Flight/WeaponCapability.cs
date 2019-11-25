@@ -68,6 +68,10 @@ namespace IntoTheVoid.Flight
                 var shipTransform = Transform;
                 foreach (var gun in guns)
                 {
+                    if (!FlightShip.TryTakeEnergy(1))
+                    {
+                        return;
+                    }
                     var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
                     var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3);
                     var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);

@@ -26,7 +26,9 @@ namespace IntoTheVoid.UI.Flight
             Reevaluate();
         }
 
-        public override IElement Evaluate() => new Pane(
+        public override IElement Evaluate() {
+            var healthPercentage = _flightShip.MaxHealth == 0 ? 0f : (100f * _flightShip.Health / _flightShip.MaxHealth);
+            return new Pane(
             new Text(_flightShip.Energy.ToString())
             {
                 Position = new Rectangle(30, 20, 0, 0)
@@ -65,13 +67,13 @@ namespace IntoTheVoid.UI.Flight
             },
             new Pane()
             {
-                Position = new Rectangle(0, 230, (int)(100 * _flightShip.Health / _flightShip.MaxHealth), 30),
+                Position = new Rectangle(0, 230, (int)(healthPercentage), 30),
                 Background = new ColourBackgroundStyling()
                 {
                     Colour = Color.Green
                 }
 
-            }
-        );
+            });
+        }
     }
 }

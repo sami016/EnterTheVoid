@@ -14,30 +14,38 @@ namespace IntoTheVoid.UI.Intro
         {
             return new Pane(
                 new Pane(
-                    new AnimatedText("Into The Void")
+                    //new AnimatedText("Into The Void")
+                    //{
+                    //    Font = "Title",
+                    //},
+                    new Pane()
                     {
-                        Font = "Title",
+                        Position = new Rectangle((int)(Vw * 50) - 250, 0, 500, 300),
+                        Background = new ImageBackgroundStyling
+                        {
+                            ImageResource = "Logo"
+                        }
                     },
 
                     new AnimatedText("The year is 2084...", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(2))
                     {
-                        Position = new Rectangle(0, 60, 0, 0)
+                        Position = new Rectangle(30, 360, 0, 0)
                     },
                     new AnimatedText("Recent technological advances have opened up a new frontier of exploration for the human race...", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(4))
                     {
-                        Position = new Rectangle(0, 100, 0, 0)
+                        Position = new Rectangle(30, 400, 0, 0)
                     },
                     new AnimatedText("The doorways to new worlds and ever-expanding opportunities are opening... and with it a fierce competition.", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(10))
                     {
-                        Position = new Rectangle(0, 140, 0, 0)
+                        Position = new Rectangle(30, 440, 0, 0)
                     },
                     new AnimatedText("The race is underway to determine who has what it takes to traverse the unforgiving places beyond our atmosphere.", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(17))
                     {
-                        Position = new Rectangle(0, 180, 0, 0)
+                        Position = new Rectangle(30, 480, 0, 0)
                     },
-                    new AnimatedText("This is the story of the race between pioneers. Who will have what it takes to claim this brave new domain?", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(24))
+                    new AnimatedText("Who will have what it takes to claim this brave new domain?", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(24))
                     {
-                        Position = new Rectangle(0, 220, 0, 0)
+                        Position = new Rectangle(30, 520, 0, 0)
                     },
                     //Many nations, corporations and talented individuals 
                     new Text("Press any button to continue...")

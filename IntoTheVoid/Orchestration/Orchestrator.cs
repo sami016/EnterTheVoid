@@ -43,9 +43,9 @@ namespace IntoTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
+                //() => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 //() => new TransmissionPhase(),
-                () => new DroneStrikePhase(5),
+                () => new DroneStrikePhase(1),
                 () => new SatellitePhase(Planet.Mars)
                 //() => new DroneStrikePhase(),
                 //() => new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
@@ -56,14 +56,14 @@ namespace IntoTheVoid.Orchestration
                 Planet.Mars,
                 () => new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(4),
+                () => new DroneStrikePhase(2),
                 () => new SatellitePhase(Planet.Jupiter)
             );
             AddPlanet(
                 Planet.Jupiter,
                 () => new IceAsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(5),
+                () => new DroneStrikePhase(3),
                 () => new AsteroidPhase(30, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Saturn)
             );
@@ -71,7 +71,7 @@ namespace IntoTheVoid.Orchestration
                 Planet.Saturn,
                 () => new IceAsteroidPhase(40, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(5),
+                () => new DroneStrikePhase(4),
                 () => new AsteroidPhase(50, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Uranus)
             );
@@ -87,7 +87,7 @@ namespace IntoTheVoid.Orchestration
                 Planet.Neptune,
                 () => new IceAsteroidPhase(90, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(5),
+                () => new DroneStrikePhase(6),
                 () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
                 // TODO - end game here.
                 () => new SatellitePhase(Planet.Pluto)

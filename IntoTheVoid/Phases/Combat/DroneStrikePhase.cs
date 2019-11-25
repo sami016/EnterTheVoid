@@ -29,7 +29,7 @@ namespace IntoTheVoid.Phases.Combat
         {
             _numDrones = numDrones;
             Title = "Drone Zone";
-            Description = "Combat warning. Fend off incoming attack drones.";
+            Description = "Combat warning. Fend off incoming attack drones. Survive 45 seconds.";
             CompleteMessage = "Combat completed.";
         }
 
@@ -49,10 +49,11 @@ namespace IntoTheVoid.Phases.Combat
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 70f;
             if (_numDrones >= 1) SpawnDrone(new Vector3(0, 0, -5), 2, 3);
-            if (_numDrones >= 2) SpawnDrone(new Vector3(0, 0, 10), 2, 20);
-            if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 40);
-            if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 40);
+            if (_numDrones >= 2) SpawnDrone(new Vector3(0, 0, 10), 2, 10);
+            if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 20);
+            if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 30);
             if (_numDrones >= 5) SpawnDrone(new Vector3(10, 0, 5), 3, 40);
+            if (_numDrones >= 5) SpawnDrone(new Vector3(0, 0, 0), 3, 60);
         }
 
         private void SpawnDrone(Vector3 playerOffset, float rotationRadius, float spawnDistace)

@@ -131,6 +131,16 @@ namespace IntoTheVoid.Flight
             });
         }
 
+        public bool TryTakeEnergy(int amount)
+        {
+            if (Energy < amount)
+            {
+                return false;
+            }
+            Energy -= amount;
+            return true;
+        }
+
         /// <summary>
         /// Repairs the ship.
         /// </summary>

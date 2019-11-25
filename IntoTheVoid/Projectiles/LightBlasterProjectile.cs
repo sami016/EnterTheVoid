@@ -23,7 +23,7 @@ namespace IntoTheVoid.Projectiles
     {
         private static Model _projectileModel;
 
-        public LightBlasterProjectile(Guid shipGuid, Vector3 parentVelocity, Vector3 direction, bool speedUpgrade): base(shipGuid, parentVelocity, direction, speedUpgrade ? 20f : 10f, TimeSpan.FromSeconds(10))
+        public LightBlasterProjectile(Guid shipGuid, Vector3 parentVelocity, Vector3 direction, bool speedUpgrade): base(shipGuid, parentVelocity, direction, speedUpgrade ? 20f : 10f, TimeSpan.FromSeconds(4))
         {
         }
 

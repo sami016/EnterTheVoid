@@ -44,7 +44,7 @@ namespace IntoTheVoid.Scenes
             var cameraPos = camera.Add(new Transform()
             {
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
-                Location = focusLocation + (Vector3.Backward + Vector3.Up) * 5
+                Location = focusLocation + (Vector3.Backward + Vector3.Up) * 10
             });
             //CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
             CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));

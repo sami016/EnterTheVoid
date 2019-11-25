@@ -16,6 +16,7 @@ namespace IntoTheVoid.Phases.Asteroids
     public class AsteroidSpawner : Component, IInit, ITick
     {
         private static readonly Random Random = new Random();
+        private readonly PhaseDistanceTarget _distanceTarget;
         private readonly Distribution<Type> _distribution;
         private readonly int _difficult;
         private readonly int _spawnPerWave;
@@ -26,8 +27,9 @@ namespace IntoTheVoid.Phases.Asteroids
         [Inject] FlightShip FlightShip { get; set; }
         private Transform _flightShipTransform;
 
-        public AsteroidSpawner(int difficult, Distribution<Type> distribution)
+        public AsteroidSpawner(int difficult, Distribution<Type> distribution, PhaseDistanceTarget distanceTarget = null)
         {
+            _distanceTarget = distanceTarget;
             _distribution = distribution;
             _difficult = difficult;
             _spawnPerWave = 1 + (int)Math.Ceiling(_difficult / 10.0);
@@ -54,8 +56,13 @@ namespace IntoTheVoid.Phases.Asteroids
 
         private void CheckSpawn(TickContext context)
         {
-            if (_running 
-                && _entities.Count() <= 20)
+            // Don't spawn when within 5 of target.
+            var remaining = _distanceTarget?.Remaining;
+            if (remaining.HasValue && (-remaining.Value) < 40)
+            {
+                return;
+            }
+            if (_running)
             {
                 // Locks spawn to once ever 3 units is moved.
                 if (_lastZ > _flightShipTransform.Location.Z)

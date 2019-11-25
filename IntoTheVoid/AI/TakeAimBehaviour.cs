@@ -31,6 +31,10 @@ namespace IntoTheVoid.AI
 
         public void Tick(TickContext context)
         {
+            if (!_playerShip.GetNodes().Any())
+            {
+                return;
+            }
             var displacement = (_playerShip.GetNodes().First().GloalLocation - _transform.Location);
             var rotation = -RotationHelper.GetAngle(displacement.X, displacement.Z) - (float)Math.PI / 2 + aimOffset;
             var rotVel = 0f;
