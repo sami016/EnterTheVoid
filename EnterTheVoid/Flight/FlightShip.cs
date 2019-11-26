@@ -229,5 +229,12 @@ namespace EnterTheVoid.Flight
             });
         }
 
+        public bool HasUpgrade<T>()
+        {
+            var upgrades = Upgrades
+                .Select(x => x.GetType())
+                .ToArray();
+            return upgrades.Contains(typeof(T));
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Jupiter,
-                () => new IceAsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new IceAsteroidPhase(20, AsteroidDistributions.IceAsteroidDistribution),
                 () => new DroneStrikePhase(3),
                 () => new TransmissionPhase(),
                 () => new AsteroidPhase(30, AsteroidDistributions.StandardAsteroidDistribution),
@@ -69,7 +69,7 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Saturn,
-                () => new IceAsteroidPhase(40, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new IceAsteroidPhase(40, AsteroidDistributions.IceAsteroidDistribution),
                 () => new TransmissionPhase(),
                 () => new DroneStrikePhase(4),
                 () => new AsteroidPhase(50, AsteroidDistributions.StandardAsteroidDistribution),
@@ -77,7 +77,7 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Uranus,
-                () => new IceAsteroidPhase(60, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new IceAsteroidPhase(60, AsteroidDistributions.IceAsteroidDistribution),
                 () => new TransmissionPhase(),
                 () => new DroneStrikePhase(5),
                 () => new AsteroidPhase(70, AsteroidDistributions.StandardAsteroidDistribution),
@@ -85,7 +85,7 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Neptune,
-                () => new IceAsteroidPhase(90, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new IceAsteroidPhase(90, AsteroidDistributions.IceAsteroidDistribution),
                 () => new TransmissionPhase(),
                 () => new DroneStrikePhase(6),
                 () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),

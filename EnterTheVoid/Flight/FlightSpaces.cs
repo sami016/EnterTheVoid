@@ -11,11 +11,13 @@ namespace EnterTheVoid.Flight
     {
         public ISpace ObstacleSpace { get; set; }
         public ISpace ShipSpace { get; set; }
+        public ISpace ProjectileSpace { get; set; }
 
         public void Initialise()
         {
             ObstacleSpace = Entity.Add(new Space(true));
             ShipSpace = Entity.Add(new Space(true));
+            ProjectileSpace = Entity.Add(new Space(true));
         }
     }
 }

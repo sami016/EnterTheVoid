@@ -25,9 +25,15 @@ namespace EnterTheVoid.Ships.Generation
             ( 1f, ConnectionLayouts.AccuteVB ),
             ( 1f, ConnectionLayouts.AccuteVSmallA ),
             ( 1f, ConnectionLayouts.AccuteVSmallB ),
-            ( 1f, ConnectionLayouts.FullyConnected ),
-            ( 1f, ConnectionLayouts.FullyConnectedLarge ),
-            ( 1f, ConnectionLayouts.FullyConnectedSmall ),
+            ( 0.1f, ConnectionLayouts.FullyConnected ),
+            ( 0.2f, ConnectionLayouts.FullyConnectedLarge ),
+            ( 0.2f, ConnectionLayouts.FullyConnectedSmall ),
+            ( 0.2f, ConnectionLayouts.FullyConnectedButWestSmall),
+            ( 0.3f, ConnectionLayouts.FullyConnectedButNorthWestSmall ),
+            ( 0.3f, ConnectionLayouts.FullyConnectedButNorthEastSmall ),
+            ( 0.3f, ConnectionLayouts.FullyConnectedButNorthEastSmall ),
+            ( 0.3f, ConnectionLayouts.FullyConnectedButSouthEastSmall ),
+            ( 0.3f, ConnectionLayouts.FullyConnectedButSouthWestSmall ),
             ( 1f, ConnectionLayouts.PassThrough ),
             ( 1f, ConnectionLayouts.PassThroughLarge ),
             ( 1f, ConnectionLayouts.PassThroughSmall ),
@@ -83,9 +89,14 @@ namespace EnterTheVoid.Ships.Generation
             ( 1f, ConnectionLayouts.AccuteVB ),
             ( 1f, ConnectionLayouts.AccuteVSmallA ),
             ( 1f, ConnectionLayouts.AccuteVSmallB ),
-            ( 1f, ConnectionLayouts.FullyConnected ),
-            ( 1f, ConnectionLayouts.FullyConnectedLarge ),
-            ( 1f, ConnectionLayouts.FullyConnectedSmall ),
+            ( 0.5f, ConnectionLayouts.FullyConnected ),
+            ( 0.5f, ConnectionLayouts.FullyConnectedLarge ),
+            ( 0.5f, ConnectionLayouts.FullyConnectedSmall ),
+            ( 0.6f, ConnectionLayouts.FullyConnectedButNorthWestSmall ),
+            ( 0.6f, ConnectionLayouts.FullyConnectedButNorthEastSmall ),
+            ( 0.6f, ConnectionLayouts.FullyConnectedButNorthEastSmall ),
+            ( 0.6f, ConnectionLayouts.FullyConnectedButSouthEastSmall ),
+            ( 0.6f, ConnectionLayouts.FullyConnectedButSouthWestSmall ),
             ( 1f, ConnectionLayouts.PassThrough ),
             ( 1f, ConnectionLayouts.PassThroughLarge ),
             ( 1f, ConnectionLayouts.PassThroughSmall ),
@@ -94,10 +105,10 @@ namespace EnterTheVoid.Ships.Generation
             ( 1f, ConnectionLayouts.SingleBoth ),
             ( 1f, ConnectionLayouts.SingleLarge ),
             ( 1f, ConnectionLayouts.SingleSmall ),
-            ( 1f, ConnectionLayouts.WideVA ),
-            ( 1f, ConnectionLayouts.WideVB ),
-            ( 1f, ConnectionLayouts.WideVSmallA ),
-            ( 1f, ConnectionLayouts.WideVSmallB )
+            ( 2f, ConnectionLayouts.WideVA ),
+            ( 2f, ConnectionLayouts.WideVB ),
+            ( 2f, ConnectionLayouts.WideVSmallA ),
+            ( 2f, ConnectionLayouts.WideVSmallB )
         };
 
         public static ModuleDistribution Distribution { get; } = new ModuleDistribution()
@@ -107,6 +118,7 @@ namespace EnterTheVoid.Ships.Generation
             .Add(1f, typeof(RocketModule), _rocketConnectionLayoutDistribution)
             .Add(0.5f, typeof(RotaryEngine), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(EmptyModule), _highConnectivityConnectionLayoutDistribution)
-            .Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
+            .Add(0.6f, typeof(ForcefieldShieldModule), _standardConnectionLayoutDistribution);
+            //Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
     }
 }

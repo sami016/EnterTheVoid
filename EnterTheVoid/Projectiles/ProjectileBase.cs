@@ -17,14 +17,16 @@ using System.Text;
 
 namespace EnterTheVoid.Projectiles
 {
-    public abstract class ProjectileBase : Component, IInit, ITick, IRenderable, IShipCollider
+    public abstract class ProjectileBase : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider
     {
         private static Random Random = new Random();
         private static Model _projectileModel;
 
-        public uint RenderOrder { get; } = 10;
+        public uint RenderOrder { get; set; } = 10;
 
         public bool AutoRender { get; } = true;
+        public bool HitProjectiles { get; set; } = false;
+        public float Radius { get; set; } = 0.1f;
 
         [Inject] public ContentManager Content { get; set; }
         [Inject] public Transform Transform { get; set; }
@@ -52,7 +54,7 @@ namespace EnterTheVoid.Projectiles
                 //_projectileModel.EnableDefaultLighting();
                 _projectileModel.SetDiffuseColour(Color.White);
             }
-            FlightSpaces.ObstacleSpace.Add(Entity);
+            FlightSpaces.ProjectileSpace.Add(Entity);
         }
 
         public void Tick(TickContext context)
@@ -72,12 +74,12 @@ namespace EnterTheVoid.Projectiles
                 var pos = entity.Get<Transform>().Location;
                 var distance = (location - pos).Length();
                 var radius = entity.Get<IObstacle>()?.Radius ?? 1f;
-                if (distance < 0.1f + radius)
+                if (distance < Radius + radius)
                 {
                     if (entity.Has<IProjectileCollider>())
                     {
                         entity.Get<IProjectileCollider>().OnHit(Entity, this);
-                        EntityDidHit();
+                        EntityDidHit(entity);
                     }
                 }
             }
@@ -90,23 +92,49 @@ namespace EnterTheVoid.Projectiles
                 }
                 var pos = node.GlobalLocation;
                 var distance = (location - pos).Length();
-                if (distance < 1.1f)
+                if (distance < 1 + Radius)
                 {
                     if (entity.Has<IProjectileCollider>())
                     {
                         entity.Get<IProjectileCollider>().OnHit(Entity, this);
-                        EntityDidHit();
+                        EntityDidHit(entity);
+                    }
+                }
+            }
+            if (HitProjectiles)
+            {
+                foreach (var entity in FlightSpaces.ProjectileSpace.GetNearby(location, 5f))
+                {
+                    if (entity == this.Entity)
+                    {
+                        continue;
+                    }
+                    var pos = entity.Get<Transform>().Location;
+                    var distance = (location - pos).Length();
+                    var radius = entity.Get<ProjectileBase>()?.Radius ?? 1f;
+                    if (distance < Radius + radius)
+                    {
+                        if (entity.Has<IProjectileCollider>())
+                        {
+                            entity.Get<IProjectileCollider>().OnHit(Entity, this);
+                            EntityDidHit(entity);
+                        }
                     }
                 }
             }
 
+            UpdatePosition(context);
+
+        }
+
+        protected virtual void UpdatePosition(TickContext context)
+        {
             //var spin = _spin * context.DeltaTimeSeconds;
             Transform.Update(() =>
             {
                 //Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(spin.X, spin.Y, spin.Z);
                 Transform.Location += Velocity * context.DeltaTimeSeconds;
             });
-
         }
 
         public virtual float GetDamage(Entity hitEnt, IComponent hitComponent)
@@ -118,16 +146,21 @@ namespace EnterTheVoid.Projectiles
 
         public override void Dispose()
         {
-            FlightSpaces.ObstacleSpace.Remove(Entity);
+            FlightSpaces.ProjectileSpace.Remove(Entity);
         }
 
-        public void EntityDidHit()
+        public virtual void EntityDidHit(Entity entity)
         {
             Entity.Delete();
         }
 
         public virtual void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
+        }
+
+        public void OnHit(Entity projectileEntity, ProjectileBase projectile)
+        {
+            Entity.Delete();
         }
     }
 }

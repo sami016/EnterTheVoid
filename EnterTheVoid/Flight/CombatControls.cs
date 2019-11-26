@@ -21,6 +21,7 @@ namespace EnterTheVoid.Flight
     {
         [Inject] WeaponCapability WeaponCapability { get; set; }
         [Inject] MouseControls MouseControls { get; set; }
+        [Inject] KeyControls KeyControls { get; set; }
 
         public uint RenderOrder { get; } = 100;
         public bool AutoRender { get; } = true;
@@ -39,6 +40,16 @@ namespace EnterTheVoid.Flight
             {
                 WeaponCapability?.HeavyFire();
             }
+
+            if (KeyControls.HasBeenPressed(Keys.D1))
+            {
+                WeaponCapability?.ShieldDeploy();
+            }
+            if (KeyControls.HasBeenPressed(Keys.D6))
+            {
+                WeaponCapability?.RocketBlast();
+            }
+
         }
 
     }

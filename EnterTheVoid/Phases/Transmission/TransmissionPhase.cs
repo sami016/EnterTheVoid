@@ -20,8 +20,10 @@ namespace EnterTheVoid.Phases.Transmission
             new EfficientRocketry(),
             new BlastRocketry(),
             new EnhancedRotation(),
-            new ProficientRepair(),
-            new HullReinforcement()
+            //new ProficientRepair(),
+            new HullReinforcement(),
+            new ShieldAmplification(),
+            new ShieldFortification()
         };
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }

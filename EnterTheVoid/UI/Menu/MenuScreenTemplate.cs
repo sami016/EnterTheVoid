@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using EnterTheVoid.Menu;
+using EnterTheVoid.Upgrades;
 
 namespace EnterTheVoid.UI.Menu
 {
@@ -109,6 +110,11 @@ namespace EnterTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 4
             ));
+            topology.SetSection(new Point(3, 1), new Section(
+                new ForcefieldShieldModule(),
+                ConnectionLayouts.FullyConnected,
+                4
+            ));
             topology.SetSection(new Point(2, 3), new Section(
                 new RocketModule(),
                 ConnectionLayouts.FullyConnected,
@@ -139,6 +145,7 @@ namespace EnterTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 1
             ));
+            topology.ApplyUpgrade(new BlastRocketry());
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
             orchestrator.CurrentPlanet = Planet.Earth;
             orchestrator.NextFlight();

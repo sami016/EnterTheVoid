@@ -32,7 +32,7 @@ namespace EnterTheVoid.Phases.Asteroids
             _distanceTarget = distanceTarget;
             _distribution = distribution;
             _difficult = difficult;
-            _spawnPerWave = 1 + (int)Math.Ceiling(_difficult / 10.0);
+            _spawnPerWave = 1 + (int)Math.Ceiling(_difficult / 25.0);
         }
 
         public void Stop()
@@ -67,7 +67,7 @@ namespace EnterTheVoid.Phases.Asteroids
                 // Locks spawn to once ever 3 units is moved.
                 if (_lastZ > _flightShipTransform.Location.Z)
                 {
-                    _lastZ -= 3;
+                    _lastZ -= (int)Math.Ceiling((100 - _difficult) / 10.0);
                     for (var i = 0; i < _spawnPerWave; i++)
                     {
                         var ent = Entity.Create();

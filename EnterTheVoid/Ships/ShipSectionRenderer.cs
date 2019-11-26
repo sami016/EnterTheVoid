@@ -35,6 +35,7 @@ namespace EnterTheVoid.Ships
         private Model _rocket2bModel;
         private Model _rotaryModel;
         private Model _trailModel;
+        private Model _shieldGeneratorModel;
         private SpriteFont _d;
 
         private static float turretOffsetRotation = (float)(Math.PI / 6);
@@ -87,6 +88,10 @@ namespace EnterTheVoid.Ships
             _rocket2bModel = Content.Load<Model>("Models/rocket2b");
             _rocket2bModel.EnableDefaultLighting();
             _rocket2bModel.SetDiffuseColour(Color.GhostWhite);
+
+            _shieldGeneratorModel = Content.Load<Model>("Models/shieldgenerator");
+            _shieldGeneratorModel.EnableDefaultLighting();
+            _shieldGeneratorModel.SetDiffuseColour(Color.Green);
 
             _trailModel = Content.Load<Model>("Models/trail");
             _trailModel.EnableDefaultLighting();
@@ -144,6 +149,11 @@ namespace EnterTheVoid.Ships
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _rotaryModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+            }
+            if (section.Module is ForcefieldShieldModule)
+            {
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
+                _shieldGeneratorModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is EnergyModule)
             {

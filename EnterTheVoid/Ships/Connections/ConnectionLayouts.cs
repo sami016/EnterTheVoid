@@ -52,6 +52,36 @@ namespace EnterTheVoid.Ships.Connections
             new List<int>() { Direction.East, Direction.SouthEast, Direction.SouthWest, Direction.West, Direction.NorthEast, Direction.NorthWest }
         );
 
+        public static ConnectionLayout FullyConnectedButWestSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.East, Direction.SouthEast, Direction.SouthWest, Direction.NorthEast, Direction.NorthWest }
+        );
+
+        public static ConnectionLayout FullyConnectedButNorthEastSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.East, Direction.SouthEast, Direction.SouthWest, Direction.West, Direction.NorthWest }
+        );
+
+        public static ConnectionLayout FullyConnectedButNorthWestSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.East, Direction.SouthEast, Direction.SouthWest, Direction.West, Direction.NorthEast }
+        );
+
+        public static ConnectionLayout FullyConnectedButEastSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.SouthEast, Direction.SouthWest, Direction.West, Direction.NorthEast, Direction.NorthWest }
+        );
+
+        public static ConnectionLayout FullyConnectedButSouthEastSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.East, Direction.SouthWest, Direction.West, Direction.NorthEast, Direction.NorthWest }
+        );
+
+        public static ConnectionLayout FullyConnectedButSouthWestSmall = new ConnectionLayout(
+            new List<int>() { },
+            new List<int>() { Direction.East, Direction.SouthEast, Direction.West, Direction.NorthEast, Direction.NorthWest }
+        );
+
         public static ConnectionLayout HalfConnectedLarge = new ConnectionLayout(
             new List<int>() { Direction.East, Direction.NorthWest, Direction.SouthWest },
             new List<int>() { }
