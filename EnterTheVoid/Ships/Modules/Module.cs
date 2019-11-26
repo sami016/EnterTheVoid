@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnterTheVoid.Flight;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,10 @@ namespace EnterTheVoid.Ships.Modules
         public abstract string DescriptionShort { get; }
 
         public virtual int MaxHealth { get; set; } = 100;
+
+        public virtual void OnDestruction(FlightShip ship, FlightNode node)
+        {
+
+        }
     }
 }

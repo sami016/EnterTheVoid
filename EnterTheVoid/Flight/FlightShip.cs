@@ -211,6 +211,7 @@ namespace EnterTheVoid.Flight
                 section.Damage((int)(amount * damageScale));
                 if (section.Health == 0)
                 {
+                    _topology.SectionAt(gridLocation)?.Module?.OnDestruction(this, GetNodeForSection(gridLocation));
                     _topology.Remove(gridLocation);
                 }
             });
