@@ -17,13 +17,14 @@ namespace EnterTheVoid.Phases.Transmission
         public static readonly UpgradeBase[] PotentialUpgrades = new UpgradeBase[]
         {
             new PrecisionRocketry(),
-            new EfficientRocketry(),
+            new BombardOverload(),
             new BlastRocketry(),
             new EnhancedRotation(),
             //new ProficientRepair(),
             new HullReinforcement(),
             new ShieldAmplification(),
-            new ShieldFortification()
+            new ShieldFortification(),
+            new BombardOverload()
         };
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }

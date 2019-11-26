@@ -15,10 +15,13 @@ namespace EnterTheVoid.Flight
 {
     public class WeaponCapability : Component, ITick
     {
+        private static readonly Random Random = new Random();
+
         private CompletionTimer _lightweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(0.5f));
         private CompletionTimer _heavyweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
         private CompletionTimer _bubbleShieldCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
         private CompletionTimer _blastRocketCooldown = new CompletionTimer(TimeSpan.FromSeconds(2f));
+        private CompletionTimer _bombardCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
 
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
@@ -29,6 +32,7 @@ namespace EnterTheVoid.Flight
             _heavyweightCooldown.Complete();
             _bubbleShieldCooldown.Complete();
             _blastRocketCooldown.Complete();
+            _bombardCooldown.Complete();
         }
 
         public void StandardFire()
@@ -142,6 +146,53 @@ namespace EnterTheVoid.Flight
         }
 
 
+        public void BombardFire()
+        {
+            var numRockets = 4;
+            var angleOffset = 0.3f;
+            if (FlightShip.HasUpgrade<BombardOverload>())
+            {
+                numRockets = 8;
+                angleOffset = 1.1f;
+            }
+            if (_bombardCooldown.Completed)
+            {
+                var guns = FlightShip.Topology.AllSections
+                    .Where(x => x.Module is BombardModule);
+                var shipTransform = Transform;
+                foreach (var gun in guns)
+                {
+                    for (var i = 0; i < numRockets; i++)
+                    {
+                        var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
+                        var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3 + angleOffset * Random.NextDouble() - angleOffset / 2f);
+                        var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
+                        var nodeTransform = flightNode.Entity.Get<Transform>();
+                        var location = Vector3.Transform(Vector3.Zero, nodeTransform.WorldTransform * shipTransform.WorldTransform);
+                        var shell = Entity.EntityManager.Create();
+                        shell.Add(new Transform
+                        {
+                            Location = location + new Vector3((float)Random.NextDouble() * 0.3f, 0, (float)Random.NextDouble() * 0.3f)
+                        });
+
+                        var rotationMatrix = Matrix.CreateFromYawPitchRoll(rotation, 0, 0)
+                            * Matrix.CreateFromQuaternion(shipTransform.Rotation);
+
+                        shell.Add(
+                            new RocketProjectile(
+                                FlightShip.ShipGuid,
+                                FlightShip.Velocity,
+                                Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation)
+                            )
+                        );
+                    }
+                }
+
+                _bombardCooldown.Restart();
+            }
+        }
+
+
         public void RocketBlast()
         {
             if (!FlightShip.HasUpgrade<BlastRocketry>())
@@ -189,6 +240,7 @@ namespace EnterTheVoid.Flight
             _heavyweightCooldown.Tick(context.DeltaTime);
             _bubbleShieldCooldown.Tick(context.DeltaTime);
             _blastRocketCooldown.Tick(context.DeltaTime);
+            _bombardCooldown.Tick(context.DeltaTime);
         }
     }
 }

@@ -45,6 +45,10 @@ namespace EnterTheVoid.Flight
             {
                 WeaponCapability?.ShieldDeploy();
             }
+            if (KeyControls.HasBeenPressed(Keys.D2))
+            {
+                WeaponCapability?.BombardFire();
+            }
             if (KeyControls.HasBeenPressed(Keys.D6))
             {
                 WeaponCapability?.RocketBlast();

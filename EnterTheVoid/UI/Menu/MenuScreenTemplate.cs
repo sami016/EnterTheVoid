@@ -111,7 +111,7 @@ namespace EnterTheVoid.UI.Menu
                 4
             ));
             topology.SetSection(new Point(3, 1), new Section(
-                new ForcefieldShieldModule(),
+                new BombardModule(),
                 ConnectionLayouts.FullyConnected,
                 4
             ));
@@ -145,7 +145,7 @@ namespace EnterTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 1
             ));
-            topology.ApplyUpgrade(new BlastRocketry());
+            topology.ApplyUpgrade(new BombardOverload());
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
             orchestrator.CurrentPlanet = Planet.Earth;
             orchestrator.NextFlight();

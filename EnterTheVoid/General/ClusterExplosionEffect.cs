@@ -29,9 +29,9 @@ namespace EnterTheVoid.General
         public uint RenderOrder { get; } = 120;
         public bool AutoRender { get; } = true;
 
-        public float ScaleFactor { get; set; } = 2f;
-        public float DistanceScaleFactor { get; set; } = 5f;
-        public int Components { get; set; } = 5;
+        public float ScaleFactor { get; set; } = 1f;
+        public float DistanceScaleFactor { get; set; } = 3f;
+        public int Components { get; set; } = 3;
 
 
         private float _scale = 0.01f;

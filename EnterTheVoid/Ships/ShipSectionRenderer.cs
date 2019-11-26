@@ -27,6 +27,9 @@ namespace EnterTheVoid.Ships
         private Model _connectorLargeModel;
         private Model _connectorSmallModel;
         private Model _turret1Model;
+        private Model _turret2aModel;
+        private Model _turret2bModel;
+        private Model _turret2cModel;
         private Model _powerModule;
         private Model _biosphereModel;
         private Model _tankModel;
@@ -39,6 +42,7 @@ namespace EnterTheVoid.Ships
         private SpriteFont _d;
 
         private static float turretOffsetRotation = (float)(Math.PI / 6);
+        private static float rocketTurretOffsetRotation = (float)(Math.PI / 6 + Math.PI);
 
         private static float rocketOffsetRotation = (float)(Math.PI / 6 + Math.PI);
         private static float rocketTrailOffsetRotation = (float)(Math.PI / 6);
@@ -60,6 +64,18 @@ namespace EnterTheVoid.Ships
             _turret1Model = Content.Load<Model>("Models/turret1");
             _turret1Model.EnableDefaultLighting();
             _turret1Model.SetDiffuseColour(Color.Purple);
+
+            _turret2aModel = Content.Load<Model>("Models/turret2a");
+            _turret2aModel.EnableDefaultLighting();
+            _turret2aModel.SetDiffuseColour(Color.LightSteelBlue);
+
+            _turret2bModel = Content.Load<Model>("Models/turret2b");
+            _turret2bModel.EnableDefaultLighting();
+            _turret2bModel.SetDiffuseColour(Color.Purple);
+
+            _turret2cModel = Content.Load<Model>("Models/turret2c");
+            _turret2cModel.EnableDefaultLighting();
+            _turret2cModel.SetDiffuseColour(Color.Red);
 
             _powerModule = Content.Load<Model>("Models/power");
             _powerModule.EnableDefaultLighting();
@@ -134,6 +150,13 @@ namespace EnterTheVoid.Ships
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - turretOffsetRotation);
                 _turret1Model.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+            }
+            if (section.Module is BombardModule)
+            {
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6) - rocketTurretOffsetRotation);
+                _turret2aModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+                _turret2bModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+                _turret2cModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is ResearchCenterModule)
             {
