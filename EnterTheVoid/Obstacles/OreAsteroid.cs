@@ -12,12 +12,12 @@ using System.Text;
 
 namespace EnterTheVoid.Obstacles
 {
-    public class FuelAsteroid : AsteroidBase
+    public class OreAsteroid : AsteroidBase
     {
         private static Model _asteroid1;
 
 
-        public FuelAsteroid()
+        public OreAsteroid()
         {
             Damage = 20;
             Health = 40;
@@ -48,7 +48,7 @@ namespace EnterTheVoid.Obstacles
             {
                 Location = Transform.Location
             });
-            fuelEnt.Add(new Fuel());
+            fuelEnt.Add(new Ore());
         }
     }
 }

@@ -78,6 +78,15 @@ namespace EnterTheVoid.UI.Builder
                 {
                     Position = new Rectangle(800, 60, 0, 0),
                     Font = "Default"
+                },
+                new ButtonTemplate("P", Keys.P)
+                {
+                    Position = new Rectangle(950, 50, 40, 40)
+                },
+                new Text("Skip")
+                {
+                    Position = new Rectangle(1000, 60, 0, 0),
+                    Font = "Default"
                 }
             );
         }

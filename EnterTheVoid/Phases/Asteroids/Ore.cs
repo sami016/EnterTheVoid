@@ -19,7 +19,7 @@ using System.Text;
 
 namespace EnterTheVoid.Phases.Asteroids
 {
-    public class Fuel : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
+    public class Ore : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider, IVelocity, IObstacle
     {
         private static Random Random = new Random();
         private static Model _fuelItemModel;
@@ -74,7 +74,7 @@ namespace EnterTheVoid.Phases.Asteroids
 
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
-            ship.AddFuel(1);
+            ship.AddEnergy(1);
             Entity.Delete();
         }
 

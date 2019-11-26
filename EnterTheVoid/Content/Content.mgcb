@@ -298,8 +298,8 @@
 /processorParam:TextureFormat=Color
 /build:Models/Fuel.png
 
-#begin Models/fuelItem.fbx
-/importer:FbxImporter
+#begin Models/fuelitem.obj
+/importer:OpenAssetImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
@@ -315,7 +315,7 @@
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
-/build:Models/fuelItem.fbx
+/build:Models/fuelitem.obj
 
 #begin Models/ice.fbx
 /importer:FbxImporter

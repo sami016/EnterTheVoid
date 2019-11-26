@@ -31,18 +31,6 @@ namespace EnterTheVoid.UI.Flight
             return new Pane(
             new Text(_flightShip.Energy.ToString())
             {
-                Position = new Rectangle(30, 20, 0, 0)
-            },
-            new Pane()
-            {
-                Position = new Rectangle(60, 0, 50, 50),
-                Background = new ImageBackgroundStyling
-                {
-                    ImageResource = "Power"
-                }
-            },
-            new Text(_flightShip.Fuel.ToString())
-            {
                 Position = new Rectangle(30, 100, 0, 0)
             },
             new Pane()
@@ -50,9 +38,21 @@ namespace EnterTheVoid.UI.Flight
                 Position = new Rectangle(60, 80, 50, 50),
                 Background = new ImageBackgroundStyling
                 {
-                    ImageResource = "Fuel"
+                    ImageResource = "Power"
                 }
             },
+            //new Text(_flightShip.Fuel.ToString())
+            //{
+            //    Position = new Rectangle(30, 100, 0, 0)
+            //},
+            //new Pane()
+            //{
+            //    Position = new Rectangle(60, 80, 50, 50),
+            //    Background = new ImageBackgroundStyling
+            //    {
+            //        ImageResource = "Fuel"
+            //    }
+            //},
             new Text("Hull Integity")
             {
                 Position = new Rectangle(0, 200, 0, 0)

@@ -114,11 +114,11 @@ namespace EnterTheVoid.Ships.Generation
         public static ModuleDistribution Distribution { get; } = new ModuleDistribution()
             .Add(1f, typeof(ResearchCenterModule), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(BlasterModule), _gunConnectionLayoutDistribution)
-            .Add(0.5f, typeof(FuelModule), _standardConnectionLayoutDistribution)
+            //.Add(0.5f, typeof(FuelModule), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(RocketModule), _rocketConnectionLayoutDistribution)
             .Add(0.5f, typeof(RotaryEngine), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(EmptyModule), _highConnectivityConnectionLayoutDistribution)
-            .Add(0.6f, typeof(ForcefieldShieldModule), _standardConnectionLayoutDistribution);
-            //Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
+            .Add(0.6f, typeof(ForcefieldShieldModule), _standardConnectionLayoutDistribution)
+            .Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
     }
 }
