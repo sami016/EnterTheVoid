@@ -6,7 +6,7 @@ using EnterTheVoid.UI.Menu;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using EnterTheVoid.Menu;
+using EnterTheVoid.General;
 using Microsoft.Xna.Framework;
 using Forge.Core.Rendering.Cameras;
 using EnterTheVoid.Constants;

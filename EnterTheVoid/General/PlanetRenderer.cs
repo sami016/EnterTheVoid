@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnterTheVoid.Menu
+namespace EnterTheVoid.General
 {
     public class PlanetRenderer : Component, IInit, IRenderable, ITick
     {

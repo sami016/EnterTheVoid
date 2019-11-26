@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using EnterTheVoid.Menu;
+using EnterTheVoid.General;
 using EnterTheVoid.Upgrades;
 
 namespace EnterTheVoid.UI.Menu

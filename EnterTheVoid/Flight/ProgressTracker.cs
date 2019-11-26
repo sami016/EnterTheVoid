@@ -1,5 +1,5 @@
 ﻿using EnterTheVoid.Constants;
-using EnterTheVoid.Menu;
+using EnterTheVoid.General;
 using EnterTheVoid.Orchestration;
 using Forge.Core.Components;
 using Forge.Core.Interfaces;

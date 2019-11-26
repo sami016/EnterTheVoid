@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid.Projectiles
 {
@@ -51,5 +52,14 @@ namespace EnterTheVoid.Projectiles
             _projectileModel.Draw(Matrix.CreateScale(0.4f) * Transform.WorldTransform, camera.View, camera.Projection);
         }
 
+        public override void EntityDidHit(Entity entity)
+        {
+            base.EntityDidHit(entity);
+
+
+            var explosionEnt = Entity.EntityManager.Create();
+            explosionEnt.Add(new Transform() { Location = Transform.Location });
+            explosionEnt.Add(new ClusterExplosionEffect());
+        }
     }
 }
