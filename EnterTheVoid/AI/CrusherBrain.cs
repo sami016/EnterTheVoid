@@ -11,11 +11,12 @@ using Microsoft.Xna.Framework;
 
 namespace EnterTheVoid.AI
 {
-    public class StormWallBrain : Brain
+    public class CrusherBrain : Brain
     {
-        private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
-        private CompletionTimer _alternateTimer = new CompletionTimer(TimeSpan.FromSeconds(7));
-        private CompletionTimer _speedAlternateTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
+        private readonly CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
+        private readonly CompletionTimer _alternateTimer = new CompletionTimer(TimeSpan.FromSeconds(7));
+        private readonly CompletionTimer _speedAlternateTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
+        private readonly CompletionTimer _shieldTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
 
         private SwarmBehaviour _positionChaserBehaviour;
         private DeathRunBehaviour _deathRunBehaviour;
@@ -26,7 +27,7 @@ namespace EnterTheVoid.AI
 
         public bool Active { get; set; } = false;
 
-        public StormWallBrain(FlightShip playerShip, Vector3 playerOffset)
+        public CrusherBrain(FlightShip playerShip, Vector3 playerOffset)
         {
             _playerShip = playerShip;
             _playerOffset = playerOffset;
@@ -62,8 +63,8 @@ namespace EnterTheVoid.AI
             {
                 _speedAlternateTimer.Restart();
                 _speedMode = !_speedMode;
-                _positionChaserBehaviour.CatchupSpeed = _speedMode ? 0f : 2f;
-                _speedAlternateTimer.ChangeTarget(_speedMode ? TimeSpan.FromSeconds(10) : TimeSpan.FromSeconds(1));
+                //_positionChaserBehaviour.CatchupSpeed = _speedMode ? 0f : 2f;
+                _speedAlternateTimer.ChangeTarget(_speedMode ? TimeSpan.FromSeconds(9999) : TimeSpan.FromSeconds(1));
             }
 
             _alternateTimer.Tick(context.DeltaTime);
@@ -78,14 +79,17 @@ namespace EnterTheVoid.AI
             {
                 if (_shootMode)
                 {
-                    WeaponCapability.BombardFire();
-                } else
-                {
                     WeaponCapability.StandardFire();
                 }
                 _fireTimer.Restart();
             }
-        
+
+            _shieldTimer.Tick(context.DeltaTime);
+            if (_shieldTimer.Completed)
+            {
+                _playerShip.AddEnergy(100);
+                WeaponCapability.ShieldDeploy();
+            }
         }
     }
 }

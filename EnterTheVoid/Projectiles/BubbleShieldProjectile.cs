@@ -82,6 +82,10 @@ namespace EnterTheVoid.Projectiles
             if (entity.Has<ProjectileBase>())
             {
                 var projectile = entity.Get<ProjectileBase>();
+                if (projectile.ShipGuid == ShipGuid)
+                {
+                    return;
+                }
                 var damage = (int)projectile.GetDamage(Entity, this);
                 this.Update(() =>
                 {
@@ -96,6 +100,11 @@ namespace EnterTheVoid.Projectiles
             }
 
             base.EntityDidHit(entity);
+        }
+
+
+        public override void OnHit(Entity projectileEntity, ProjectileBase projectile)
+        {
         }
     }
 }

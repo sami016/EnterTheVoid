@@ -7,10 +7,11 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Forge.Core.Utilities;
 
 namespace EnterTheVoid.AI
 {
-    public class PositionChaserBehaviour
+    public class SwarmBehaviour
     {
         private readonly FlightShip _ship;
         private readonly Transform _transform;
@@ -18,7 +19,7 @@ namespace EnterTheVoid.AI
         public Vector3 Target { get; set; }
         public float CatchupSpeed { get; set; } = 1f;
 
-        public PositionChaserBehaviour(FlightShip ship, Transform transform, Vector3 target)
+        public SwarmBehaviour(FlightShip ship, Transform transform, Vector3 target)
         {
             _ship = ship;
             _transform = transform;

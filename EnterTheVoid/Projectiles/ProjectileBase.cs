@@ -158,9 +158,8 @@ namespace EnterTheVoid.Projectiles
         {
         }
 
-        public void OnHit(Entity projectileEntity, ProjectileBase projectile)
+        public virtual void OnHit(Entity projectileEntity, ProjectileBase projectile)
         {
-            Entity.Delete();
         }
     }
 }

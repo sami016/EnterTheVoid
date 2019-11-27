@@ -35,7 +35,6 @@ namespace EnterTheVoid.Flight
 
         [Inject] CameraManager CameraManager { get; set; }
         [Inject] Transform Transform { get; set; }
-        [Inject] StaticBody Body { get; set; }
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
         public Vector3 GloalLocation => Transform.GlobalLocation;

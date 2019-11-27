@@ -43,7 +43,7 @@ namespace EnterTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                () => new StormWallBossPhase(),
+                () => new SwarmPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new DroneStrikePhase(2),
                 () => new TransmissionPhase(),
@@ -76,7 +76,7 @@ namespace EnterTheVoid.Orchestration
                 () => new TransmissionPhase(),
                 () => new BanditPhase(2),
                 () => new AsteroidPhase(50, AsteroidDistributions.StandardAsteroidDistribution),
-                () => new CrusherBossPhase(),
+                () => new SwarmPhase(),
                 () => new SatellitePhase(Planet.Uranus)
             );
             AddPlanet(
