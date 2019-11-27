@@ -17,7 +17,7 @@ namespace EnterTheVoid.AI
         private readonly FlightShip _ship;
         private readonly FlightShip _playerShip;
         private readonly PositionChaserBehaviour _positionChaserBehaviour;
-        private readonly CompletionTimer _despawnTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
+        private readonly CompletionTimer _despawnTimer = new CompletionTimer(TimeSpan.FromSeconds(2));
 
         public bool Running { get; private set; } = false;
 
