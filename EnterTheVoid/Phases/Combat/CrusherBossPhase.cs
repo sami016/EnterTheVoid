@@ -15,7 +15,7 @@ using Forge.Core;
 
 namespace EnterTheVoid.Phases.Combat
 {
-    public class StormWallBossPhase : Phase
+    public class CrusherBossPhase : Phase
     {
         private IList<Entity> _enemies = new List<Entity>();
         private IList<StormWallBrain> _enemyBrains = new List<StormWallBrain>();
@@ -29,10 +29,10 @@ namespace EnterTheVoid.Phases.Combat
 
         //FlightCameraControl _camera;
 
-        public StormWallBossPhase()
+        public CrusherBossPhase()
         {
-            Title = "\"Storm Wall\"";
-            Description = "Escape the Storm Wall.";
+            Title = "\"Crusher\"";
+            Description = "Escape from the crusher.";
             CompleteMessage = "Escape complete.";
             Duration = null;
         }

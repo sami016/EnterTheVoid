@@ -24,7 +24,7 @@ namespace EnterTheVoid.Phases.Combat
 
         //FlightCameraControl _camera;
 
-        public BanditPhase()
+        public BanditPhase(int difficulty)
         {
             Title = "Bandit Vessel Inbound";
             Description = "Combat warning. Fend off incoming bandits. Survive 45 seconds.";

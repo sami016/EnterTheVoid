@@ -45,8 +45,9 @@ namespace EnterTheVoid.Orchestration
                 Planet.Earth,
                 () => new StormWallBossPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new DroneStrikePhase(2),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(1),
+                () => new BanditPhase(0),
                 () => new SatellitePhase(Planet.Mars)
                 //() => new DroneStrikePhase(),
                 //() => new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
@@ -56,14 +57,15 @@ namespace EnterTheVoid.Orchestration
            AddPlanet(
                 Planet.Mars,
                 () => new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new DroneStrikePhase(3),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(2),
+                () => new StormWallBossPhase(),
                 () => new SatellitePhase(Planet.Jupiter)
             );
             AddPlanet(
                 Planet.Jupiter,
                 () => new IceAsteroidPhase(20, AsteroidDistributions.IceAsteroidDistribution),
-                () => new DroneStrikePhase(3),
+                () => new BanditPhase(1),
                 () => new TransmissionPhase(),
                 () => new AsteroidPhase(30, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Saturn)
@@ -72,8 +74,9 @@ namespace EnterTheVoid.Orchestration
                 Planet.Saturn,
                 () => new IceAsteroidPhase(40, AsteroidDistributions.IceAsteroidDistribution),
                 () => new TransmissionPhase(),
-                () => new DroneStrikePhase(4),
+                () => new BanditPhase(2),
                 () => new AsteroidPhase(50, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new CrusherBossPhase(),
                 () => new SatellitePhase(Planet.Uranus)
             );
             AddPlanet(
@@ -90,7 +93,8 @@ namespace EnterTheVoid.Orchestration
                 () => new TransmissionPhase(),
                 () => new DroneStrikePhase(6),
                 () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
-                // TODO - end game here.
+                () => new GalactusBossPhase(),
+                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SatellitePhase(Planet.Pluto)
             );
         }

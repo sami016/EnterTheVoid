@@ -15,7 +15,7 @@ using Forge.Core;
 
 namespace EnterTheVoid.Phases.Combat
 {
-    public class StormWallBossPhase : Phase
+    public class GalactusBossPhase : Phase
     {
         private IList<Entity> _enemies = new List<Entity>();
         private IList<StormWallBrain> _enemyBrains = new List<StormWallBrain>();
@@ -29,11 +29,11 @@ namespace EnterTheVoid.Phases.Combat
 
         //FlightCameraControl _camera;
 
-        public StormWallBossPhase()
+        public GalactusBossPhase()
         {
-            Title = "\"Storm Wall\"";
-            Description = "Escape the Storm Wall.";
-            CompleteMessage = "Escape complete.";
+            Title = "\"Galactus\"";
+            Description = "Destroy enemy warship.";
+            CompleteMessage = "Galactus is no more.";
             Duration = null;
         }
 
