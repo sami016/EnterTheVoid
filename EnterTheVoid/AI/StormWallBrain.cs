@@ -18,11 +18,13 @@ namespace EnterTheVoid.AI
         private CompletionTimer _speedAlternateTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
 
         private PositionChaserBehaviour _positionChaserBehaviour;
-
+        private DeathRunBehaviour _deathRunBehaviour;
         private bool _shootMode;
         private bool _speedMode;
         private readonly FlightShip _playerShip;
         private readonly Vector3 _playerOffset;
+
+        public bool Active { get; set; } = false;
 
         public StormWallBrain(FlightShip playerShip, Vector3 playerOffset)
         {
@@ -36,11 +38,23 @@ namespace EnterTheVoid.AI
             {
                CatchupSpeed = 2f 
             };
+            _deathRunBehaviour = new DeathRunBehaviour(FlightShip, _playerShip, _positionChaserBehaviour)
+            {
+                SectionLowBound = 10
+            };
         }
 
         public override void Tick(TickContext context)
         {
-            _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + _playerOffset;
+            if (!Active)
+            {
+                return;
+            }
+            _deathRunBehaviour.Tick(context);
+            if (!_deathRunBehaviour.Running)
+            {
+                _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + _playerOffset;
+            }
             _positionChaserBehaviour.Tick(context);
 
             _speedAlternateTimer.Tick(context.DeltaTime);

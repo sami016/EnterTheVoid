@@ -24,7 +24,7 @@ namespace EnterTheVoid.Flight
         public Vector3 Velocity { get; set; } = Vector3.Zero;
         public float Rotation { get; set; } = 0f;
         public float RotationalSpeed { get; set; } = 0f;
-        [Inject] Transform Transform { get; set; }
+        [Inject] public Transform Transform { get; set; }
         public int Health => _topology.Health;
         public int MaxHealth => _topology.MaxHealth;
 
