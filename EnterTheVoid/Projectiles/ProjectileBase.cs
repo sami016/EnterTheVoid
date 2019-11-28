@@ -66,6 +66,11 @@ namespace EnterTheVoid.Projectiles
                 return;
             }
 
+            if (FlightSpaces == null)
+            {
+                return;
+            }
+
             var location = Transform.Location;
             // Get every obstacle within 5 units of the node.
             var obstacle = FlightSpaces.ObstacleSpace.GetNearby(location, 5f);
@@ -146,7 +151,7 @@ namespace EnterTheVoid.Projectiles
 
         public override void Dispose()
         {
-            FlightSpaces.ProjectileSpace.Remove(Entity);
+            FlightSpaces?.ProjectileSpace?.Remove(Entity);
         }
 
         public virtual void EntityDidHit(Entity entity)

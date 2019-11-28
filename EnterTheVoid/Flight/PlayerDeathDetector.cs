@@ -27,6 +27,7 @@ namespace EnterTheVoid.Flight
                 if (_completionTimer.Completed)
                 {
                     FadeTransition.StartTransition(() => SceneManager.SetScene(new DeathScene()));
+                    _completionTimer.Restart();
                 }
             }
         }

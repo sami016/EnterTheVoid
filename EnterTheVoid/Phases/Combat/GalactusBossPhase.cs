@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using Forge.Core.Interfaces;
 using Forge.Core;
+using EnterTheVoid.Upgrades;
 
 namespace EnterTheVoid.Phases.Combat
 {
@@ -43,7 +44,7 @@ namespace EnterTheVoid.Phases.Combat
             {
                 for (var j=0; j<10; j++)
                 {
-                    if (j == 9)
+                    if (j == 8)
                     {
                         topology.SetSection(new Point(i, j), new Section(new RocketModule(), ConnectionLayouts.FullyConnected, i == 0 ? 0 : i == 9 ? 2 : 1));
                     }
@@ -58,12 +59,23 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(0, 0), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 4), new Section(new ResearchCenterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(3, 4), new Section(new ResearchCenterModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(4, 5), new Section(new ResearchCenterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(6, 7), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(8, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(3, 4), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(2, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 3), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 6), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(8, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(8, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(8, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 3), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 6), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
 
             topology.SetSection(new Point(1, 0), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 4));
             topology.SetSection(new Point(2, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
@@ -94,7 +106,10 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(0, 7), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(0, 8), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
             topology.SetSection(new Point(0, 9), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
-            //topology.ApplyUpgrade(new BlastRocketUpgrade)
+            topology.ApplyUpgrade(new BlastRocketry());
+            topology.ApplyUpgrade(new BombardOverload());
+            topology.ApplyUpgrade(new ShieldAmplification());
+            topology.ApplyUpgrade(new ShieldFortification());
 
             return topology;
         }
@@ -106,7 +121,7 @@ namespace EnterTheVoid.Phases.Combat
             _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 60f;
-            SpawnWave(new Vector3(0, 0, -8), 1, 0, true);
+            SpawnWave(new Vector3(0, 0, -20), 1, 0, true);
 
             var targetEnt = Entity.Create();
             _target = targetEnt.Add(new PhaseKillTarget(this, _enemies.Select(x => x.Get<FlightShip>()), 0));

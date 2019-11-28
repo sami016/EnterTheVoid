@@ -15,7 +15,7 @@ namespace EnterTheVoid.AI
     public class GalactusBrain : Brain
     {
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
-        private CompletionTimer _changeAimTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
+        private CompletionTimer _shieldDeployTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
         private CompletionTimer _alternateTimer = new CompletionTimer(TimeSpan.FromSeconds(7));
 
         private PositionChaserBehaviour _positionChaserBehaviour;
@@ -43,7 +43,7 @@ namespace EnterTheVoid.AI
             };
             _takeAimBehaviour = new TakeAimBehaviour(_playerShip, FlightShip, Transform)
             {
-                RotationRate = 0.001f
+                RotationRate = 0.004f
             };
         }
 
@@ -72,6 +72,13 @@ namespace EnterTheVoid.AI
             //    _takeAimBehaviour.SetRandomAimOffset((float)Math.PI/3);
             //}
 
+            _shieldDeployTimer.Tick(context.DeltaTime);
+            if (_shieldDeployTimer.Completed)
+            {
+                WeaponCapability.ShieldDeploy();
+                _shieldDeployTimer.Restart();
+            }
+
             _alternateTimer.Tick(context.DeltaTime);
             if (_alternateTimer.Completed)
             {
@@ -93,7 +100,6 @@ namespace EnterTheVoid.AI
                 _fireTimer.Restart();
             }
 
-            WeaponCapability.ShieldDeploy();
             WeaponCapability.RocketBlast();
 
             FlightShip.Update(() =>
