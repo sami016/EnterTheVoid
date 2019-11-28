@@ -162,6 +162,10 @@ namespace EnterTheVoid.Flight
                 var shipTransform = Transform;
                 foreach (var gun in guns)
                 {
+                    if (!FlightShip.TryTakeEnergy(1))
+                    {
+                        return;
+                    }
                     for (var i = 0; i < numRockets; i++)
                     {
                         var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);

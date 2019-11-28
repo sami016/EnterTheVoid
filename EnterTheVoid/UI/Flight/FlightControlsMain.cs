@@ -41,6 +41,35 @@ namespace EnterTheVoid.UI.Flight
                     Font = "Default"
                 },
 
+                new ButtonTemplate("1", Keys.D1)
+                {
+                    Position = new Rectangle(550, 50, 40, 40)
+                },
+                new Text("Shields")
+                {
+                    Position = new Rectangle(600, 60, 0, 0),
+                    Font = "Default"
+                },
+                new ButtonTemplate("2", Keys.D2)
+                {
+                    Position = new Rectangle(750, 50, 40, 40)
+                },
+                new Text("Bombard")
+                {
+                    Position = new Rectangle(800, 60, 0, 0),
+                    Font = "Default"
+                },
+                new ButtonTemplate("6", Keys.D6)
+                {
+                    Position = new Rectangle(950, 50, 40, 40)
+                },
+                new Text("Blast Rocket")
+                {
+                    Position = new Rectangle(1000, 60, 0, 0),
+                    Font = "Default"
+                },
+
+
                 new Text("Controls")
                 {
                     Position = new Rectangle(20, -10, 0, 0),
