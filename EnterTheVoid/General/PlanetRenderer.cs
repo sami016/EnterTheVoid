@@ -25,7 +25,7 @@ namespace EnterTheVoid.General
         private Model _neptuneModel;
         private Model _plutoModel;
 
-        public uint RenderOrder { get; } = 200;
+        public uint RenderOrder { get; set; } = 200;
 
         public bool AutoRender { get; set; } = true;
 
@@ -37,6 +37,7 @@ namespace EnterTheVoid.General
 
         private Matrix _transform = Matrix.CreateScale(0.2f) * Matrix.CreateRotationZ(0.5f);
 
+        public float Scale { get; set; } = 1f;
         public void Initialise()
         {
             //_effect = Content.Load<Effect>("Smooth");
@@ -94,7 +95,7 @@ namespace EnterTheVoid.General
                 context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
                 var view = context.View ?? (Camera ?? CameraManager.ActiveCamera).View;
                 var projection = context.Projection ?? (Camera ?? CameraManager.ActiveCamera).Projection;
-                model.Draw(transform, view, projection);
+                model.Draw(Matrix.CreateScale(Scale) * transform, view, projection);
             }
         }
 

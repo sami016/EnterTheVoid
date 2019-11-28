@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using EnterTheVoid.Flight;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid.Scenes
 {
@@ -54,6 +55,20 @@ namespace EnterTheVoid.Scenes
             CameraManager.ActiveCamera.LookAt(focusLocation);
             CameraManager.ActiveCamera.Recalculate();
             camera.Add(new BuildCameraControl());
+
+            // Background planet.
+            var planetEnt = Create();
+            planetEnt.Add(new Transform()
+            {
+                Location = cameraPos.Location + CameraManager.ActiveCamera.Forwards * 100 + Vector3.Forward * 50
+            });
+            var planetRenderer = planetEnt.Add(new PlanetRenderer()
+            {
+                AutoRender = true,
+                Planet = _planet,
+                Scale = 80f,
+                RenderOrder = 20
+            });
 
             var floor = Create();
             floor.Add(new BuildFloor(_shipTopology));

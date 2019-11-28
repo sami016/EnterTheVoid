@@ -91,12 +91,12 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Neptune,
-                //() => new IceAsteroidPhase(90, AsteroidDistributions.IceAsteroidDistribution),
-                () => new TransmissionPhase()//,
-                //() => new DroneStrikePhase(6),
-                //() => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
-                //() => new GalactusBossPhase(),
-                //() => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution)
+                () => new IceAsteroidPhase(90, AsteroidDistributions.IceAsteroidDistribution),
+                () => new TransmissionPhase(),
+                () => new DroneStrikePhase(6),
+                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
+                () => new GalactusBossPhase(),
+                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution)
             );
         }
 

@@ -16,13 +16,18 @@ namespace EnterTheVoid.Flight
     {
         private Texture2D _starCluster;
         public const float scale = 2;
+        private readonly Transform _cameraTransform;
 
         public uint RenderOrder { get; } = 0;
 
         public bool AutoRender { get; } = true;
 
         [Inject] ContentManager Content { get; set; }
-        [Inject] CameraManager CameraManager { get; set; }
+
+        public SpaceBackgroundScroll(Transform cameraTransform = null)
+        {
+            _cameraTransform = cameraTransform;
+        }
 
         public void Initialise()
         {
@@ -31,7 +36,7 @@ namespace EnterTheVoid.Flight
 
         public void Render(RenderContext context)
         {
-            var cameraPosition = CameraManager.ActiveCamera?.Entity?.Get<Transform>()?.Location ?? Vector3.Zero;
+            var cameraPosition = _cameraTransform?.Location ?? Vector3.Zero;
             var cameraX = (-cameraPosition.X * 25) % _starCluster.Width;
             var cameraY = (-cameraPosition.Z * 25) % _starCluster.Height;
             for (var i=-1; i<=1; i++)

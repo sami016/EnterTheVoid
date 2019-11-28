@@ -40,8 +40,6 @@ namespace EnterTheVoid.Scenes
 
         public override void Initialise()
         {
-            AddSingleton(new SpaceBackgroundScroll());
-
             var camera = Create();
             var cameraPos = camera.Add(new Transform()
             {
@@ -50,6 +48,9 @@ namespace EnterTheVoid.Scenes
             //CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
             CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(40)));
             CameraManager.ActiveCamera.Recalculate();
+
+
+            AddSingleton(new SpaceBackgroundScroll(cameraPos));
 
             AddSingleton(new FlightSpaces());
 
