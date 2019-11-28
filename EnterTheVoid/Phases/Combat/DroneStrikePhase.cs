@@ -21,6 +21,7 @@ namespace EnterTheVoid.Phases.Combat
 
         private FlightCameraControl _camera;
         private float _oldCameraScale;
+        private PhaseKillTarget _target;
         private readonly int _numDrones;
 
         //FlightCameraControl _camera;
@@ -54,6 +55,11 @@ namespace EnterTheVoid.Phases.Combat
             if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 30);
             if (_numDrones >= 5) SpawnDrone(new Vector3(10, 0, 5), 3, 40);
             if (_numDrones >= 5) SpawnDrone(new Vector3(0, 0, 0), 3, 60);
+
+
+            var targetEnt = Entity.Create();
+            _target = targetEnt.Add(new PhaseKillTarget(this, _droneEntities.Select(x => x.Get<FlightShip>()), 0));
+            targetEnt.Add(new PhaseKillTargetRenderable());
         }
 
         private void SpawnDrone(Vector3 playerOffset, float rotationRadius, float spawnDistace)
@@ -77,6 +83,7 @@ namespace EnterTheVoid.Phases.Combat
             {
                 drone.Delete();
             }
+            _target.Entity.Delete();
         }
     }
 }
