@@ -1,4 +1,5 @@
-﻿using Forge.Core;
+﻿using EnterTheVoid.Orchestration;
+using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Engine;
 using Forge.Core.Interfaces;
@@ -36,6 +37,8 @@ namespace EnterTheVoid.Phases
         public int PhaseIndex { get; set; } = -1;
         public int NumberOfPhases => _phases.Count();
 
+        [Inject] Orchestrator Orchestrator { get; set; }
+
         public PhaseManager(IEnumerable<Phase> phases)
         {
             _phases = phases;
@@ -48,12 +51,17 @@ namespace EnterTheVoid.Phases
 
         private void StartPhase(int phaseIndex)
         {
+            if (phaseIndex >= NumberOfPhases)
+            {
+                Orchestrator.PhasesComplete();
+                return;
+            }
             this.Update(() =>
             {
                 PhaseIndex = phaseIndex % NumberOfPhases;
                 State = PhaseManagerState.Starting;
                 CurrentPhase = _phases.ElementAt(PhaseIndex);
-                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
+                _startTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
 #if DEBUG
                 _startTimer = new CompletionTimer(TimeSpan.FromSeconds(1));
 #endif
@@ -64,7 +72,7 @@ namespace EnterTheVoid.Phases
                 {
                     _phaseTimer = null;
                 }
-                _endedTimer = new CompletionTimer(TimeSpan.FromSeconds(6));
+                _endedTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
             });
         }
 
@@ -93,7 +101,6 @@ namespace EnterTheVoid.Phases
                     CurrentPhase.Stop();
                     _endedTimer.Restart();
                     State = PhaseManagerState.Ended;
-                    //TODO: advanced.
                 }
             }
             else if (State == PhaseManagerState.Ended)

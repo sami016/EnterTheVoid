@@ -89,12 +89,12 @@ namespace EnterTheVoid.Orchestration
             );
             AddPlanet(
                 Planet.Neptune,
-                () => new IceAsteroidPhase(90, AsteroidDistributions.IceAsteroidDistribution),
-                () => new TransmissionPhase(),
-                () => new DroneStrikePhase(6),
-                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
-                () => new GalactusBossPhase(),
-                () => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution)
+                //() => new IceAsteroidPhase(90, AsteroidDistributions.IceAsteroidDistribution),
+                () => new TransmissionPhase()//,
+                //() => new DroneStrikePhase(6),
+                //() => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution),
+                //() => new GalactusBossPhase(),
+                //() => new AsteroidPhase(100, AsteroidDistributions.StandardAsteroidDistribution)
             );
         }
 
@@ -111,8 +111,14 @@ namespace EnterTheVoid.Orchestration
                 SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet]));
             } else
             {
-                SceneManager.SetScene(new MenuScene());
+                SceneManager.SetScene(new WinScene());
             }
+        }
+
+        public void PhasesComplete()
+        {
+            CurrentPlanet++;
+            NextFlight();
         }
 
         public void Quit()

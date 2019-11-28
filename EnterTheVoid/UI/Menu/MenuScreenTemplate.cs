@@ -147,7 +147,7 @@ namespace EnterTheVoid.UI.Menu
             ));
             topology.ApplyUpgrade(new BlastRocketry());
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
-            orchestrator.CurrentPlanet = Planet.Earth;
+            orchestrator.CurrentPlanet = Planet.Neptune;
             orchestrator.NextFlight();
 
             //_menuScene.SetScene(new FlightScene(topology));
