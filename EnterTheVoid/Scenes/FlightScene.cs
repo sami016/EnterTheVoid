@@ -59,6 +59,7 @@ namespace EnterTheVoid.Scenes
             shipEnt.Add(new RocketControls());
             shipEnt.Add(new CombatControls());
             shipEnt.Add(new ShipVelocityLimiter());
+            shipEnt.Add(new PlayerDeathDetector());
 
             camera.Add(new FlightCameraControl(shipEnt));
 

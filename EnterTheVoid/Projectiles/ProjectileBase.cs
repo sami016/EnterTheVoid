@@ -54,7 +54,7 @@ namespace EnterTheVoid.Projectiles
                 //_projectileModel.EnableDefaultLighting();
                 _projectileModel.SetDiffuseColour(Color.White);
             }
-            FlightSpaces.ProjectileSpace.Add(Entity);
+            FlightSpaces?.ProjectileSpace?.Add(Entity);
         }
 
         public void Tick(TickContext context)

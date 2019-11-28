@@ -16,6 +16,7 @@ namespace EnterTheVoid.General
 {
     public class PlanetRenderer : Component, IInit, IRenderable, ITick
     {
+        private Effect _effect;
         private Model _earthModel;
         private Model _marsModel;
         private Model _juptierModel;
@@ -38,6 +39,8 @@ namespace EnterTheVoid.General
 
         public void Initialise()
         {
+            //_effect = Content.Load<Effect>("Smooth");
+
             _earthModel = Content.Load<Model>("Models/earth");
             _earthModel.EnableDefaultLighting();
             _marsModel = Content.Load<Model>("Models/mars");

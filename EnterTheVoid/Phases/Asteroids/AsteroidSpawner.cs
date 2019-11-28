@@ -46,6 +46,7 @@ namespace EnterTheVoid.Phases.Asteroids
         public void Initialise()
         {
             _flightShipTransform = FlightShip.Entity.Get<Transform>();
+            _lastZ = _flightShipTransform.Location.Z;
         }
 
         public void Tick(TickContext context)
