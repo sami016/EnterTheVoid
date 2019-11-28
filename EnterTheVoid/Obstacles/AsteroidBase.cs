@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid.Obstacles
 {
@@ -67,6 +68,10 @@ namespace EnterTheVoid.Obstacles
         {
             ship.Damage(gridLocation, Damage);
             Entity.Delete();
+
+            var explosionEnt = Entity.EntityManager.Create();
+            explosionEnt.Add(new Transform() { Location = Transform.Location });
+            explosionEnt.Add(new ClusterExplosionEffect());
         }
 
         public virtual void OnHit(Entity projectileEntity, ProjectileBase projectile)

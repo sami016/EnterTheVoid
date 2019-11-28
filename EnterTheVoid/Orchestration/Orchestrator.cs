@@ -43,7 +43,6 @@ namespace EnterTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                () => new SwarmPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new SwarmPhase(),
                 () => new TransmissionPhase(),
