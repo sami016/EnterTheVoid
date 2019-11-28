@@ -11,7 +11,7 @@ using Forge.Core.Utilities;
 
 namespace EnterTheVoid.AI
 {
-    public class SwarmBehaviour
+    public class PositionChaserBehaviour
     {
         private readonly FlightShip _ship;
         private readonly Transform _transform;
@@ -19,7 +19,7 @@ namespace EnterTheVoid.AI
         public Vector3 Target { get; set; }
         public float CatchupSpeed { get; set; } = 1f;
 
-        public SwarmBehaviour(FlightShip ship, Transform transform, Vector3 target)
+        public PositionChaserBehaviour(FlightShip ship, Transform transform, Vector3 target)
         {
             _ship = ship;
             _transform = transform;

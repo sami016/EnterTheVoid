@@ -31,15 +31,16 @@ namespace EnterTheVoid.UI.Flight
                 new ShipStats(_flightShip)
                 {
                     Position = new Rectangle(_graphicsDevice.Viewport.Width - 200, _graphicsDevice.Viewport.Height - 300, 200, 300)
-                },
-                new ModelView()
-                {
-                    Renderable = _progressTracker,
-                    Position = new Rectangle((int)(Vw * 20), (int)(Vh * 100 - 100), (int)(Vw * 60), 100),
-                    View = _progressTracker.View,
-                    Projection = Matrix.CreateOrthographic(10f, 1f, 0.001f, 1000f)
-                    //Projection = _progressTracker.Projection
                 }
+                //,
+                //new ModelView()
+                //{
+                //    Renderable = _progressTracker,
+                //    Position = new Rectangle((int)(Vw * 20), (int)(Vh * 100 - 100), (int)(Vw * 60), 100),
+                //    View = _progressTracker.View,
+                //    Projection = Matrix.CreateOrthographic(10f, 1f, 0.001f, 1000f)
+                //    //Projection = _progressTracker.Projection
+                //}
             )
             {
                 //Background = new ImageBackgroundStyling

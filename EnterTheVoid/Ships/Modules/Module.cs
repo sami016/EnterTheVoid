@@ -1,4 +1,6 @@
 ﻿using EnterTheVoid.Flight;
+using EnterTheVoid.General;
+using Forge.Core.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +20,14 @@ namespace EnterTheVoid.Ships.Modules
 
         public virtual void OnDestruction(FlightShip ship, FlightNode node)
         {
-
+            var explosionEnt = ship.Entity.EntityManager.Create();
+            explosionEnt.Add(new Transform() { Location = node.GlobalLocation });
+            explosionEnt.Add(new ClusterExplosionEffect()
+            {
+                DistanceScaleFactor = 3f,
+                ScaleFactor = 2f,
+                Components = 16
+            });
         }
     }
 }

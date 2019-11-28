@@ -45,7 +45,7 @@ namespace EnterTheVoid.Orchestration
                 Planet.Earth,
                 () => new SwarmPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
-                () => new DroneStrikePhase(2),
+                () => new SwarmPhase(),
                 () => new TransmissionPhase(),
                 () => new BanditPhase(0),
                 () => new SatellitePhase(Planet.Mars)

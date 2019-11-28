@@ -14,7 +14,34 @@ namespace EnterTheVoid.UI.Flight
         public override IElement Evaluate()
         {
             return new Pane(
-                new Text("Thrust")
+                new Pane()
+                {
+                    Position = new Rectangle(200, 50, 40, 40),
+                    Background = new ImageBackgroundStyling
+                    {
+                        ImageResource = "LeftMouse"
+                    }
+                },
+                new Text("Light Fire")
+                {
+                    Position = new Rectangle(250, 60, 0, 0),
+                    Font = "Default"
+                },
+                new Pane()
+                {
+                    Position = new Rectangle(350, 50, 40, 40),
+                    Background = new ImageBackgroundStyling
+                    {
+                        ImageResource = "RightMouse"
+                    }
+                },
+                new Text("Heavy Fire")
+                {
+                    Position = new Rectangle(400, 60, 0, 0),
+                    Font = "Default"
+                },
+
+                new Text("Controls")
                 {
                     Position = new Rectangle(20, -10, 0, 0),
                     Font = "Title"

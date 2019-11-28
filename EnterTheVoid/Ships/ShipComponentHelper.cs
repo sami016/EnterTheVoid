@@ -13,6 +13,7 @@ namespace EnterTheVoid.Ships
             var flightShip = entity.Add(new FlightShip(topology));
             entity.Add(new WeaponCapability());
             entity.Add(new RocketCapability());
+            entity.Add(new ShipVelocityLimiter());
             return flightShip;
         }
     }

@@ -16,7 +16,7 @@ namespace EnterTheVoid.AI
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
         private CompletionTimer _changeAimTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
 
-        private SwarmBehaviour _positionChaserBehaviour;
+        private PositionChaserBehaviour _positionChaserBehaviour;
         private TakeAimBehaviour _takeAimBehaviour;
 
         private bool _oscillateMode = false;
@@ -35,7 +35,7 @@ namespace EnterTheVoid.AI
 
         public override void Initialise()
         {
-            _positionChaserBehaviour = new SwarmBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location)
+            _positionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location)
             {
                CatchupSpeed = 0.1f 
             };

@@ -12,7 +12,7 @@ namespace EnterTheVoid.Flight
     {
         [Inject] FlightShip Ship { get; set; }
 
-        public float Limit { get; set; } = 10f;
+        public float Limit { get; set; } = 6f;
 
         public void Tick(TickContext context)
         {

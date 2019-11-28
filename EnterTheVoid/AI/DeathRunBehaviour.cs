@@ -16,7 +16,7 @@ namespace EnterTheVoid.AI
     {
         private readonly FlightShip _ship;
         private readonly FlightShip _playerShip;
-        private readonly SwarmBehaviour _positionChaserBehaviour;
+        private readonly PositionChaserBehaviour _positionChaserBehaviour;
         private readonly CompletionTimer _despawnTimer = new CompletionTimer(TimeSpan.FromSeconds(2));
 
         public bool Running { get; private set; } = false;
@@ -24,7 +24,7 @@ namespace EnterTheVoid.AI
         public float CatchupSpeed { get; set; } = 1f;
         public int SectionLowBound { get; set; } = 1;
 
-        public DeathRunBehaviour(FlightShip ship, FlightShip playerShip, SwarmBehaviour positionChaserBehaviour)
+        public DeathRunBehaviour(FlightShip ship, FlightShip playerShip, PositionChaserBehaviour positionChaserBehaviour)
         {
             _ship = ship;
             _playerShip = playerShip;

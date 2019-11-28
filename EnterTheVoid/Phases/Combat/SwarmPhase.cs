@@ -122,7 +122,7 @@ namespace EnterTheVoid.Phases.Combat
             _spawnTimer.Tick(context.DeltaTime);
             if (_spawnTimer.Completed)
             {
-                SpawnWaveSideways(new Vector3(-30, 0, ((float)Random.NextDouble() * 10f) - 10f));
+                SpawnWaveSideways(new Vector3(-30, 0, ((float)Random.NextDouble() * 50f) - 25f));
                 _spawnTimer.Restart();
             }
         }

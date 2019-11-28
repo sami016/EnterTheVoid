@@ -90,15 +90,15 @@ namespace EnterTheVoid.UI.Menu
         {
             var topology = new ShipTopology(6, 5);
 
-            //for (var i=0; i < 6; i++)
+            //for (var i = 0; i < 6; i++)
             //{
-            //    for (var j=0; j<5; j++)
+            //    for (var j = 0; j < 5; j++)
             //    {
-            //        topology.SetSection(new Point(i, j] = new Section(
+            //        topology.SetSection(new Point(i, j), new Section(
             //            new RocketModule(),
             //            ConnectionLayouts.FullyConnected,
             //            1
-            //        );
+            //        ));
             //    }
             //}
             topology.SetSection(new Point(2, 2), new Section(
@@ -145,7 +145,7 @@ namespace EnterTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 1
             ));
-            topology.ApplyUpgrade(new BombardOverload());
+            topology.ApplyUpgrade(new BlastRocketry());
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
             orchestrator.CurrentPlanet = Planet.Earth;
             orchestrator.NextFlight();

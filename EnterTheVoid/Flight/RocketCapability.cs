@@ -45,9 +45,9 @@ namespace EnterTheVoid.Flight
 
         public void Tick(TickContext context)
         {
-            float passiveAccel = 0.15f;
+            float passiveAccel = 0.45f;
             float passiveAccelBackwards = 0.25f;
-            float rocketAccel = 0.5f;
+            float rocketAccel = 0.9f;
             float rotationPenalty = 1f;
             float rotationSpeedBase = 1f;
             //float rotationLimit = (float)Math.PI;// * 2 / 6;

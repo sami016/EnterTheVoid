@@ -18,11 +18,13 @@ namespace EnterTheVoid.AI
         private readonly CompletionTimer _shieldTimer = new CompletionTimer(TimeSpan.FromSeconds(10));
         private readonly CompletionTimer _despawnTimer = new CompletionTimer(TimeSpan.FromSeconds(20));
 
-        private SwarmBehaviour _positionChaserBehaviour;
+        private PositionChaserBehaviour _positionChaserBehaviour;
         private bool _shootMode;
         private readonly FlightShip _playerShip;
 
         private Vector3 _pos = Vector3.Zero;
+
+        [Inject] RocketCapability RocketCapability { get; set; }
 
         public bool Active { get; set; } = false;
 
@@ -33,11 +35,23 @@ namespace EnterTheVoid.AI
 
         public override void Initialise()
         {
-            _positionChaserBehaviour = new SwarmBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location)
+            _positionChaserBehaviour = new PositionChaserBehaviour(FlightShip, Transform, _playerShip.Entity.Get<Transform>().Location)
             {
                CatchupSpeed = 1f 
             };
-            FlightShip.Velocity = new Vector3(2f + 2f * (float)Random.NextDouble(), 0, 0);
+
+            var direction = Random.Next(3);
+            var rotate = Random.Next(3);
+
+            RocketCapability.RocketControl = new RocketControl
+            {
+                Forwards = true,
+                Left = direction == 0,
+                Right = direction == 2,
+                //RotatePort = rotate == 0,
+                //RotateStarboard = rotate == 2,
+            };
+            //FlightShip.Velocity = new Vector3(2f + 2f * (float)Random.NextDouble(), 0, 0);
         }
 
         public override void Tick(TickContext context)

@@ -127,8 +127,8 @@ namespace EnterTheVoid.Flight
             var otherLocation = node.Entity.Get<Transform>().Location;
             var direction = (Transform.Location - otherLocation);
             direction.Normalize();
-            _ship.Damage(GridLocation, 1);
-            _ship.Push(direction, 0.1f);
+            _ship.Damage(GridLocation, 2);
+           //_ship.Push(direction, 0.005f);
         }
 
         public void OnHit(Entity projectileEntity, ProjectileBase projectile)
