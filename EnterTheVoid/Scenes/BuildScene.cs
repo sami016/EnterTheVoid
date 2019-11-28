@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.Flight;
 
 namespace EnterTheVoid.Scenes
 {
@@ -38,6 +39,8 @@ namespace EnterTheVoid.Scenes
 
         public override void Initialise()
         {
+            AddSingleton(new SpaceBackgroundScroll());
+
             var focusLocation = HexagonHelpers.GetGridWorldPosition(new Point(2, 2));
 
             var camera = Create();

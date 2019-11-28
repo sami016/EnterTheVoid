@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid.Intro
 {
@@ -16,7 +17,8 @@ namespace EnterTheVoid.Intro
         private CompletionTimer _intoTimer = new CompletionTimer(TimeSpan.FromSeconds(30));
         [Inject] SceneManager SceneManager { get; set; }
         [Inject] MouseControls MouseControls { get; set; }
-            
+        [Inject] FadeTransition FadeTransition { get; set; }
+
         public void Tick(TickContext context)
         {
             _intoTimer.Tick(context.DeltaTime);
@@ -25,7 +27,7 @@ namespace EnterTheVoid.Intro
                 || MouseControls.LeftClicked
                 || _intoTimer.Completed)
             {
-                SceneManager.SetScene(new MenuScene());
+                FadeTransition.StartTransition(() => SceneManager.SetScene(new MenuScene()));
             }
         }
     }

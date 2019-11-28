@@ -23,12 +23,13 @@ namespace EnterTheVoid.UI.Menu
     class MenuScreenTemplate : Template
     {
         private readonly MenuScene _menuScene;
+        private readonly FadeTransition _fadeTransition;
         private readonly string _tip;
 
-        public MenuScreenTemplate(MenuScene menuScene)
+        public MenuScreenTemplate(MenuScene menuScene, FadeTransition fadeTransition)
         {
             _menuScene = menuScene;
-
+            _fadeTransition = fadeTransition;
             _tip = Tips.Sample();
         }
 

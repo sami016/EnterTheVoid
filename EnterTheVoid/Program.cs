@@ -6,6 +6,7 @@ using Forge.UI.Glass;
 using EnterTheVoid.Scenes;
 using Microsoft.Xna.Framework;
 using System;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid
 {
@@ -20,6 +21,7 @@ namespace EnterTheVoid
                 .AddSingleton(() => new KeyControls())
                 .AddSingleton(() => new MouseControls())
                 .AddSingleton(() => new MusicManager())
+                .AddSingleton(() => new FadeTransition())
                 //.AddSingleton(() => new FpsDebugger())
                 .UseBackgroundRefreshColour(Color.Black)
                 .Create(1);

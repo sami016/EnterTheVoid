@@ -23,10 +23,12 @@ namespace EnterTheVoid.UI.Menu
     class WinScreenTemplate : Template
     {
         private readonly SceneManager _sceneManager;
+        private readonly FadeTransition _fadeTransition;
 
-        public WinScreenTemplate(SceneManager sceneManager)
+        public WinScreenTemplate(SceneManager sceneManager, FadeTransition fadeTransition)
         {
             _sceneManager = sceneManager;
+            _fadeTransition = fadeTransition;
         }
 
         public override IElement Evaluate() =>
@@ -73,7 +75,7 @@ namespace EnterTheVoid.UI.Menu
 
         public void ClickContinue(ClickUIEvent ev)
         {
-            _sceneManager.SetScene(new MenuScene());
+            _fadeTransition.StartTransition(() => _sceneManager.SetScene(new MenuScene()));
         }
     }
 }

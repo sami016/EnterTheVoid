@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.General;
 
 namespace EnterTheVoid.Orchestration
 {
@@ -23,6 +24,7 @@ namespace EnterTheVoid.Orchestration
         private ShipTopology _shipTopology;
         private IDictionary<Planet, IEnumerable<Func<Phase>>> _phaseFactories = new Dictionary<Planet, IEnumerable<Func<Phase>>>();
         [Inject] SceneManager SceneManager { get; set; }
+        [Inject] FadeTransition FadeTransition { get; set; }
         public Planet CurrentPlanet { get; set; } = Planet.None;
 
         private void AddPlanet(Planet planet, params Func<Phase>[] phaseFactories)
@@ -101,17 +103,17 @@ namespace EnterTheVoid.Orchestration
         public void NextBuild()
         {
             CurrentPlanet++;
-            SceneManager.SetScene(new BuildScene(_shipTopology, CurrentPlanet));
+            FadeTransition.StartTransition(() => SceneManager.SetScene(new BuildScene(_shipTopology, CurrentPlanet)));
         }
 
         public void NextFlight()
         {
             if (CurrentPlanet < Planet.Pluto && _phaseFactories.ContainsKey(CurrentPlanet))
             {
-                SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet]));
+                FadeTransition.StartTransition(() => SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet])));
             } else
             {
-                SceneManager.SetScene(new WinScene());
+                FadeTransition.StartTransition(() => SceneManager.SetScene(new WinScene()));
             }
         }
 

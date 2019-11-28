@@ -1,4 +1,5 @@
-﻿using EnterTheVoid.Scenes;
+﻿using EnterTheVoid.General;
+using EnterTheVoid.Scenes;
 using Forge.Core;
 using Forge.Core.Components;
 using Forge.Core.Interfaces;
@@ -14,6 +15,7 @@ namespace EnterTheVoid.Flight
     {
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
+        [Inject] FadeTransition FadeTransition { get; set; }
 
         private readonly CompletionTimer _completionTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
 
@@ -24,7 +26,7 @@ namespace EnterTheVoid.Flight
                 _completionTimer.Tick(context.DeltaTime);
                 if (_completionTimer.Completed)
                 {
-                    SceneManager.SetScene(new DeathScene());
+                    FadeTransition.StartTransition(() => SceneManager.SetScene(new DeathScene()));
                 }
             }
         }

@@ -20,6 +20,7 @@ namespace EnterTheVoid.Scenes
         [Inject] MusicManager MusicManager { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
         [Inject] CameraManager CameraManager { get; set; }
+        [Inject] FadeTransition FadeTransition { get; set; }
 
         public override void Initialise()
         {
@@ -49,7 +50,7 @@ namespace EnterTheVoid.Scenes
                 });
                 i++;
             }
-            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(this));
+            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(this, FadeTransition));
 
             MusicManager.Start("Menu");
         }

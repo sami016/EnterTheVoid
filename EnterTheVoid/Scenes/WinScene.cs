@@ -18,10 +18,11 @@ namespace EnterTheVoid.Scenes
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] MusicManager MusicManager { get; set; }
         [Inject] SceneManager SceneManager { get; set; }
+        [Inject] FadeTransition FadeTransition { get; set; }
 
         public override void Initialise()
         {
-            UserInterfaceManager.AddSceneUI(this, new WinScreenTemplate(SceneManager));
+            UserInterfaceManager.AddSceneUI(this, new WinScreenTemplate(SceneManager, FadeTransition));
             
             MusicManager.Start("Menu");
         }
