@@ -211,5 +211,6 @@ namespace EnterTheVoid.Ships
         {
             Upgrades = Upgrades.Concat(new[] { upgrade }).ToArray();
         }
+
     }
 }

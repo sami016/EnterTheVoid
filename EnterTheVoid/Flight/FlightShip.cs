@@ -213,6 +213,8 @@ namespace EnterTheVoid.Flight
                 {
                     _topology.SectionAt(gridLocation)?.Module?.OnDestruction(this, GetNodeForSection(gridLocation));
                     _topology.Remove(gridLocation);
+
+                    PerformPartsAnalysis();
                 }
             });
         }
@@ -236,6 +238,56 @@ namespace EnterTheVoid.Flight
                 .Select(x => x.GetType())
                 .ToArray();
             return upgrades.Contains(typeof(T));
+        }
+
+
+        /// <summary>
+        /// Used to identify a split ship.
+        /// </summary>
+        public void PerformPartsAnalysis()
+        {
+            var directions = new[] { 0, 1, 2, 3, 4, 5 };
+            var available = Topology.AllSections.ToList();
+            if (available.Count < 1)
+            {
+                return;
+            }
+            var clusters = new List<List<Section>>();
+            while (available.Count > 0)
+            {
+                var localCluster = new List<Section>();
+                var stack = new Stack<Section>();
+                stack.Push(available[0]);
+                available.RemoveAt(0);
+                while (stack.Count > 0)
+                {
+                    var processing = stack.Pop();
+                    localCluster.Add(processing);
+                    foreach (var direction in directions)
+                    {
+                        var gridLoc = HexagonHelpers.GetFromDirection(processing.GridLocation, direction);
+                        var neighbour = Topology.SectionAt(gridLoc);
+                        if (neighbour != null && available.Contains(neighbour))
+                        {
+                            available.Remove(neighbour);
+                        }
+                    }
+                }
+                clusters.Add(localCluster);
+            }
+
+            var orderedClusters = clusters.OrderByDescending(x => x.Count()).ToArray();
+
+            if (orderedClusters.Length > 1)
+            {
+                for (var i = 1; i < orderedClusters.Length; i++)
+                {
+                    foreach (var section in orderedClusters[i])
+                    {
+                        Damage(section.GridLocation, 999);
+                    }
+                }
+            }
         }
     }
 }
