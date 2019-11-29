@@ -32,6 +32,8 @@ namespace EnterTheVoid.Phases.Combat
             Title = "Drone Zone";
             Description = "Combat warning. Fend off incoming attack drones. Survive 45 seconds.";
             CompleteMessage = "Combat completed.";
+            // To prevent player getting stuck.
+            Duration = TimeSpan.FromSeconds(60);
         }
 
         private ShipTopology CreateDrone()
@@ -49,11 +51,11 @@ namespace EnterTheVoid.Phases.Combat
             _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 70f;
-            if (_numDrones >= 1) SpawnDrone(new Vector3(0, 0, -5), 2, 3);
-            if (_numDrones >= 2) SpawnDrone(new Vector3(0, 0, 10), 2, 10);
-            if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 20);
-            if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 30);
-            if (_numDrones >= 5) SpawnDrone(new Vector3(10, 0, 5), 3, 40);
+            if (_numDrones >= 1) SpawnDrone(new Vector3(0, 0, -5), 2, 10);
+            if (_numDrones >= 2) SpawnDrone(new Vector3(0, 0, 10), 2, 20);
+            if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 30);
+            if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 40);
+            if (_numDrones >= 5) SpawnDrone(new Vector3(10, 0, 5), 3, 50);
             if (_numDrones >= 5) SpawnDrone(new Vector3(0, 0, 0), 3, 60);
 
 

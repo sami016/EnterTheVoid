@@ -35,6 +35,7 @@ namespace EnterTheVoid.Flight
             _bombardCooldown.Complete();
         }
 
+
         public void StandardFire()
         {
             if (_lightweightCooldown.Completed)
@@ -64,6 +65,11 @@ namespace EnterTheVoid.Flight
                     );
                 }
 
+                if (FlightShip.HasUpgrade<RapidFire>())
+                {
+                    _lightweightCooldown.ChangeTarget(TimeSpan.FromSeconds(0.3f));
+                    _lightweightCooldown.Complete();
+                }
                 _lightweightCooldown.Restart();
             }
         }

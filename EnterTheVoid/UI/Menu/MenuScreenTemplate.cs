@@ -24,13 +24,11 @@ namespace EnterTheVoid.UI.Menu
     {
         private readonly MenuScene _menuScene;
         private readonly FadeTransition _fadeTransition;
-        private readonly string _tip;
 
         public MenuScreenTemplate(MenuScene menuScene, FadeTransition fadeTransition)
         {
             _menuScene = menuScene;
             _fadeTransition = fadeTransition;
-            _tip = Tips.Sample();
         }
 
         public override IElement Evaluate() =>
@@ -146,7 +144,7 @@ namespace EnterTheVoid.UI.Menu
                 ConnectionLayouts.FullyConnected,
                 1
             ));
-            topology.ApplyUpgrade(new BlastRocketry());
+            topology.ApplyUpgrade(new RapidFire());
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator(topology));
             orchestrator.CurrentPlanet = Planet.Earth;
             orchestrator.NextFlight();

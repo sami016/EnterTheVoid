@@ -30,7 +30,7 @@ namespace EnterTheVoid.Ships.Modules
             {
                 var gridLocation = HexagonHelpers.GetFromDirection(node.GridLocation, (int)direction);
                 // Boom
-                ship.Damage(gridLocation, 100);
+                ship.Damage(gridLocation, 300);
             }
             
             var explosionEnt = ship.Entity.EntityManager.Create();

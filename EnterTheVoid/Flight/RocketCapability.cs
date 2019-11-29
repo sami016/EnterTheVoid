@@ -52,20 +52,16 @@ namespace EnterTheVoid.Flight
             float rotationSpeedBase = 1f;
             //float rotationLimit = (float)Math.PI;// * 2 / 6;
 
-            var upgrades = FlightShip.Upgrades
-                .Select(x => x.GetType())
-                .ToArray();
-
-            if (upgrades.Contains(typeof(EnhancedRotation)))
+            if (FlightShip.HasUpgrade<EnhancedRotation>())
             {
                 rotationSpeedBase += 1f;
                 rotationPenalty = 0f;
                 //rotationLimit = (float)Math.PI;
             }
-            if (upgrades.Contains(typeof(PrecisionRocketry)))
+            if (FlightShip.HasUpgrade<PrecisionRocketry>())
             {
-                passiveAccel += 0.1f;
-                passiveAccelBackwards += 0.1f;
+                passiveAccel += 0.3f;
+                passiveAccelBackwards += 0.3f;
             }
 
             //TODO - exclude damanged/destroyed.

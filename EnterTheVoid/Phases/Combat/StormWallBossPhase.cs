@@ -26,15 +26,17 @@ namespace EnterTheVoid.Phases.Combat
         private float _oldCameraScale;
         private PhaseKillTarget _target;
         private int _wave = 0;
+        private readonly bool _armoured;
 
         //FlightCameraControl _camera;
 
-        public StormWallBossPhase()
+        public StormWallBossPhase(bool armoured)
         {
             Title = "\"Storm Wall\"";
-            Description = "Escape the Storm Wall.";
-            CompleteMessage = "Escape complete.";
+            Description = "Defeat the Storm Wall ships.";
+            CompleteMessage = "Storm wall defeated.";
             Duration = null;
+            _armoured = armoured;
         }
 
         private ShipTopology CreateWall(int wallWave)
@@ -54,9 +56,19 @@ namespace EnterTheVoid.Phases.Combat
                     }
                     else
                     {
-                        topology.SetSection(new Point(i, j), new Section(new EmptyModule(), ConnectionLayouts.FullyConnected, 4));
+                        topology.SetSection(new Point(i, j), new Section(_armoured ? new ArmourModule() as Module : new EmptyModule(), ConnectionLayouts.FullyConnected, 4));
                     }
                 }
+            }
+
+            if (wallWave == 1)
+            {
+                topology.SetSection(new Point(6, 1), new Section(new EmptyModule(), ConnectionLayouts.FullyConnected, 0));
+            }
+            if (wallWave == 2)
+            {
+                topology.SetSection(new Point(4, 1), new Section(new EmptyModule(), ConnectionLayouts.FullyConnected, 0));
+                topology.SetSection(new Point(8, 1), new Section(new EmptyModule(), ConnectionLayouts.FullyConnected, 0));
             }
 
             topology.SetSection(new Point(1, 0), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 4));

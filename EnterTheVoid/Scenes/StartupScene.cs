@@ -51,6 +51,7 @@ namespace EnterTheVoid.Scenes
             Textures.Load("Bubble", Content.Load<Texture2D>("Textures/bubble-field"));
             Textures.Load("Rocket", Content.Load<Texture2D>("Textures/rocket"));
             Textures.Load("OilDrum", Content.Load<Texture2D>("Textures/oil-drum"));
+            Textures.Load("HeavyRain", Content.Load<Texture2D>("Textures/heavy-rain"));
 
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));

@@ -30,6 +30,8 @@ namespace EnterTheVoid.Phases.Combat
             Title = "Bandit Vessel Inbound";
             Description = "Combat warning. Fend off incoming bandits. Survive 45 seconds.";
             CompleteMessage = "Combat completed.";
+            // To prevent player getting stuck.
+            Duration = TimeSpan.FromSeconds(120);
         }
 
         private ShipTopology CreateBandit()

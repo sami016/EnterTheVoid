@@ -23,9 +23,11 @@ namespace EnterTheVoid.Projectiles
     public class LightBlasterProjectile : ProjectileBase
     {
         private static Model _projectileModel;
+        private readonly float _damage;
 
         public LightBlasterProjectile(Guid shipGuid, Vector3 parentVelocity, Vector3 direction, bool speedUpgrade): base(shipGuid, parentVelocity, direction, speedUpgrade ? 20f : 10f, TimeSpan.FromSeconds(4))
         {
+            _damage = speedUpgrade ? 12f : 10f;
         }
 
         public override void Initialise()

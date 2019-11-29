@@ -108,7 +108,7 @@ namespace EnterTheVoid.Ships
 
             _armourModel = Content.Load<Model>("Models/armour");
             _armourModel.EnableDefaultLighting();
-            _armourModel.SetDiffuseColour(Color.BlanchedAlmond);
+            _armourModel.SetDiffuseColour(Color.DarkRed);
 
             _shieldGeneratorModel = Content.Load<Model>("Models/shieldgenerator");
             _shieldGeneratorModel.EnableDefaultLighting();

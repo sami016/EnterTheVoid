@@ -28,7 +28,7 @@ namespace EnterTheVoid.Obstacles
         public IceAsteroid()
         {
             Damage = 25;
-            Health = 50;
+            Health = 85;
             Radius = 2f;
         }
 
