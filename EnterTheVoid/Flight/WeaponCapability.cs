@@ -186,7 +186,8 @@ namespace EnterTheVoid.Flight
                             new RocketProjectile(
                                 FlightShip.ShipGuid,
                                 FlightShip.Velocity,
-                                Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation)
+                                Vector3.Transform(Vector3.Transform(Vector3.Forward, rotationQuat), shipTransform.Rotation),
+                                rotationMatrix
                             )
                         );
                     }

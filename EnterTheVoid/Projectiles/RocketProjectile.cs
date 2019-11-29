@@ -23,17 +23,19 @@ namespace EnterTheVoid.Projectiles
     public class RocketProjectile : ProjectileBase
     {
         private static Model _projectileModel;
+        private readonly Matrix _rotationMatrix;
 
-        public RocketProjectile(Guid shipGuid, Vector3 parentVelocity, Vector3 direction): base(shipGuid, parentVelocity, direction, 6f, TimeSpan.FromSeconds(12))
+        public RocketProjectile(Guid shipGuid, Vector3 parentVelocity, Vector3 direction, Matrix rotationMatrix): base(shipGuid, parentVelocity, direction, 6f, TimeSpan.FromSeconds(12))
         {
-            Radius = 0.1f;
+            Radius = 0.2f;
+            _rotationMatrix = Matrix.CreateRotationY(-(float)Math.PI/2) * rotationMatrix;
         }
 
         public override void Initialise()
         {
             if (_projectileModel == null)
             {
-                _projectileModel = Content.Load<Model>("Models/bullet3");
+                _projectileModel = Content.Load<Model>("Models/rocket");
                 _projectileModel.EnableDefaultLighting();
                 _projectileModel.SetDiffuseColour(Color.White);
             }
@@ -50,7 +52,7 @@ namespace EnterTheVoid.Projectiles
         {
             context.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             var camera = CameraManager.ActiveCamera;
-            _projectileModel.Draw(Matrix.CreateScale(0.1f) * Transform.WorldTransform, camera.View, camera.Projection);
+            _projectileModel.Draw(Matrix.CreateScale(1f) * _rotationMatrix * Transform.WorldTransform, camera.View, camera.Projection);
         }
 
         public override void EntityDidHit(Entity entity)
