@@ -7,18 +7,22 @@ using EnterTheVoid.UI.Intro;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Forge.Core.Sound;
 
 namespace EnterTheVoid.Scenes
 {
     public class IntroScene : Scene
     {
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
+        [Inject] MusicManager MusicManager { get; set; }
 
         public override void Initialise()
         {
             AddSingleton(new IntroBackgroundScroll());
             AddSingleton(new IntroControls());
             UserInterfaceManager.AddSceneUI(this, new IntroScreenTemplate());
+
+            MusicManager.Start("Menu");
         }
     }
 }
