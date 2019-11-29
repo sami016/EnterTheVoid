@@ -10,6 +10,7 @@ using EnterTheVoid.General;
 using Microsoft.Xna.Framework;
 using Forge.Core.Rendering.Cameras;
 using EnterTheVoid.Constants;
+using EnterTheVoid.Flight;
 
 namespace EnterTheVoid.Scenes
 {

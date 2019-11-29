@@ -26,6 +26,7 @@ namespace EnterTheVoid.Phases.Combat
         private float _oldCameraScale;
         private PhaseKillTarget _target;
         private int _wave = 0;
+        private FlightShip _ship;
 
         //FlightCameraControl _camera;
 
@@ -44,7 +45,7 @@ namespace EnterTheVoid.Phases.Combat
             {
                 for (var j=0; j<10; j++)
                 {
-                    if (j == 8)
+                    if (j == 9)
                     {
                         topology.SetSection(new Point(i, j), new Section(new RocketModule(), ConnectionLayouts.FullyConnected, i == 0 ? 0 : i == 9 ? 2 : 1));
                     }
@@ -97,15 +98,15 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(8, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(9, 9), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 1));
 
-            topology.SetSection(new Point(0, 1), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(0, 2), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
-            topology.SetSection(new Point(0, 3), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(0, 4), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
-            topology.SetSection(new Point(0, 5), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(0, 6), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
-            topology.SetSection(new Point(0, 7), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(0, 8), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
-            topology.SetSection(new Point(0, 9), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(9, 1), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(9, 2), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
+            topology.SetSection(new Point(9, 3), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(9, 4), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
+            topology.SetSection(new Point(9, 5), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(9, 6), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
+            topology.SetSection(new Point(9, 7), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(9, 8), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
+            topology.SetSection(new Point(9, 9), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.ApplyUpgrade(new BlastRocketry());
             topology.ApplyUpgrade(new BombardOverload());
             topology.ApplyUpgrade(new ShieldAmplification());
@@ -145,6 +146,7 @@ namespace EnterTheVoid.Phases.Combat
             var brain = enemy.Add(new GalactusBrain(Ship, playerOffset, 4f));
 
             _enemies.Add(enemy);
+            _ship = ship;
         }
 
         public override void Stop()
@@ -155,6 +157,7 @@ namespace EnterTheVoid.Phases.Combat
             {
                 drone.Delete();
             }
+            _ship.Entity.Delete();
         }
     }
 }

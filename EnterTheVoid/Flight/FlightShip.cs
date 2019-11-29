@@ -214,7 +214,7 @@ namespace EnterTheVoid.Flight
                     _topology.SectionAt(gridLocation)?.Module?.OnDestruction(this, GetNodeForSection(gridLocation));
                     _topology.Remove(gridLocation);
 
-                    PerformPartsAnalysis();
+                    //PerformPartsAnalysis();
                 }
             });
         }
