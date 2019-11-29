@@ -18,6 +18,8 @@ using System.Collections.Generic;
 using System.Text;
 using EnterTheVoid.Flight;
 using EnterTheVoid.General;
+using EnterTheVoid.UI.Menu;
+using Forge.Core.Engine;
 
 namespace EnterTheVoid.Scenes
 {
@@ -82,6 +84,20 @@ namespace EnterTheVoid.Scenes
 
             var shipRenderer = AddSingleton(new ShipSectionRenderer());
             UserInterfaceManager.AddSceneUI(this, new BuildScreenTemplate(gameMode, _planet, productionLine, placer, shipRenderer));
+            if (_planet == Planet.Earth)
+            {
+                UIDispose closeBeginScreen = null;
+                closeBeginScreen = UserInterfaceManager.Create(new BeginScreenTemplate(() => {
+                    gameMode.Start();
+                    EntityManager.Update(() =>
+                    {
+                        closeBeginScreen?.Invoke();
+                    });
+                }));
+            } else
+            {
+                gameMode.Start();
+            }
 
             MusicManager.Start("Building");
         }

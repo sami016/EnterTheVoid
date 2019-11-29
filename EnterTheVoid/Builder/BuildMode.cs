@@ -15,6 +15,7 @@ namespace EnterTheVoid.Builder
 {
     public enum BuildModeState
     {
+        AwaitingBegin,
         CountIn,
         Building,
         Finished
@@ -38,10 +39,18 @@ namespace EnterTheVoid.Builder
         public BuildMode(ShipTopology topology)
         {
             _topology = topology;
-            State = BuildModeState.CountIn;
-            _countIn = new CompletionTimer(TimeSpan.FromSeconds(8));
+            State = BuildModeState.AwaitingBegin;
+            _countIn = new CompletionTimer(TimeSpan.FromSeconds(3));
             _countDown = new CompletionTimer(TimeSpan.FromSeconds(50));
             _countOut = new CompletionTimer(TimeSpan.FromSeconds(5));
+        }
+
+        public void Start()
+        {
+            if (State == BuildModeState.AwaitingBegin)
+            {
+                State = BuildModeState.CountIn;
+            }
         }
 
         public void Tick(TickContext context)
@@ -52,6 +61,8 @@ namespace EnterTheVoid.Builder
             }
             switch (State)
             {
+                case BuildModeState.AwaitingBegin:
+                    return;
                 case BuildModeState.CountIn:
                     _countIn.Tick(context.DeltaTime);
                     if (_countIn.Completed)
