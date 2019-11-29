@@ -118,7 +118,9 @@ namespace EnterTheVoid.Ships.Generation
             .Add(1f, typeof(RocketModule), _rocketConnectionLayoutDistribution)
             .Add(0.5f, typeof(RotaryEngine), _standardConnectionLayoutDistribution)
             .Add(1f, typeof(EmptyModule), _highConnectivityConnectionLayoutDistribution)
-            .Add(0.6f, typeof(ForcefieldShieldModule), _standardConnectionLayoutDistribution)
+            .Add(0.6f, typeof(ShieldBubbleGeneratorModule), _standardConnectionLayoutDistribution)
+            .Add(0.4f, typeof(BombardModule), _rocketConnectionLayoutDistribution)
+            .Add(0.9f, typeof(ArmourModule), _rocketConnectionLayoutDistribution)
             .Add(0.5f, typeof(EnergyModule), _standardConnectionLayoutDistribution);
     }
 }

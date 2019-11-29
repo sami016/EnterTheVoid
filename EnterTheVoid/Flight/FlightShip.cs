@@ -127,7 +127,7 @@ namespace EnterTheVoid.Flight
         {
             this.Update(() =>
             {
-                Energy = Math.Min(MaxEnergy, Fuel + amount);
+                Energy = Math.Min(MaxEnergy, Energy + amount);
             });
         }
 

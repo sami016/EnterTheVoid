@@ -48,7 +48,7 @@ namespace EnterTheVoid.Projectiles
 
         public override float GetDamage(Entity hitEnt, IComponent hitComponent)
         {
-            return 10f;
+            return 80f;
         }
 
         public override void Render(RenderContext context)

@@ -57,7 +57,7 @@ namespace EnterTheVoid.Phases.Combat
             }
 
 
-            topology.SetSection(new Point(0, 0), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(0, 0), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 4), new Section(new ResearchCenterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(3, 4), new Section(new ResearchCenterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
@@ -65,24 +65,24 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(8, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(3, 4), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(2, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(2, 3), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 3), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(2, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(2, 6), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(2, 6), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(2, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(8, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(8, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(8, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 2), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(4, 3), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 3), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 5), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(4, 6), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(4, 6), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(4, 8), new Section(new EnergyModule(), ConnectionLayouts.FullyConnected, 2));
 
             topology.SetSection(new Point(1, 0), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 4));
             topology.SetSection(new Point(2, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
             topology.SetSection(new Point(3, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 4));
             topology.SetSection(new Point(4, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 5));
-            topology.SetSection(new Point(5, 0), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(5, 0), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(6, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
             topology.SetSection(new Point(7, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 4));
             topology.SetSection(new Point(8, 0), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 5));
@@ -92,7 +92,7 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(2, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 0));
             topology.SetSection(new Point(3, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
             topology.SetSection(new Point(4, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));
-            topology.SetSection(new Point(5, 9), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 2));
+            topology.SetSection(new Point(5, 9), new Section(new ShieldBubbleGeneratorModule(), ConnectionLayouts.FullyConnected, 2));
             topology.SetSection(new Point(6, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 0));
             topology.SetSection(new Point(7, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 1));
             topology.SetSection(new Point(8, 9), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 2));

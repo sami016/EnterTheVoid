@@ -10,6 +10,6 @@ namespace EnterTheVoid.Ships.Modules
 
         public override string ShortName { get; } = "Research Center Module";
 
-        public override string DescriptionShort { get; } = "Provides an upgrade slot.";
+        public override string DescriptionShort { get; } = "Provides two upgrade slots.";
     }
 }

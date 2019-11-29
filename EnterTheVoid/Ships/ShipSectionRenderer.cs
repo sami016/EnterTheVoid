@@ -23,6 +23,7 @@ namespace EnterTheVoid.Ships
     public class ShipSectionRenderer : Component, IInit
     {
         private static Random Random = new Random();
+        private Model _armourModel;
         private Model _cellModel;
         private Model _connectorLargeModel;
         private Model _connectorSmallModel;
@@ -31,7 +32,7 @@ namespace EnterTheVoid.Ships
         private Model _turret2bModel;
         private Model _turret2cModel;
         private Model _powerModule;
-        private Model _biosphereModel;
+        private Model _researchCenterModule;
         private Model _tankModel;
         private Model _rocket1Model;
         private Model _rocket2aModel;
@@ -81,9 +82,9 @@ namespace EnterTheVoid.Ships
             _powerModule.EnableDefaultLighting();
             _powerModule.SetDiffuseColour(Color.Yellow);
 
-            _biosphereModel = Content.Load<Model>("Models/lifesupport");
-            _biosphereModel.EnableDefaultLighting();
-            _biosphereModel.SetDiffuseColour(Color.White);
+            _researchCenterModule = Content.Load<Model>("Models/lifesupport");
+            _researchCenterModule.EnableDefaultLighting();
+            _researchCenterModule.SetDiffuseColour(Color.White);
 
             _tankModel = Content.Load<Model>("Models/tank");
             _tankModel.EnableDefaultLighting();
@@ -104,6 +105,10 @@ namespace EnterTheVoid.Ships
             _rocket2bModel = Content.Load<Model>("Models/rocket2b");
             _rocket2bModel.EnableDefaultLighting();
             _rocket2bModel.SetDiffuseColour(Color.GhostWhite);
+
+            _armourModel = Content.Load<Model>("Models/armour");
+            _armourModel.EnableDefaultLighting();
+            _armourModel.SetDiffuseColour(Color.BlanchedAlmond);
 
             _shieldGeneratorModel = Content.Load<Model>("Models/shieldgenerator");
             _shieldGeneratorModel.EnableDefaultLighting();
@@ -161,7 +166,12 @@ namespace EnterTheVoid.Ships
             if (section.Module is ResearchCenterModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
-                _biosphereModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+                _researchCenterModule.Draw(moduleRot * worldTransform, view.Value, projection.Value);
+            }
+            if (section.Module is ArmourModule)
+            {
+                var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
+                _armourModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
             if (section.Module is FuelModule)
             {
@@ -173,7 +183,7 @@ namespace EnterTheVoid.Ships
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _rotaryModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);
             }
-            if (section.Module is ForcefieldShieldModule)
+            if (section.Module is ShieldBubbleGeneratorModule)
             {
                 var moduleRot = Matrix.CreateRotationY((float)(-moduleRotatedDirection * Math.PI * 2 / 6));
                 _shieldGeneratorModel.Draw(moduleRot * worldTransform, view.Value, projection.Value);

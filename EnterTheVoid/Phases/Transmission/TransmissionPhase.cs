@@ -24,7 +24,8 @@ namespace EnterTheVoid.Phases.Transmission
             new HullReinforcement(),
             new ShieldAmplification(),
             new ShieldFortification(),
-            new BombardOverload()
+            new BombardOverload(),
+            new OreProcessing()
         };
 
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }

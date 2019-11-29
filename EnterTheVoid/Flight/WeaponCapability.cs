@@ -18,10 +18,10 @@ namespace EnterTheVoid.Flight
         private static readonly Random Random = new Random();
 
         private CompletionTimer _lightweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(0.5f));
-        private CompletionTimer _heavyweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
+        private CompletionTimer _heavyweightCooldown = new CompletionTimer(TimeSpan.FromSeconds(1f));
         private CompletionTimer _bubbleShieldCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
-        private CompletionTimer _blastRocketCooldown = new CompletionTimer(TimeSpan.FromSeconds(2f));
-        private CompletionTimer _bombardCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
+        private CompletionTimer _blastRocketCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
+        private CompletionTimer _bombardCooldown = new CompletionTimer(TimeSpan.FromSeconds(2f));
 
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
@@ -111,7 +111,7 @@ namespace EnterTheVoid.Flight
             if (_bubbleShieldCooldown.Completed)
             {
                 var guns = FlightShip.Topology.AllSections
-                    .Where(x => x.Module is ForcefieldShieldModule);
+                    .Where(x => x.Module is ShieldBubbleGeneratorModule);
                 var shipTransform = Transform;
                 foreach (var gun in guns)
                 {

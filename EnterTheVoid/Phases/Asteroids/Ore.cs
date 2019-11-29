@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.Upgrades;
 
 namespace EnterTheVoid.Phases.Asteroids
 {
@@ -34,6 +35,7 @@ namespace EnterTheVoid.Phases.Asteroids
         [Inject] FlightSpaces FlightSpaces { get; set; }
 
         private Vector3 _spin;
+        private bool _claimed = false;
         public Vector3 Velocity { get; set; } = Vector3.Zero;
 
         public float Radius { get; protected set; } = 0.3f;
@@ -74,7 +76,18 @@ namespace EnterTheVoid.Phases.Asteroids
 
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
-            ship.AddEnergy(1);
+            if (!_claimed)
+            {
+                if (ship.HasUpgrade<OreProcessing>())
+                {
+                    ship.AddEnergy(2);
+                }
+                else
+                {
+                    ship.AddEnergy(1);
+                }
+                _claimed = true;
+            }
             Entity.Delete();
         }
 

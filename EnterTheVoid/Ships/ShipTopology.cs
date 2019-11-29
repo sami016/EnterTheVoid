@@ -68,7 +68,7 @@ namespace EnterTheVoid.Ships
         {
             get
             {
-                var maxEnergy = 20;
+                var maxEnergy = 5;
                 foreach (var section in AllSections)
                 {
                     if (section.Module is EnergyModule energyModule)
@@ -104,7 +104,7 @@ namespace EnterTheVoid.Ships
                 {
                     if (section.Module is ResearchCenterModule)
                     {
-                        count++;
+                        count+=2;
                     }
                 }
                 return count;
