@@ -10,12 +10,12 @@ namespace EnterTheVoid.Constants
         {
             "In build mode, you may shuffle the available modules if you get stuck by pressing \"Q\".",
             "Use the \"Q\" and \"E\" keys to rotate the ship. Rotation may be used for aiming and steering.",
-            "Some asteroids can be brocket to release fuel. Collect these to process into energy.",
+            "Some asteroids can be brocket to release fuel. Collect these to produce additional energy.",
             //"Damage may be repaired during open stretches of space. Sections that have been destroyed cannot be repaired.",
-            "Rotary engines can be used to increase your ships rate of rotation, making it easier to aim.",
-            "Ship building is constrained by connector positions. Pay careful attention to these.",
+            "Rotary engines can be used to increase your ship's rate of rotation, making it easier to aim.",
+            "Ship building is constrained by connector positions. Pay careful attention to these when constructing your ship.",
             "Research Centers allow you to collect more upgrades during your journey. You will start with one of these.",
-            "Mysterious transmissions for useful upgrade may be received during your journey. Each research center allows for two upgrade slots.",
+            "Mysterious transmissions for useful upgrades may be received during your journey. Each research center allows for two upgrade slots.",
             "Your journey will start from Earth and end at Pluto, with an upgrade satelite stationed in orbit at each planet along the way.",
         };
 

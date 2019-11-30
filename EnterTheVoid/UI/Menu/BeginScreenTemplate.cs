@@ -42,7 +42,7 @@ namespace EnterTheVoid.UI.Menu
                             Position = new Rectangle(10, 60, 0, 0),
                             Font = "Default"
                         },
-                        new Text($"Try to prioritise rockets for propulsion, guns for offense, before moving onto advaced modules such as shields, energy storage.")
+                        new Text($"Try to prioritise rockets for propulsion and guns for offense, before moving onto advaced modules such as shields and energy storage.")
                         {
                             Position = new Rectangle(10, 110, 0, 0),
                             Font = "Default"
