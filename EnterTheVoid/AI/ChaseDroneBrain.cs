@@ -18,7 +18,7 @@ namespace EnterTheVoid.AI
 
         private PositionChaserBehaviour _positionChaserBehaviour;
         private TakeAimBehaviour _takeAimBehaviour;
-
+        private DeathRunBehaviour _deathRunBehaviour;
         private bool _oscillateMode = false;
         private float _pos = 0f;
 
@@ -40,10 +40,17 @@ namespace EnterTheVoid.AI
                CatchupSpeed = 0.1f 
             };
             _takeAimBehaviour = new TakeAimBehaviour(_playerShip, FlightShip, Transform);
+
+            _deathRunBehaviour = new DeathRunBehaviour(FlightShip, _playerShip, _positionChaserBehaviour)
+            {
+                SectionLowBound = 1
+            };
         }
 
         public override void Tick(TickContext context)
         {
+            _deathRunBehaviour.Tick(context);
+
             _pos += context.DeltaTimeSeconds * (float)(Math.PI / 10f);
             _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(
                 (float)Math.Cos(_pos) * _circleRadius,

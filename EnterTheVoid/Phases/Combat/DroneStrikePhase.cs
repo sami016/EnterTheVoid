@@ -58,7 +58,7 @@ namespace EnterTheVoid.Phases.Combat
             if (_numDrones >= 3) SpawnDrone(new Vector3(5, 0, 10), 3, 30);
             if (_numDrones >= 4) SpawnDrone(new Vector3(5, 0, -5), 3, 40);
             if (_numDrones >= 5) SpawnDrone(new Vector3(10, 0, 5), 3, 50);
-            if (_numDrones >= 5) SpawnDrone(new Vector3(0, 0, 0), 3, 60);
+            if (_numDrones >= 6) SpawnDrone(new Vector3(0, 0, 0), 3, 60);
 
 
             var targetEnt = Entity.Create();

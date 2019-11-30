@@ -13,6 +13,7 @@ using System.Text;
 using Forge.Core.Interfaces;
 using Forge.Core;
 using EnterTheVoid.Upgrades;
+using EnterTheVoid.Phases.Asteroids;
 
 namespace EnterTheVoid.Phases.Combat
 {
@@ -27,6 +28,7 @@ namespace EnterTheVoid.Phases.Combat
         private PhaseKillTarget _target;
         private int _wave = 0;
         private FlightShip _ship;
+        private AsteroidSpawner _asteroidSpawner;
 
         //FlightCameraControl _camera;
 
@@ -129,6 +131,7 @@ namespace EnterTheVoid.Phases.Combat
             _target = targetEnt.Add(new PhaseKillTarget(this, _enemies.Select(x => x.Get<FlightShip>()), 0));
             targetEnt.Add(new PhaseKillTargetRenderable());
 
+            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(Ship, 5, AsteroidDistributions.StandardAsteroidDistribution));
             MusicManager.Start("Boss2");
         }
 
@@ -161,6 +164,8 @@ namespace EnterTheVoid.Phases.Combat
                 drone.Delete();
             }
             _ship.Entity.Delete();
+            _asteroidSpawner.Stop();
+            _asteroidSpawner.Entity.Delete();
         }
     }
 }
