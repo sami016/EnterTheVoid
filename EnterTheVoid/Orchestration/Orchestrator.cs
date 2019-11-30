@@ -47,7 +47,7 @@ namespace EnterTheVoid.Orchestration
                 Planet.Earth,
                 //() => new BanditPhase(2),
                 //() => new DroneStrikePhase(6),
-                () => new GalactusBossPhase(),
+                //() => new GalactusBossPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new BanditPhase(2),
 
@@ -55,10 +55,6 @@ namespace EnterTheVoid.Orchestration
                 () => new TransmissionPhase(),
                 () => new BanditPhase(0),
                 () => new SatellitePhase(Planet.Mars)
-                //() => new DroneStrikePhase(),
-                //() => new AsteroidPhase(20, AsteroidDistributions.StandardAsteroidDistribution),
-                //new IceAsteroidPhase(10, AsteroidDistributions.IceAsteroidDistribution),
-                //new OpenPhase(),
            );
            AddPlanet(
                 Planet.Mars,
