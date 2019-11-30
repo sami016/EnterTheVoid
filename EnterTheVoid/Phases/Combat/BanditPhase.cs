@@ -64,7 +64,7 @@ namespace EnterTheVoid.Phases.Combat
             _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 60f;
-            SpawnEnemy(new Vector3(0, 0, -5), 2, 3);
+            SpawnEnemy(new Vector3(-6, 0, -5), 2, 3);
 
             var targetEnt = Entity.Create();
             _target = targetEnt.Add(new PhaseKillTarget(this, _droneEntities.Select(x => x.Get<FlightShip>()), 0));
