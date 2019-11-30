@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EnterTheVoid.Constants;
 
 namespace EnterTheVoid.Builder
 {
@@ -36,12 +37,12 @@ namespace EnterTheVoid.Builder
 
         [Inject] Orchestrator Orchestrator { get; set; }
 
-        public BuildMode(ShipTopology topology)
+        public BuildMode(ShipTopology topology, Planet planet)
         {
             _topology = topology;
             State = BuildModeState.AwaitingBegin;
             _countIn = new CompletionTimer(TimeSpan.FromSeconds(3));
-            _countDown = new CompletionTimer(TimeSpan.FromSeconds(50));
+            _countDown = new CompletionTimer(TimeSpan.FromSeconds(planet == Planet.Earth ? 80 : 50));
             _countOut = new CompletionTimer(TimeSpan.FromSeconds(5));
         }
 

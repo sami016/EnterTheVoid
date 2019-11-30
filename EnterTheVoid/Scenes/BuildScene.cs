@@ -50,7 +50,7 @@ namespace EnterTheVoid.Scenes
             var cameraPos = camera.Add(new Transform()
             {
                 Rotation = Quaternion.CreateFromYawPitchRoll(0, 0, (float)(Math.PI)),
-                Location = focusLocation + (Vector3.Backward + Vector3.Up) * 10
+                Location = focusLocation + (Vector3.Backward + Vector3.Up * 1.8f) * 10
             });
             //CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
             CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters() {
@@ -78,7 +78,7 @@ namespace EnterTheVoid.Scenes
             floor.Add(new BuildFloor(_shipTopology));
 
             var productionLine = AddSingleton(new ProductionLine());
-            var gameMode = AddSingleton(new BuildMode(_shipTopology));
+            var gameMode = AddSingleton(new BuildMode(_shipTopology, _planet));
 
             var placerEnt = Create();
             var placer = placerEnt.Add(new BuildPlacer(CameraManager.ActiveCamera, _shipTopology, productionLine));

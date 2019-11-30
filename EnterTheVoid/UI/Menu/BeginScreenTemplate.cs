@@ -47,7 +47,7 @@ namespace EnterTheVoid.UI.Menu
                             Position = new Rectangle(10, 110, 0, 0),
                             Font = "Default"
                         },
-                        new Text($"You will have just 50 seconds to construct your ship. Good luck!")
+                        new Text($"You will have just 80 seconds to construct your ship. Good luck!")
                         {
                             Position = new Rectangle(10, 160, 0, 0),
                             Font = "Default"
