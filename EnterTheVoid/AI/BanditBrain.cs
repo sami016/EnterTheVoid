@@ -49,7 +49,7 @@ namespace EnterTheVoid.AI
 
         public override void Tick(TickContext context)
         {
-            _deathRunBehaviour.Tick(context);
+                _deathRunBehaviour.Tick(context);
 
             _pos += context.DeltaTimeSeconds * (float)(Math.PI / 10f);
             _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(

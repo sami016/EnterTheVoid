@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EnterTheVoid.Upgrades;
+using Microsoft.Xna.Framework.Audio;
+using Forge.Core.Resources;
 
 namespace EnterTheVoid.Flight
 {
-    public class WeaponCapability : Component, ITick
+    public class WeaponCapability : Component, IInit, ITick
     {
         private static readonly Random Random = new Random();
 
@@ -23,6 +25,8 @@ namespace EnterTheVoid.Flight
         private CompletionTimer _blastRocketCooldown = new CompletionTimer(TimeSpan.FromSeconds(10f));
         private CompletionTimer _bombardCooldown = new CompletionTimer(TimeSpan.FromSeconds(2f));
 
+
+        [Inject] ResourceManager<SoundEffect> SoundEffects { get; set; }
         [Inject] FlightShip FlightShip { get; set; }
         [Inject] Transform Transform { get; set; }
 
@@ -35,6 +39,9 @@ namespace EnterTheVoid.Flight
             _bombardCooldown.Complete();
         }
 
+        public void Initialise()
+        {
+        }
 
         public void StandardFire()
         {
@@ -43,8 +50,10 @@ namespace EnterTheVoid.Flight
                 var guns = FlightShip.Topology.AllSections
                     .Where(x => x.Module is BlasterModule);
                 var shipTransform = Transform;
+                var any = false;
                 foreach (var gun in guns)
                 {
+                    any = true;
                     var flightNode = FlightShip.GetNodeForSection(gun.GridLocation);
                     var rotation = (float)((-gun.Rotation - 2) * Math.PI / 3);
                     var rotationQuat = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);
@@ -63,6 +72,10 @@ namespace EnterTheVoid.Flight
                             false
                         )
                     );
+                }
+                if (any)
+                {
+                    SoundEffects.Get("Shot")?.Play();
                 }
 
                 if (FlightShip.HasUpgrade<RapidFire>())
@@ -106,6 +119,7 @@ namespace EnterTheVoid.Flight
                         )
                     );
                 }
+                SoundEffects.Get("HeavyShot")?.Play();
 
                 _heavyweightCooldown.Restart();
             }

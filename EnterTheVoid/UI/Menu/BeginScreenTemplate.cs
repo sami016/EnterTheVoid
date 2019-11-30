@@ -32,7 +32,7 @@ namespace EnterTheVoid.UI.Menu
         public override IElement Evaluate() =>
             new Pane(
                 new Pane(
-                        new Text($"You will construct your spaceship upon the hexagonal grid.")
+                        new Text($"Goal: Construct a ship to get you to the next satellite. Starting at earth, you will progress from planet to planet, upgrading your ship along the way.")
                         {
                             Position = new Rectangle(10, 10, 0, 0),
                             Font = "Default"

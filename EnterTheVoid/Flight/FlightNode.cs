@@ -124,18 +124,17 @@ namespace EnterTheVoid.Flight
 
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
-            var otherLocation = node.Entity.Get<Transform>().Location;
-            var direction = (otherLocation - Transform.Location);
+            //var otherLocation = node.Entity.Get<Transform>().Location;
+            //var direction = (otherLocation - Transform.Location);
             // Handle identical location with random impulse.
-            if (direction.LengthSquared() == 0)
+            var shipDirection = (_ship.GetCenterGlobalLocation() - ship.GetCenterGlobalLocation());
+            if (shipDirection.LengthSquared() == 0)
             {
-                direction = new Vector3((float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f);
+                shipDirection = new Vector3((float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f);
             }
-            var shipDirection = (ship.GetCenterGlobalLocation() - _ship.GetCenterGlobalLocation());
             shipDirection.Normalize();
-            direction.Normalize();
             _ship.Damage(GridLocation, 2);
-            _ship.Velocity = (direction + shipDirection) * 5f;
+            _ship.Velocity = (shipDirection) * 5f;
             //_ship.Push(direction, 10f);
         }
 

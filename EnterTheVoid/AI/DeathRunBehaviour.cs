@@ -43,13 +43,14 @@ namespace EnterTheVoid.AI
                     runDirection.Normalize();
                     _positionChaserBehaviour.Target = _ship.Transform.Location + runDirection * 1000;
                     Running = true;
-                } else
+                }
+            }
+            if (Running)
+            {
+                _despawnTimer.Tick(context.DeltaTime);
+                if (_despawnTimer.Completed)
                 {
-                    _despawnTimer.Tick(context.DeltaTime);
-                    if (_despawnTimer.Completed)
-                    {
-                        _ship.Entity.Delete();
-                    }
+                    _ship.Entity.Delete();
                 }
             }
         }

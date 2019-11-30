@@ -32,11 +32,11 @@ namespace EnterTheVoid.Flight
             var keys = Keyboard.GetState();
             var mouse = Mouse.GetState();
 
-            if (mouse.LeftButton == ButtonState.Pressed)
+            if (mouse.LeftButton == ButtonState.Pressed || keys.IsKeyDown(Keys.Space))
             {
                 WeaponCapability?.StandardFire();
             }
-            if (mouse.RightButton == ButtonState.Pressed)
+            if (mouse.RightButton == ButtonState.Pressed || keys.IsKeyDown(Keys.Enter))
             {
                 WeaponCapability?.HeavyFire();
             }

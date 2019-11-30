@@ -62,6 +62,11 @@ namespace EnterTheVoid.Scenes
 
             SoundEffects.Load("Hammer", Content.Load<SoundEffect>("Sounds/hammer"));
             SoundEffects.Load("Click", Content.Load<SoundEffect>("Sounds/click"));
+            SoundEffects.Load("HeavyShot", Content.Load<SoundEffect>("Sounds/heavy_shot"));
+            SoundEffects.Load("Shot", Content.Load<SoundEffect>("Sounds/shot"));
+            SoundEffects.Load("Rumble", Content.Load<SoundEffect>("Sounds/rumble"));
+            SoundEffects.Load("RockBreaking", Content.Load<SoundEffect>("Sounds/rock_breaking"));
+            SoundEffects.Load("ChunkyExplosion", Content.Load<SoundEffect>("Sounds/Chunky Explosion"));
             //Textures.Load("Rocket", Content.Load<Texture2D>("Icon/Rocket"));
             //Textures.Load("Settings", Content.Load<Texture2D>("Icon/Settings"));
             //Textures.Load("Globe", Content.Load<Texture2D>("Icon/Globe"));

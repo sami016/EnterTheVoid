@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Forge.Core.Resources;
+using Microsoft.Xna.Framework.Audio;
 
 namespace EnterTheVoid.Flight
 {
@@ -25,6 +27,7 @@ namespace EnterTheVoid.Flight
         public float Rotation { get; set; } = 0f;
         public float RotationalSpeed { get; set; } = 0f;
         [Inject] public Transform Transform { get; set; }
+        [Inject] ResourceManager<SoundEffect> SoundEffects { get; set; }
         public int Health => _topology.Health;
         public int MaxHealth => _topology.MaxHealth;
 
@@ -228,6 +231,7 @@ namespace EnterTheVoid.Flight
                     _topology.SectionAt(gridLocation)?.Module?.OnDestruction(this, GetNodeForSection(gridLocation));
                     _topology.Remove(gridLocation);
 
+                    SoundEffects.Get("ChunkyExplosion")?.Play();
                     //PerformPartsAnalysis();
                 }
             });

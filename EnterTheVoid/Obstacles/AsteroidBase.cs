@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using EnterTheVoid.General;
+using Forge.Core.Resources;
+using Microsoft.Xna.Framework.Audio;
 
 namespace EnterTheVoid.Obstacles
 {
@@ -29,6 +31,7 @@ namespace EnterTheVoid.Obstacles
 
         public bool AutoRender { get; } = true;
 
+        [Inject] public ResourceManager<SoundEffect> SoundEffects { get; set; }
         [Inject] public ContentManager Content { get; set; }
         [Inject] protected Transform Transform { get; set; }
         [Inject] public CameraManager CameraManager { get; set; }
@@ -81,6 +84,7 @@ namespace EnterTheVoid.Obstacles
                 Health -= projectile.GetDamage(Entity, this);
                 if (Health <= 0)
                 {
+                    SoundEffects.Get("RockBreaking")?.Play();
                     OnDie();
                     Entity.Delete();
                 }

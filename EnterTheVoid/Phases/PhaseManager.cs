@@ -76,6 +76,16 @@ namespace EnterTheVoid.Phases
             });
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+            try
+            {
+                CurrentPhase.Stop();
+            }
+            catch { }
+        }
+
         public void Tick(TickContext context)
         {
             if (PhaseIndex == -1)

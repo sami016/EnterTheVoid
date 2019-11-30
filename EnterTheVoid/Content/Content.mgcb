@@ -1069,6 +1069,12 @@
 /processorParam:Quality=Best
 /build:Music/Viktor Kraus - Victory!.mp3
 
+#begin Sounds/Chunky Explosion.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Chunky Explosion.mp3
+
 #begin Sounds/click.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1080,6 +1086,30 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/hammer.wav
+
+#begin Sounds/heavy_shot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/heavy_shot.wav
+
+#begin Sounds/rock_breaking.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/rock_breaking.mp3
+
+#begin Sounds/rumble.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/rumble.mp3
+
+#begin Sounds/shot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/shot.wav
 
 #begin Textures/afterburn.png
 /importer:TextureImporter
