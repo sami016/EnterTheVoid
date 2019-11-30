@@ -14,13 +14,15 @@ namespace EnterTheVoid.AI
 {
     public class GalactusBrain : Brain
     {
+        private CompletionTimer _iniTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
         private CompletionTimer _shieldDeployTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
-        private CompletionTimer _alternateTimer = new CompletionTimer(TimeSpan.FromSeconds(7));
+        private CompletionTimer _bombardTimer = new CompletionTimer(TimeSpan.FromSeconds(12));
 
         private PositionChaserBehaviour _positionChaserBehaviour;
         private TakeAimBehaviour _takeAimBehaviour;
 
+        private int _shotCount;
         private bool _oscillateMode = false;
         private float _pos = 0f;
         private bool _shootMode;
@@ -49,6 +51,12 @@ namespace EnterTheVoid.AI
 
         public override void Tick(TickContext context)
         {
+            if (!_iniTimer.Completed)
+            {
+                _iniTimer.Tick(context.DeltaTime);
+                return;
+            }
+
             _pos += context.DeltaTimeSeconds * (float)(Math.PI / 10f);
             _positionChaserBehaviour.Target = _playerShip.Entity.Get<Transform>().Location + new Vector3(
                 (float)Math.Cos(_pos) * _circleRadius,
@@ -79,19 +87,20 @@ namespace EnterTheVoid.AI
                 _shieldDeployTimer.Restart();
             }
 
-            _alternateTimer.Tick(context.DeltaTime);
-            if (_alternateTimer.Completed)
+            _bombardTimer.Tick(context.DeltaTime);
+            if (_bombardTimer.Completed)
             {
-                _alternateTimer.Restart();
-                _shootMode = !_shootMode;
+                _bombardTimer.Restart();
+                WeaponCapability.BombardFire();
             }
 
             _fireTimer.Tick(context.DeltaTime);
             if (_fireTimer.Completed)
             {
-                if (_shootMode)
+                _shotCount++;
+                if (_shotCount % 5 == 0)
                 {
-                    WeaponCapability.BombardFire();
+                    WeaponCapability.HeavyFire();
                 }
                 else
                 {
@@ -104,7 +113,7 @@ namespace EnterTheVoid.AI
 
             FlightShip.Update(() =>
             {
-                FlightShip.Rotation += 0.001f * context.DeltaTimeSeconds;
+                FlightShip.Rotation += 0.01f * context.DeltaTimeSeconds;
                 FlightShip.AddEnergy(100);
             });
         }

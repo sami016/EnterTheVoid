@@ -90,7 +90,8 @@ namespace EnterTheVoid.UI.Menu
 
         public void ClickFlight(ClickUIEvent ev)
         {
-            if (!Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+            var keys = Keyboard.GetState();
+            if (!keys.IsKeyDown(Keys.LeftControl))
             {
                 _fadeTransition.StartTransition(() =>
                 {
@@ -98,6 +99,7 @@ namespace EnterTheVoid.UI.Menu
                 });
                 return;
             }
+             
             var topology = new ShipTopology(6, 5);
 
             //for (var i = 0; i < 6; i++)
