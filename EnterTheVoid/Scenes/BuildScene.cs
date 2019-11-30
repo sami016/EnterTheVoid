@@ -53,7 +53,9 @@ namespace EnterTheVoid.Scenes
                 Location = focusLocation + (Vector3.Backward + Vector3.Up) * 10
             });
             //CameraManager.ActiveCamera = camera.Add(new Camera(new OrthographicCameraParameters(10)));
-            CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters()));
+            CameraManager.ActiveCamera = camera.Add(new Camera(new PerspectiveCameraParameters() {
+                AspectRatio = GraphicsDevice.Viewport.AspectRatio
+            }));
             CameraManager.ActiveCamera.LookAt(focusLocation);
             CameraManager.ActiveCamera.Recalculate();
             camera.Add(new BuildCameraControl());

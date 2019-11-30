@@ -104,18 +104,45 @@ namespace EnterTheVoid.Orchestration
         public void NextBuild()
         {
             CurrentPlanet++;
-            FadeTransition.StartTransition(() => SceneManager.SetScene(new BuildScene(_shipTopology, CurrentPlanet)));
+            if (CurrentPlanet == Planet.Earth)
+            {
+                FadeTransition.StartTransition(() => SceneManager.SetScene(new BuildScene(_shipTopology, CurrentPlanet)));
+            }
+            else
+            {
+                FadeTransition.StartTransition(() =>
+                {
+                    SceneManager.SetScene(new TransitionFromPlanetScene(
+                        _shipTopology,
+                        CurrentPlanet,
+                        () => FadeTransition.StartTransition(() => SceneManager.SetScene(new BuildScene(_shipTopology, CurrentPlanet))),
+                        false
+                    ));
+                });
+            }
         }
 
         public void NextFlight()
         {
-            if (CurrentPlanet < Planet.Pluto && _phaseFactories.ContainsKey(CurrentPlanet))
+            FadeTransition.StartTransition(() =>
             {
-                FadeTransition.StartTransition(() => SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet])));
-            } else
-            {
-                FadeTransition.StartTransition(() => SceneManager.SetScene(new WinScene()));
-            }
+                SceneManager.SetScene(new TransitionFromPlanetScene(
+                    _shipTopology,
+                    CurrentPlanet,
+                    () =>
+                    {
+                        if (CurrentPlanet < Planet.Pluto && _phaseFactories.ContainsKey(CurrentPlanet))
+                        {
+                            FadeTransition.StartTransition(() => SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet])));
+                        }
+                        else
+                        {
+                            FadeTransition.StartTransition(() => SceneManager.SetScene(new WinScene()));
+                        }
+                    },
+                    true
+                ));
+            });
         }
 
         public void PhasesComplete()

@@ -85,6 +85,7 @@ namespace EnterTheVoid.UI.Menu
         public void ClickBuild(ClickUIEvent ev)
         {
             var orchestrator = _menuScene.Create(false).Add(new Orchestrator());
+            orchestrator.CurrentPlanet = Planet.Earth;
             orchestrator.NextBuild();
         }
 
