@@ -1039,11 +1039,23 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/uranus.fbx
 
+#begin Music/Boss_01.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Boss_01.ogg
+
 #begin Music/catinspace_hq.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/catinspace_hq.mp3
+
+#begin Music/Orbital Colossus.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Orbital Colossus.mp3
 
 #begin Music/Snow 02.ogg
 /importer:OggImporter
@@ -1056,6 +1068,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/Space Atmosphere.mp3
+
+#begin Music/Viktor Kraus - Victory!.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Viktor Kraus - Victory!.mp3
 
 #begin Sounds/click.wav
 /importer:WavImporter
@@ -1549,6 +1567,18 @@
 /processorParam:TextureFormat=Color
 /build:Textures/shieldcomb.png
 
+#begin Textures/Space_background_2_44.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Space_background_2_44.png
+
 #begin Textures/Space_background_3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1561,6 +1591,42 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Space_background_3.png
 
+#begin Textures/Space_background_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Space_background_3.png
+
+#begin Textures/Space_background_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Space_background_3.png
+
+#begin Textures/Space_background_47.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Space_background_47.png
+
 #begin Textures/space1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1572,6 +1638,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/space1.png
+
+#begin Textures/SpaceBackGround.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/SpaceBackGround.jpg
 
 #begin Textures/StarCluster1.png
 /importer:TextureImporter

@@ -10,7 +10,6 @@ namespace EnterTheVoid.Phases.Asteroids
     public class IceAsteroidPhase : AsteroidPhase
     {
         private FrozenOverlay _overlay;
-        [Inject] MusicManager MusicManager { get; set; }
 
         public IceAsteroidPhase(int difficulty, Distribution<Type> distribution) : base(difficulty, distribution)
         {
@@ -22,9 +21,13 @@ namespace EnterTheVoid.Phases.Asteroids
 
         public override void Start()
         {
-            MusicManager.Start("Ice");
             base.Start();
             _overlay = Entity.Create().Add(new FrozenOverlay());
+        }
+
+        protected override void StartMusic()
+        {
+            MusicManager.Start("Ice");
         }
 
         public override void Stop()

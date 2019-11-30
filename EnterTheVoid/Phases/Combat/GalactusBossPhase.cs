@@ -108,7 +108,7 @@ namespace EnterTheVoid.Phases.Combat
             topology.SetSection(new Point(9, 8), new Section(new BombardModule(), ConnectionLayouts.FullyConnected, 3));
             topology.SetSection(new Point(9, 9), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 2));
             topology.ApplyUpgrade(new BlastRocketry());
-            topology.ApplyUpgrade(new BombardOverload());
+            // topology.ApplyUpgrade(new BombardOverload());
             topology.ApplyUpgrade(new ShieldAmplification());
             topology.ApplyUpgrade(new ShieldFortification());
 
@@ -127,6 +127,8 @@ namespace EnterTheVoid.Phases.Combat
             var targetEnt = Entity.Create();
             _target = targetEnt.Add(new PhaseKillTarget(this, _enemies.Select(x => x.Get<FlightShip>()), 0));
             targetEnt.Add(new PhaseKillTargetRenderable());
+
+            MusicManager.Start("Boss2");
         }
 
         public override void Tick(TickContext context)

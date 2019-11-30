@@ -33,7 +33,7 @@ namespace EnterTheVoid.Scenes
             Fonts.Load("Title", Content.Load<SpriteFont>("Font/Title"));
 
             Textures.Load("StarCluster1", Content.Load<Texture2D>("Textures/StarCluster1"));
-            Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Space1"));
+            Textures.Load("Starfield", Content.Load<Texture2D>("Textures/Space_Background_3"));
             Textures.Load("Center", Content.Load<Texture2D>("Textures/center"));
             Textures.Load("Button", Content.Load<Texture2D>("Textures/button2"));
             Textures.Load("ButtonDown", Content.Load<Texture2D>("Textures/button"));
@@ -56,6 +56,9 @@ namespace EnterTheVoid.Scenes
             Songs.Load("Menu", Content.Load<Song>("Music/Space Atmosphere"));
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));
             Songs.Load("Ice", Content.Load<Song>("Music/Snow 02"));
+            Songs.Load("Boss", Content.Load<Song>("Music/Boss_01"));
+            Songs.Load("Boss2", Content.Load<Song>("Music/Orbital Colossus"));
+            Songs.Load("Victory", Content.Load<Song>("Music/Viktor Kraus - Victory!"));
 
             SoundEffects.Load("Hammer", Content.Load<SoundEffect>("Sounds/hammer"));
             SoundEffects.Load("Click", Content.Load<SoundEffect>("Sounds/click"));

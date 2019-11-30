@@ -46,7 +46,7 @@ namespace EnterTheVoid.Orchestration
             AddPlanet(
                 Planet.Earth,
                 //() => new DroneStrikePhase(6),
-                //() => new GalactusBossPhase(),
+                () => new GalactusBossPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
                 () => new OutOfBoundsPhase(),
                 () => new TransmissionPhase(),

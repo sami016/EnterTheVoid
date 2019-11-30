@@ -1,5 +1,6 @@
 ﻿using Forge.Core;
 using Forge.Core.Components;
+using Forge.Core.Sound;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace EnterTheVoid.Phases
         public TimeSpan? Duration { get; set; } = TimeSpan.FromSeconds(40);
         public string CompleteMessage { get; set; } = "";
         public bool Ended { get; set; } = false;
+        [Inject] public MusicManager MusicManager { get; set; }
 
         public virtual void Start()
         {

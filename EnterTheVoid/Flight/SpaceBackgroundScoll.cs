@@ -32,6 +32,7 @@ namespace EnterTheVoid.Flight
         public void Initialise()
         {
             _starCluster = Content.Load<Texture2D>("Textures/Space_Background_3");
+            //_starCluster = Content.Load<Texture2D>("Textures/SpaceBackGround");
         }
 
         public void Render(RenderContext context)

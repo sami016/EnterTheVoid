@@ -14,10 +14,6 @@ namespace EnterTheVoid.UI.Intro
         {
             return new Pane(
                 new Pane(
-                    //new AnimatedText("Into The Void")
-                    //{
-                    //    Font = "Title",
-                    //},
                     new Pane()
                     {
                         Position = new Rectangle((int)(Vw * 50) - 250, 0, 500, 300),
@@ -43,11 +39,10 @@ namespace EnterTheVoid.UI.Intro
                     {
                         Position = new Rectangle(30, 480, 0, 0)
                     },
-                    new AnimatedText("Who will have what it takes to claim this brave new domain?", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(24))
+                    new AnimatedText("Will you have what it takes to claim this brave new domain?", TimeSpan.FromMilliseconds(50), TimeSpan.FromSeconds(24))
                     {
                         Position = new Rectangle(30, 520, 0, 0)
                     },
-                    //Many nations, corporations and talented individuals 
                     new Text("Press any button to continue...")
                     {
                         Position = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 100, GraphicsDevice.Viewport.Height - 200, 0, 0)

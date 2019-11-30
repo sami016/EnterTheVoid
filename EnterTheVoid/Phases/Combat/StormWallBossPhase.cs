@@ -95,6 +95,8 @@ namespace EnterTheVoid.Phases.Combat
             var targetEnt = Entity.Create();
             _target = targetEnt.Add(new PhaseKillTarget(this, _enemies.Select(x => x.Get<FlightShip>()), 0));
             targetEnt.Add(new PhaseKillTargetRenderable());
+
+            MusicManager.Start("Boss");
         }
 
         public override void Tick(TickContext context)

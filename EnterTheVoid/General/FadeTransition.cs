@@ -27,6 +27,10 @@ namespace EnterTheVoid.General
 
         public void StartTransition(Action swapAction)
         {
+            if (_transitioning)
+            {
+                return;
+            }
             _completionTimer.Restart();
             _ranSwap = false;
             _transitioning = true;

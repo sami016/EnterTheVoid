@@ -27,11 +27,17 @@ namespace EnterTheVoid.Phases.Asteroids
 
         public override void Start()
         {
+            StartMusic();
             var ship = Entity.EntityManager.GetAll<FlightShip>().First();
             var targetEnt = Entity.Create();
             _phaseDistanceTarget = targetEnt.Add(new PhaseDistanceTarget(this, Entity.EntityManager.GetAll<FlightShip>().First(), 90f + 2f * _difficult / 5f));
             targetEnt.Add(new PhaseDistanceTargetRenderable());
             _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(ship, _difficult, _distribution, _phaseDistanceTarget));
+        }
+
+        protected virtual void StartMusic()
+        {
+            MusicManager.Start("Menu");
         }
 
         public override void Stop()
