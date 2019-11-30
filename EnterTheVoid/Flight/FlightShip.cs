@@ -69,6 +69,20 @@ namespace EnterTheVoid.Flight
             });
         }
 
+        public Vector3 GetCenterGlobalLocation()
+        {
+            var sum = Vector3.Zero;
+            var count = 0;
+            foreach (var location in _topology.AllSections
+                .Select(x => GetNodeForSection(x.GridLocation))
+                .Select(x => x.GlobalLocation))
+            {
+                sum += location;
+                count++;
+            }
+            return sum / count;
+        }
+
         public IEnumerable<FlightNode> GetNodes()
         {
             var nodes = new List<FlightNode>();

@@ -32,6 +32,7 @@ namespace EnterTheVoid.Phases.Combat
         private PhaseKillTarget _target;
         private int _wave = 0;
         private AsteroidSpawner _asteroidSpawner;
+        private PhaseDistanceTarget _phaseDistanceTarget;
 
         public OutOfBoundsPhase()
         {
@@ -72,7 +73,13 @@ namespace EnterTheVoid.Phases.Combat
             _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 60f;
-            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(Ship, 5, AsteroidDistributions.StandardAsteroidDistribution));
+
+            var targetEnt = Entity.Create();
+            _phaseDistanceTarget = targetEnt.Add(new PhaseDistanceTarget(this, Entity.EntityManager.GetAll<FlightShip>().First(), 150f));
+            targetEnt.Add(new PhaseDistanceTargetRenderable());
+
+            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(Ship, 5, AsteroidDistributions.StandardAsteroidDistribution, _phaseDistanceTarget));
+
         }
 
 
@@ -140,6 +147,7 @@ namespace EnterTheVoid.Phases.Combat
             }
             _asteroidSpawner.Stop();
             _asteroidSpawner.Entity.Delete();
+            _phaseDistanceTarget.Entity.Delete();
         }
     }
 }

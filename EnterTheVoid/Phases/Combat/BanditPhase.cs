@@ -28,10 +28,10 @@ namespace EnterTheVoid.Phases.Combat
         public BanditPhase(int difficulty)
         {
             Title = "Bandit Vessel Inbound";
-            Description = "Combat warning. Fend off incoming bandits. Survive 45 seconds.";
-            CompleteMessage = "Combat completed.";
+            Description = "Combat warning. Defeat the attacking bandit ship.";
+            CompleteMessage = "Bandits defeated.";
             // To prevent player getting stuck.
-            Duration = TimeSpan.FromSeconds(120);
+            Duration = TimeSpan.FromSeconds(80);
         }
 
         private ShipTopology CreateBandit()
@@ -81,7 +81,7 @@ namespace EnterTheVoid.Phases.Combat
                 Location = shipTransform.Location + playerOffset * spawnDistace,
             });
             drone.AddShipBasics(CreateBandit());
-            drone.Add(new ChaseDroneBrain(Ship, playerOffset, rotationRadius));
+            drone.Add(new BanditBrain(Ship, playerOffset, rotationRadius));
             _droneEntities.Add(drone);
         }
 

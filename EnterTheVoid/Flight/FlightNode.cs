@@ -21,7 +21,7 @@ namespace EnterTheVoid.Flight
 {
     public class FlightNode : Component, IInit, ITick, IRenderable, IShipCollider, IProjectileCollider
     {
-
+        private static readonly Random Random = new Random();
         private readonly ShipTopology _shipTopology;
         private ShipSectionRenderer _shipRenderer;
         private readonly FlightShip _ship;
@@ -125,10 +125,18 @@ namespace EnterTheVoid.Flight
         public void OnHit(FlightNode node, FlightShip ship, Point gridLocation, Vector3 nodeLocation, Section section)
         {
             var otherLocation = node.Entity.Get<Transform>().Location;
-            var direction = (Transform.Location - otherLocation);
+            var direction = (otherLocation - Transform.Location);
+            // Handle identical location with random impulse.
+            if (direction.LengthSquared() == 0)
+            {
+                direction = new Vector3((float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f, (float)Random.NextDouble() - 0.5f);
+            }
+            var shipDirection = (ship.GetCenterGlobalLocation() - _ship.GetCenterGlobalLocation());
+            shipDirection.Normalize();
             direction.Normalize();
             _ship.Damage(GridLocation, 2);
-           //_ship.Push(direction, 0.005f);
+            _ship.Velocity = (direction + shipDirection) * 5f;
+            //_ship.Push(direction, 10f);
         }
 
         public void OnHit(Entity projectileEntity, ProjectileBase projectile)
