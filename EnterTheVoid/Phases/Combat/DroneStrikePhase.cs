@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EnterTheVoid.Phases.Asteroids;
 
 namespace EnterTheVoid.Phases.Combat
 {
@@ -22,6 +23,7 @@ namespace EnterTheVoid.Phases.Combat
         private FlightCameraControl _camera;
         private float _oldCameraScale;
         private PhaseKillTarget _target;
+        private AsteroidSpawner _asteroidSpawner;
         private readonly int _numDrones;
 
         //FlightCameraControl _camera;
@@ -62,6 +64,9 @@ namespace EnterTheVoid.Phases.Combat
             var targetEnt = Entity.Create();
             _target = targetEnt.Add(new PhaseKillTarget(this, _droneEntities.Select(x => x.Get<FlightShip>()), 0));
             targetEnt.Add(new PhaseKillTargetRenderable());
+
+
+            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(Ship, 5, AsteroidDistributions.StandardAsteroidDistribution));
         }
 
         private void SpawnDrone(Vector3 playerOffset, float rotationRadius, float spawnDistace)
@@ -86,6 +91,9 @@ namespace EnterTheVoid.Phases.Combat
                 drone.Delete();
             }
             _target.Entity.Delete();
+
+            _asteroidSpawner.Stop();
+            _asteroidSpawner.Entity.Delete();
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Text;
 using EnterTheVoid.General;
 using EnterTheVoid.Upgrades;
+using Microsoft.Xna.Framework.Input;
 
 namespace EnterTheVoid.UI.Menu
 {
@@ -24,11 +25,13 @@ namespace EnterTheVoid.UI.Menu
     {
         private readonly MenuScene _menuScene;
         private readonly FadeTransition _fadeTransition;
+        private readonly SceneManager _sceneManager;
 
-        public MenuScreenTemplate(MenuScene menuScene, FadeTransition fadeTransition)
+        public MenuScreenTemplate(MenuScene menuScene, SceneManager sceneManager, FadeTransition fadeTransition)
         {
             _menuScene = menuScene;
             _fadeTransition = fadeTransition;
+            _sceneManager = sceneManager;
         }
 
         public override IElement Evaluate() =>
@@ -49,7 +52,7 @@ namespace EnterTheVoid.UI.Menu
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickBuild)
                 },
-                new MenuButton("Start with pre-built ship")//Multiplayer
+                new MenuButton("Credits")//Credits with hidden playtest mode
                 {
                     Position = new Rectangle(100, (int)(Vh * 80), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 18)),
                     Init = el => el.Events
@@ -87,6 +90,14 @@ namespace EnterTheVoid.UI.Menu
 
         public void ClickFlight(ClickUIEvent ev)
         {
+            if (!Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+            {
+                _fadeTransition.StartTransition(() =>
+                {
+                    _sceneManager.SetScene(new CreditsScene());
+                });
+                return;
+            }
             var topology = new ShipTopology(6, 5);
 
             //for (var i = 0; i < 6; i++)

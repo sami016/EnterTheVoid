@@ -75,7 +75,7 @@ namespace EnterTheVoid.UI.Menu
 
         public void ClickContinue(ClickUIEvent ev)
         {
-            _fadeTransition.StartTransition(() => _sceneManager.SetScene(new MenuScene()));
+            _fadeTransition.StartTransition(() => _sceneManager.SetScene(new CreditsScene()));
         }
     }
 }

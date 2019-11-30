@@ -50,7 +50,7 @@ namespace EnterTheVoid.Scenes
                 });
                 i++;
             }
-            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(this, FadeTransition));
+            UserInterfaceManager.AddSceneUI(this, new MenuScreenTemplate(this, SceneManager, FadeTransition));
 
             MusicManager.Start("Menu");
         }

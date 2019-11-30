@@ -13,10 +13,11 @@ using System.Text;
 using Forge.Core.Interfaces;
 using Forge.Core;
 using Forge.Core.Utilities;
+using EnterTheVoid.Phases.Asteroids;
 
 namespace EnterTheVoid.Phases.Combat
 {
-    public class SwarmPhase : Phase
+    public class OutOfBoundsPhase : Phase
     {
         private IList<Entity> _enemies = new List<Entity>();
         private IList<CrusherBrain> _enemyBrains = new List<CrusherBrain>();
@@ -30,47 +31,15 @@ namespace EnterTheVoid.Phases.Combat
         private float _oldCameraScale;
         private PhaseKillTarget _target;
         private int _wave = 0;
+        private AsteroidSpawner _asteroidSpawner;
 
-        public SwarmPhase()
+        public OutOfBoundsPhase()
         {
-            Title = "\"Swarm\"";
-            Description = "Survive the swarm.";
-            CompleteMessage = "Swarm complete.";
-            Duration = TimeSpan.FromSeconds(45);
+            Title = "\"Out of bounds\"";
+            Description = "Survive the restricted area.";
+            CompleteMessage = "Out of bounds complete.";
+            Duration = TimeSpan.FromSeconds(35);
         }
-
-        //private ShipTopology CreateWall(int wallWave)
-        //{
-        //    var topology = new ShipTopology(30, 2);
-        //    for (var i = 0; i < 30; i++)
-        //    {
-        //        for (var j = 0; j < 2; j++)
-        //        {
-        //            if (j == 1)
-        //            {
-        //                topology.SetSection(new Point(i, j), new Section(new RocketModule(), ConnectionLayouts.FullyConnected, i == 0 ? 0 : i == 13 ? 2 : 1));
-        //            }
-        //            else if (j == 0)
-        //            {
-        //                if (i % 4 == 2 || i % 4 == 0)
-        //                {
-        //                    topology.SetSection(new Point(i, j), new Section(new ForcefieldShieldModule(), ConnectionLayouts.FullyConnected, 0));
-        //                }
-        //                if (i % 4 == 1)
-        //                {
-        //                    topology.SetSection(new Point(i, j), new Section(new BlasterModule(), ConnectionLayouts.FullyConnected, 4));
-        //                }
-        //            }
-        //            else
-        //            {
-        //                topology.SetSection(new Point(i, j), new Section(new EmptyModule(), ConnectionLayouts.FullyConnected, 4));
-        //            }
-        //        }
-        //    }
-
-        //    return topology;
-        //}
-
 
         private ShipTopology CreateWallSide(int wallWave)
         {
@@ -103,13 +72,9 @@ namespace EnterTheVoid.Phases.Combat
             _camera = Entity.EntityManager.GetAll<FlightCameraControl>().First();
             _oldCameraScale = _camera.CameraScale;
             _camera.CameraScale = 60f;
-            //SpawnWave(new Vector3(28, 0, -13), 10, 0, (float)Math.PI);
-            //SpawnWave(new Vector3(-22, 0, 15), 30, 1, 0f);
-
-            //var targetEnt = Entity.Create();
-            //_target = targetEnt.Add(new PhaseKillTarget(this, _enemies.Select(x => x.Get<FlightShip>()), 0));
-            //targetEnt.Add(new PhaseKillTargetRenderable());
+            _asteroidSpawner = Entity.Create().Add(new AsteroidSpawner(Ship, 5, AsteroidDistributions.StandardAsteroidDistribution));
         }
+
 
         public override void Tick(TickContext context)
         {
@@ -173,6 +138,8 @@ namespace EnterTheVoid.Phases.Combat
             {
                 drone.Delete();
             }
+            _asteroidSpawner.Stop();
+            _asteroidSpawner.Entity.Delete();
         }
     }
 }

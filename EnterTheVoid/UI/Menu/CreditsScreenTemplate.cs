@@ -20,37 +20,40 @@ using EnterTheVoid.Upgrades;
 namespace EnterTheVoid.UI.Menu
 {
 
-    class DeathScreenTemplate : Template
+    class CreditScreenTemplate : Template
     {
-        private readonly string _tip;
         private readonly SceneManager _sceneManager;
 
-        public DeathScreenTemplate(SceneManager sceneManager)
+        public CreditScreenTemplate(SceneManager sceneManager)
         {
-            _tip = Tips.Sample();
             _sceneManager = sceneManager;
         }
 
         public override IElement Evaluate() =>
             new Pane(
                 new Pane(
-                    new Text("Oh dear, you are dead.")
+                    new Text("Enter The Void by Sam Holder")
                     {
                         Position = new Rectangle(10, 10, 0, 0),
-                        Font = "Default"
+                        Font = "Title"
                     },
-                    new Text($"Tip: {_tip}")
+                    new Text($"Design, Programming, 3D Modelling - Sam Holder")
                     {
                         Position = new Rectangle(10, 50, 0, 0),
+                        Font = "Default"
+                    },
+                    new Text($"3D Modelling - Drew Van Schoonhoven")
+                    {
+                        Position = new Rectangle(10, 80, 0, 0),
                         Font = "Default"
                     }
                 )
                 {
                     Position = new Rectangle(100, (int)(Vh * 50), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 5)),
                 },
-                new MenuButton("Continue")//Campaign
+                new MenuButton("Continue")
                 {
-                    Position = new Rectangle(100, (int)(Vh * 60), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 18)),
+                    Position = new Rectangle(100, (int)(Vh * 80), GraphicsDevice.Viewport.Width - 200, (int)(Vh * 18)),
                     Init = el => el.Events
                         .Subscribe<ClickUIEvent>(ClickContinue)
                 },
@@ -62,13 +65,6 @@ namespace EnterTheVoid.UI.Menu
                     },
                     Position = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 250, 100, 500, 300)
                 }
-                //new ModelView()
-                //{
-                //    RenderFunc = ctx => _planetRenderer.Render(ctx),
-                //    Position = new Rectangle(0, 0, 100, 100),
-                //    View = Matrix.CreateLookAt(Vector3.Backward * 4, Vector3.Zero, Vector3.Up),
-                //    Projection = Matrix.CreatePerspective(100, 100, 0.001f, 10000f)
-                //}
             )
             {
                 Background = new ImageBackgroundStyling
