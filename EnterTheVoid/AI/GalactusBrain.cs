@@ -17,8 +17,8 @@ namespace EnterTheVoid.AI
         private CompletionTimer _iniTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
         private CompletionTimer _fireTimer = new CompletionTimer(TimeSpan.FromSeconds(3));
         private CompletionTimer _shieldDeployTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
-        private CompletionTimer _bombardTimer = new CompletionTimer(TimeSpan.FromSeconds(12));
-
+        private CompletionTimer _bombardTimer = new CompletionTimer(TimeSpan.FromSeconds(30));
+        
         private PositionChaserBehaviour _positionChaserBehaviour;
         private TakeAimBehaviour _takeAimBehaviour;
 
