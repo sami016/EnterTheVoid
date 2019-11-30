@@ -1051,12 +1051,6 @@
 /processorParam:Quality=Best
 /build:Music/catinspace_hq.mp3
 
-#begin Music/Orbital Colossus.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Orbital Colossus.mp3
-
 #begin Music/Snow 02.ogg
 /importer:OggImporter
 /processor:SongProcessor

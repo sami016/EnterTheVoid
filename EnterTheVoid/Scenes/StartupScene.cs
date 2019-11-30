@@ -57,7 +57,7 @@ namespace EnterTheVoid.Scenes
             Songs.Load("Building", Content.Load<Song>("Music/catinspace_hq"));
             Songs.Load("Ice", Content.Load<Song>("Music/Snow 02"));
             Songs.Load("Boss", Content.Load<Song>("Music/Boss_01"));
-            Songs.Load("Boss2", Content.Load<Song>("Music/Orbital Colossus"));
+            Songs.Load("Boss2", Content.Load<Song>("Music/Boss_01"));
             Songs.Load("Victory", Content.Load<Song>("Music/Viktor Kraus - Victory!"));
 
             SoundEffects.Load("Hammer", Content.Load<SoundEffect>("Sounds/hammer"));

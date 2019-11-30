@@ -46,6 +46,31 @@ namespace EnterTheVoid.UI.Menu
                     {
                         Position = new Rectangle(10, 80, 0, 0),
                         Font = "Default"
+                    },
+                    new Text("Music")
+                    {
+                        Position = new Rectangle(10, 120, 0, 0),
+                        Font = "Title"
+                    },
+                    new Text($"Cat in Space - mutantleg")
+                    {
+                        Position = new Rectangle(10, 160, 0, 0),
+                        Font = "Default"
+                    },
+                    new Text($"Boss 01, Snow 02 - Fantasy Musica, https://www.fantasymusica.org")
+                    {
+                        Position = new Rectangle(10, 190, 0, 0),
+                        Font = "Default"
+                    },
+                    new Text($"Space Atmosphere - Alexandr Zhelanov, https://soundcloud.com/alexandr-zhelanov")
+                    {
+                        Position = new Rectangle(10, 220, 0, 0),
+                        Font = "Default"
+                    },
+                    new Text($"\"Victory!\" - composed, performed, mixed and mastered by Viktor Kraus")
+                    {
+                        Position = new Rectangle(10, 250, 0, 0),
+                        Font = "Default"
                     }
                 )
                 {
