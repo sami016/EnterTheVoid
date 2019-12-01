@@ -13,9 +13,10 @@ namespace EnterTheVoid.Phases
 {
     public enum PhaseManagerState
     {
-        Starting = 0,
-        Running = 1,
-        Ended = 2
+        LevelIntro = 0,
+        Starting = 1,
+        Running = 2,
+        Ended = 3
     }
 
     /// <summary>
@@ -28,6 +29,7 @@ namespace EnterTheVoid.Phases
         public PhaseManagerState State { get; private set; }
         public Phase CurrentPhase { get; private set; }
 
+        private CompletionTimer _introTimer;
         private CompletionTimer _startTimer;
         private CompletionTimer _phaseTimer;
         private CompletionTimer _endedTimer;
@@ -42,11 +44,11 @@ namespace EnterTheVoid.Phases
         public PhaseManager(IEnumerable<Phase> phases)
         {
             _phases = phases;
+            _introTimer = new CompletionTimer(TimeSpan.FromSeconds(5));
         }
 
         public void Initialise()
         {
-            StartPhase(0);
         }
 
         private void StartPhase(int phaseIndex)
@@ -90,6 +92,16 @@ namespace EnterTheVoid.Phases
         {
             if (PhaseIndex == -1)
             {
+                if (State == PhaseManagerState.LevelIntro)
+                {
+                    _introTimer.Tick(context.DeltaTime);
+                    if (_introTimer.Completed)
+                    {
+                        State = PhaseManagerState.Starting;
+                        StartPhase(0);
+                    }
+                    return;
+                }
                 return;
             }
             if (State == PhaseManagerState.Starting)

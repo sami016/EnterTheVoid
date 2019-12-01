@@ -24,7 +24,7 @@ namespace EnterTheVoid.Scenes
         {
             UserInterfaceManager.AddSceneUI(this, new WinScreenTemplate(SceneManager, FadeTransition));
             
-            MusicManager.Start("Menu");
+            MusicManager.Start("Victory");
         }
     }
 }

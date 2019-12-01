@@ -26,6 +26,7 @@ namespace EnterTheVoid.Scenes
 {
     public class FlightScene : Scene
     {
+        private readonly Planet _planet;
         private readonly ShipTopology _shipTopology;
         private readonly IEnumerable<Func<Phase>> _phaseFactories;
 
@@ -33,8 +34,9 @@ namespace EnterTheVoid.Scenes
         [Inject] UserInterfaceManager UserInterfaceManager { get; set; }
         [Inject] GraphicsDevice GraphicsDevice { get; set; }
 
-        public FlightScene(ShipTopology shipTopology, IEnumerable<Func<Phase>> phaseFactories)
+        public FlightScene(Planet planet, ShipTopology shipTopology, IEnumerable<Func<Phase>> phaseFactories)
         {
+            _planet = planet;
             _shipTopology = shipTopology;
             _phaseFactories = phaseFactories;
         }
@@ -69,17 +71,14 @@ namespace EnterTheVoid.Scenes
             var phases = _phaseFactories
                 .Select(x => Create().Add(x()))
                 .ToArray();
-            phaseEnt.Add(new PhaseManager(
+            var phaseManager = phaseEnt.Add(new PhaseManager(
                 phases
             ));
             phaseEnt.Add(new PhaseTitleDisplay());
 
             var progressTracker = Create().Add(new ProgressTracker());
-            //var radarEnt = Create();
-            //radarEnt.Add(new RadarRenderer());
-
-            var cleanBuildUI = UserInterfaceManager.Create(new FlightScreenTemplate(GraphicsDevice, flightShip, progressTracker));
-            Disposal += () => cleanBuildUI();
+            UserInterfaceManager.AddSceneUI(this, new FlightScreenTemplate(GraphicsDevice, flightShip, progressTracker));
+            UserInterfaceManager.AddSceneUI(this, new LevelTransitionTemplate(phaseManager, _planet, progressTracker));
         }
     }
 }

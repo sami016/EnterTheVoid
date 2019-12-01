@@ -102,17 +102,21 @@ namespace EnterTheVoid.UI.Menu
              
             var topology = new ShipTopology(6, 5);
 
-            //for (var i = 0; i < 6; i++)
-            //{
-            //    for (var j = 0; j < 5; j++)
-            //    {
-            //        topology.SetSection(new Point(i, j), new Section(
-            //            new RocketModule(),
-            //            ConnectionLayouts.FullyConnected,
-            //            1
-            //        ));
-            //    }
-            //}
+            if (keys.IsKeyDown(Keys.D9))
+            {
+                for (var i = 0; i < 6; i++)
+                {
+                    for (var j = 0; j < 5; j++)
+                    {
+                        topology.SetSection(new Point(i, j), new Section(
+                            new RocketModule(),
+                            ConnectionLayouts.FullyConnected,
+                            1
+                        ));
+                    }
+                }
+            }
+
             topology.SetSection(new Point(2, 2), new Section(
                 new ResearchCenterModule(),
                 ConnectionLayouts.FullyConnected

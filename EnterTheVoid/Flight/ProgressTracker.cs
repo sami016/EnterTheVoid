@@ -15,7 +15,7 @@ using Forge.Core.Utilities;
 
 namespace EnterTheVoid.Flight
 {
-    class ProgressTracker : Component, IInit, IRenderable
+    public class ProgressTracker : Component, IInit, IRenderable
     {
         private Camera _planetCamera;
         private IList<IRenderable> _planetRenderables = new List<IRenderable>();

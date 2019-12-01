@@ -45,12 +45,7 @@ namespace EnterTheVoid.Orchestration
             }
             AddPlanet(
                 Planet.Earth,
-                //() => new BanditPhase(2),
-                //() => new DroneStrikePhase(6),
-                //() => new GalactusBossPhase(),
                 () => new AsteroidPhase(10, AsteroidDistributions.StandardAsteroidDistribution),
-                () => new BanditPhase(2),
-
                 () => new OutOfBoundsPhase(),
                 () => new TransmissionPhase(),
                 () => new BanditPhase(0),
@@ -132,7 +127,7 @@ namespace EnterTheVoid.Orchestration
                     {
                         if (CurrentPlanet < Planet.Pluto && _phaseFactories.ContainsKey(CurrentPlanet))
                         {
-                            FadeTransition.StartTransition(() => SceneManager.SetScene(new FlightScene(_shipTopology, _phaseFactories[CurrentPlanet])));
+                            FadeTransition.StartTransition(() => SceneManager.SetScene(new FlightScene(CurrentPlanet, _shipTopology, _phaseFactories[CurrentPlanet])));
                         }
                         else
                         {

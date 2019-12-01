@@ -64,7 +64,7 @@ namespace EnterTheVoid.Phases.Asteroids
             {
                 return;
             }
-            if (_running)
+            if (_running && _entities.Count() < 200)
             {
                 // Locks spawn to once ever 3 units is moved.
                 if (_lastZ > _flightShipTransform.Location.Z)

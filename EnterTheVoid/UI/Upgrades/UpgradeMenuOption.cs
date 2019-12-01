@@ -30,7 +30,8 @@ namespace EnterTheVoid.UI.Upgrades
                 new Text(_upgrade.Name)
                 {
                     Font = "Title",
-                    Position = new Rectangle(15, 10, 0, 0)
+                    Position = new Rectangle(15, 10, 0, 0),
+                    Colour = Color.Black
                 },
                 new Pane()
                 {
@@ -42,7 +43,8 @@ namespace EnterTheVoid.UI.Upgrades
                 new Text(_upgrade.Description)
                 {
                     Font = "Default",
-                    Position = new Rectangle(50, 400, 0, 0)
+                    Position = new Rectangle(50, 400, 0, 0),
+                    Colour = Color.Black
                 }
             )
             {
