@@ -72,15 +72,15 @@ namespace EnterTheVoid.Builder
 
         public void Tick(TickContext context)
         {
-            var keyboard = Keyboard.GetState();
-            this.Update(() =>
-            {
-                if (keyboard.IsKeyDown(Keys.T))
-                {
-                    Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(0, (float)(Math.PI * context.DeltaTimeSeconds), 0);
-                }
-                //Transform.Location += Vector3.Up * context.DeltaTimeSeconds * 0.1f;
-            });
+            //var keyboard = Keyboard.GetState();
+            //this.Update(() =>
+            //{
+            //    if (keyboard.IsKeyDown(Keys.T))
+            //    {
+            //        Transform.Rotation *= Quaternion.CreateFromYawPitchRoll(0, (float)(Math.PI * context.DeltaTimeSeconds), 0);
+            //    }
+            //    //Transform.Location += Vector3.Up * context.DeltaTimeSeconds * 0.1f;
+            //});
         }
     }
 }
